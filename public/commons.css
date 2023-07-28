@@ -1,0 +1,87 @@
+* {
+  font-family: 'Nunito', sans-serif;
+  box-sizing: border-box;
+  margin: 0%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 0%;
+}
+
+h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+
+.mobileMessage {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #141625;
+    color: white;
+    row-gap: 0.75em;
+  }
+  
+.mobileMessage p {
+  margin-top: 0px;
+}
+  
+.buttonClickable3d {
+  align-items: center;
+  background-color: #d9def9;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-top: 10px;
+  overflow: visible !important;
+}
+
+.buttonClickable3d:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(0px, 8px);
+  transition: transform .2s ease-out;
+  z-index: -1;
+}
+
+.buttonClickable3d:active:after {
+  transform: translate(0, 0);
+}
+
+.buttonClickable3d:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  .buttonClickable3d {
+    padding: 0 40px;
+  }
+}
+
+
+a{
+  text-decoration: none;
+  color: blue;
+}
