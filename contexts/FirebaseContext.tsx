@@ -1,18 +1,16 @@
 'use client'
 import { FirebaseApp, getApp, getApps, initializeApp } from 'firebase/app';
-import { connectAuthEmulator, getAuth } from 'firebase/auth';
+import { Auth, getAuth } from 'firebase/auth';
 import {
   Firestore,
-  connectFirestoreEmulator,
   getFirestore,
-  initializeFirestore,
 } from 'firebase/firestore';
-import { connectFunctionsEmulator, getFunctions } from 'firebase/functions';
 import * as React from 'react';
 import { createContext } from 'react';
 
 export const FirebaseAppContext = createContext<FirebaseApp>(null);
 export const FirebaseFirestoreContext = createContext<Firestore>(null);
+export const FirebaseAuthContext = createContext<Auth>(null);
 const firebaseConfig = {
   apiKey: "AIzaSyCOLiUSqahdU-yhNJ4ccFYHq0iIAvc9MXQ",
   authDomain: "imsa-tutoring.firebaseapp.com",
@@ -27,6 +25,7 @@ const firebaseConfig = {
 export const FirebaseProvider = ({ children }) => {
   const [firebaseApp, setFirebaseApp] = React.useState<FirebaseApp>(null);
   const [firestore, setFirestore] = React.useState<Firestore>(null);
+  const [auth, setAuth] = React.useState<Auth>(null);
 
   React.useEffect(() => {
     if (!firebaseApp && typeof window !== 'undefined') {
@@ -34,13 +33,16 @@ export const FirebaseProvider = ({ children }) => {
         getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
       setFirebaseApp(firebaseApp);
       setFirestore(getFirestore(firebaseApp));
+      setAuth(getAuth(firebaseApp));
     }
   }, []);
 
   return (
     <FirebaseAppContext.Provider value={firebaseApp}>
     <FirebaseFirestoreContext.Provider value={firestore}>
+    <FirebaseAuthContext.Provider value={auth}>
       {children}
+    </FirebaseAuthContext.Provider>
     </FirebaseFirestoreContext.Provider>
     </FirebaseAppContext.Provider>
   );
