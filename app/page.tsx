@@ -19,12 +19,9 @@ export default function Home() {
       </div>
     )
   }
-  if(user == null){
-    return (
+  return (
+    <div className='h-[90%]'>
       <LandingPage isMobile={isMobile}/>
-    )
-  } else{
-    return <>
-    </>
-  }
+    </div>
+  )
 }
