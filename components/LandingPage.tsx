@@ -4,7 +4,7 @@ import './LandingPage.css'
 import Footer from './Footer'
 
 export default function LandingPage ({isMobile}: {isMobile: boolean}) {
-  const img1 = isMobile ? <></> : <img src='/thinking-person.png' className='h-[32rem] mr-[5%]'/>
+  const img1 = isMobile ? <></> : <img src='/thinking-person.png' className='h-[32rem]'/>
   const img2 = isMobile ? <></> : <img src='/Page2IMG1.png' alt="" />
   const img3 = isMobile ? <></> : <img src='/Page2IMG2.png' alt=""/>
   const br = isMobile ? <></> : <br />
@@ -13,8 +13,8 @@ export default function LandingPage ({isMobile}: {isMobile: boolean}) {
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='' />
       <div className = "relative w-full bg-[url(/scattered-forcefields.svg)] dark:bg-[url(/scattered-forcefields-dark.svg)] bg-cover h-fit pb-20 border-b-2">
-        <div className="flex flex-row justify-between items-end w-full">
-          <div className = "ml-[10%] mt-[10%]">
+        <div className={"flex flex-row justify-between items-center ml-auto mr-auto mt-20 " + (isMobile ? 'w-[80%]' : 'w-[72.5rem]')}>
+          <div>
             <div>
                 <h1 className="maintext">Peer Tutoring <br /> For IMSA Students <br /> Like You</h1>
                 <br />
@@ -31,10 +31,10 @@ export default function LandingPage ({isMobile}: {isMobile: boolean}) {
         </div>
         
       </div>
-      <div className = "relative w-full bg-[75%] bg-[url(/scattered-forcefields4.svg)] dark:bg-[url(/scattered-forcefields4-dark.svg)] bg-cover h-fit pb-20 border-b-2">
-        <div className="flex flex-row justify-between items-end w-[90%] ml-[10%]">
+      <div className = "flex flex-center flex-col justify-items-center relative w-full bg-[78%] bg-[url(/scattered-forcefields2.svg)] dark:bg-[url(/scattered-forcefields2-dark.svg)] bg-cover h-fit pb-20 border-b-2">
+        <div className={"flex flex-row justify-between items-end mt-20 ml-auto mr-auto " + (isMobile ? 'w-[80%]' : 'w-[72.5rem]')}>
           {img2}
-          <div className = "mr-[5%] mt-[10%]">
+          <div>
             <div className = "text-right">
               <h1 className="Text">STRUGGLING WITH SCHOOLWORK?</h1>
               <br /><h1 className = "desc">Get live, one-on-one tutoring {br} from certified IMSA students. </h1>
@@ -47,9 +47,9 @@ export default function LandingPage ({isMobile}: {isMobile: boolean}) {
             </div>
           </div>
         </div>
-        <div className="mt-10 flex flex-row justify-between items-end w-[85%] mr-[5%] float-right">
+        <div className={"flex flex-row justify-between items-end mt-20 ml-auto mr-auto " + (isMobile ? 'w-[80%]' : 'w-[72.5rem]')}>
           <div>
-            <div className = "maincontent">
+            <div>
                 <h1 className="Text">DOZENS OF {isMobile ? <br /> : <></>}COURSES</h1>
                 <br />
                 <h1 className = {"desc break-normal" + (isMobile ? " w-[80%]": "")}>No matter what class you need help in, {br} we'll have a tutor for you. </h1>
@@ -63,9 +63,9 @@ export default function LandingPage ({isMobile}: {isMobile: boolean}) {
           </div>
           {img3}
         </div>
-        <div className="flex flex-row justify-between items-end w-[90%] ml-[10%]">
+        <div className={"flex flex-row justify-between items-end mt-20 ml-auto mr-auto " + (isMobile ? 'w-[80%]' : 'w-[72.5rem]')}>
           {img2}
-          <div className = "mr-[5%] mt-[10%]">
+          <div>
             <div className = "text-right">
               <h1 className="Text">SCHEDULE ANYTIME</h1>
               <br /><h1 className = "desc">With over 100 volunteers, a peer tutor will be available {br} whenever you need them.</h1>
