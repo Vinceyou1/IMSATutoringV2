@@ -22,8 +22,8 @@ export default function Header(){
   let signInOut = <></>;
 
   const sidebar = isMobile ?
-  <div className={"ease-in-out z-10 absolute h-full w-3/5 bg-[white] dark:dark:bg-[#334155] top-0 border-r-[grey] border-r-2 rounded-r-sm " + (sidebarActive ? "left-0 duration-[400ms]" : "-left-[60%] duration-200")}>
-    <div className="flex flex-row m-4 justify-between">
+  <div className={"flex flex-col justify-between p-4 ease-in-out z-10 absolute h-full w-3/5 bg-[white] dark:dark:bg-[#334155] top-0 border-r-[grey] border-r-2 rounded-r-sm " + (sidebarActive ? "left-0 duration-[400ms]" : "-left-[60%] duration-200")}>
+    <div className="flex flex-row justify-between">
       <ul>
         <li className='text-2xl mb-2'><a href="/">Home</a></li>
         <li className='text-2xl mb-2'><a href="/courses">Courses</a></li>
@@ -31,6 +31,10 @@ export default function Header(){
         <li className='text-2xl mb-2'><a href="/help">Help</a></li>
       </ul>
       <button onClick={() => setSideBarActive(!sidebarActive)} className="text-3xl h-fit">&#x2573;</button>
+    </div>
+    <div className="flex flex-row justify-between">
+      <a className='text-lg overflow-hidden' href="https://www.imsa.edu/academics/academic-support-services/">IMSA Academic Support Services</a>
+      <a href="https://github.com/Vinceyou1/IMSATutoringV2" className="bg-[url(/github-mark.svg)] dark:bg-[url(/github-mark-white.svg)] bg-cover inline-block w-fit h-fit flex-shrink-0"><img src='/github-mark.svg' className="invisible w-[3.075rem] h-12"></img></a>
     </div>
   </div> : <></>
   if(auth){
