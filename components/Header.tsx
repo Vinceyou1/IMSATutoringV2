@@ -50,7 +50,7 @@ export default function Header(){
   }
   
   return(
-    <div className="h-[10%] bg-[white] dark:bg-[#334155] flex items-center justify-between border-b-2 border-[grey] w-full">
+    <div className="h-20 bg-[white] dark:bg-[#334155] flex items-center justify-between border-b-2 border-[grey] w-full">
       {sidebar}
       {navbar}
       {signInOut}

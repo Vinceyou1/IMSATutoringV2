@@ -20,7 +20,7 @@ export default function Home() {
     )
   }
   return (
-    <div className='h-[90%]'>
+    <div className='h-[calc(100%-5rem)]'>
       <LandingPage isMobile={isMobile}/>
     </div>
   )
