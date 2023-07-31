@@ -14,7 +14,7 @@ export default function Home() {
   console.log(isMobile);
   if(!auth){
     return (
-      <div className='h-full'>
+      <div className='h-[calc(100%-5rem)]'>
         <Loading />
       </div>
     )

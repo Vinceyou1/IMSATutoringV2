@@ -1,5 +1,3 @@
-
-import Image from 'next/image'
 import './LandingPage.css'
 import Footer from './Footer'
 
@@ -31,7 +29,7 @@ export default function LandingPage ({isMobile}: {isMobile: boolean}) {
         </div>
         
       </div>
-      <div className = "flex flex-center flex-col justify-items-center relative w-full bg-[78%] bg-[url(/scattered-forcefields2.svg)] dark:bg-[url(/scattered-forcefields2-dark.svg)] bg-cover h-fit pb-20 border-b-2">
+      <div className = "flex flex-center flex-col justify-items-center relative w-full bg-[55%] bg-[url(/scattered-forcefields3.svg)] dark:bg-[url(/scattered-forcefields3-dark.svg)] bg-cover h-fit pb-20 border-b-2">
         <div className={"flex flex-row justify-between items-end mt-20 ml-auto mr-auto " + (isMobile ? 'w-[80%]' : 'w-[72.5rem]')}>
           {img2}
           <div>

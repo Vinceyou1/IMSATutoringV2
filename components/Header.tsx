@@ -32,7 +32,7 @@ export default function Header(){
       </ul>
       <button onClick={() => setSideBarActive(!sidebarActive)} className="text-3xl h-fit">&#x2573;</button>
     </div>
-    <div className="flex flex-row justify-between">
+    <div className="flex flex-row justify-between items-center">
       <a className='text-lg overflow-hidden' href="https://www.imsa.edu/academics/academic-support-services/">IMSA Academic Support Services</a>
       <a href="https://github.com/Vinceyou1/IMSATutoringV2" className="bg-[url(/github-mark.svg)] dark:bg-[url(/github-mark-white.svg)] bg-cover inline-block w-fit h-fit flex-shrink-0"><img src='/github-mark.svg' className="invisible w-[3.075rem] h-12"></img></a>
     </div>
