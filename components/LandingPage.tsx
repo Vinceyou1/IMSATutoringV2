@@ -11,18 +11,16 @@ export default function LandingPage ({isMobile}: {isMobile: boolean}) {
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='' />
       <div className = "relative w-full bg-[url(/scattered-forcefields.svg)] dark:bg-[url(/scattered-forcefields-dark.svg)] bg-cover h-fit pb-20 border-b-2">
-        <div className={"flex flex-row justify-between items-center ml-auto mr-auto mt-20 " + (isMobile ? 'w-[80%]' : 'w-[72.5rem]')}>
+        <div className={"flex flex-row justify-between items-center ml-auto mr-auto mt-20 " + (isMobile ? 'w-[80%]' : 'w-[72rem]')}>
           <div>
             <div>
-                <h1 className="maintext">Peer Tutoring <br /> For IMSA Students <br /> Like You</h1>
-                <br />
-                <h1 className = "maindesc">Get 1-ON-1 Homework Help {br} Led By Verified IMSA Tutors</h1>
-                <br />
+              <h1 className="maintext">Peer Tutoring <br /> For IMSA Students <br /> Like You</h1>
+              <br />
+              <h1 className = "maindesc">Get 1-ON-1 Homework Help {br} Led By Verified IMSA Tutors</h1>
+              <br />
             </div>
             <div className = "button">
-                <form action="https://imsatutors.herokuapp.com/Courses">
-                    <button className="learn">Learn Now!</button>
-                </form>
+              <a href="/tutors"><button className="learn">Learn Now!</button></a>
             </div>
           </div>
           {img1}
@@ -30,22 +28,20 @@ export default function LandingPage ({isMobile}: {isMobile: boolean}) {
         
       </div>
       <div className = "flex flex-center flex-col justify-items-center relative w-full bg-[55%] bg-[url(/scattered-forcefields3.svg)] dark:bg-[url(/scattered-forcefields3-dark.svg)] bg-cover h-fit pb-20 border-b-2">
-        <div className={"flex flex-row justify-between items-end mt-20 ml-auto mr-auto " + (isMobile ? 'w-[80%]' : 'w-[72.5rem]')}>
+        <div className={"flex flex-row justify-between items-end mt-20 ml-auto mr-auto " + (isMobile ? 'w-[80%]' : 'w-[72rem]')}>
           {img2}
           <div>
             <div className = "text-right">
               <h1 className="Text">STRUGGLING WITH SCHOOLWORK?</h1>
-              <br /><h1 className = "desc">Get live, one-on-one tutoring {br} from certified IMSA students. </h1>
+              <br /><h1 className = "desc">Get live, one-on-one tutoring from {br} certified IMSA students. </h1>
               <br />
             </div>
             <div className = "button float-right">
-              <form action="https://imsatutors.herokuapp.com/Courses">
-                <button className="learn">Get Live Help!</button>
-              </form>    
+              <a href="/tutors"><button className="learn">Get Live Help!</button></a>
             </div>
           </div>
         </div>
-        <div className={"flex flex-row justify-between items-end mt-20 ml-auto mr-auto " + (isMobile ? 'w-[80%]' : 'w-[72.5rem]')}>
+        <div className={"flex flex-row justify-between items-end mt-20 ml-auto mr-auto " + (isMobile ? 'w-[80%]' : 'w-[72rem]')}>
           <div>
             <div>
                 <h1 className="Text">DOZENS OF {isMobile ? <br /> : <></>}COURSES</h1>
@@ -54,25 +50,21 @@ export default function LandingPage ({isMobile}: {isMobile: boolean}) {
                 <br />
             </div>
             <div className = "button">
-                <form action="https://imsatutors.herokuapp.com/Courses">
-                    <button className="learn">Explore Courses!</button>
-                </form>    
+              <a href="/tutors"><button className="learn">Explore Courses!</button></a>
             </div>
           </div>
           {img3}
         </div>
-        <div className={"flex flex-row justify-between items-end mt-20 ml-auto mr-auto " + (isMobile ? 'w-[80%]' : 'w-[72.5rem]')}>
+        <div className={"flex flex-row justify-between items-end mt-20 ml-auto mr-auto " + (isMobile ? 'w-[80%]' : 'w-[72rem]')}>
           {img2}
           <div>
             <div className = "text-right">
-              <h1 className="Text">SCHEDULE ANYTIME</h1>
+              <h1 className="Text">AVAILABLE ANYTIME</h1>
               <br /><h1 className = "desc">With over 100 volunteers, a peer tutor will be available {br} whenever you need them.</h1>
               <br />
             </div>
             <div className = "button float-right">
-              <form action="https://imsatutors.herokuapp.com/Courses">
-                <button className="learn">Get Live Help!</button>
-              </form>    
+              <a href="/tutors"><button className="learn">Schedule Now!</button></a>
             </div>
           </div>
         </div>
