@@ -26,8 +26,8 @@ export default function Header(){
     <div className="flex flex-row justify-between">
       <ul>
         <li className='text-2xl mb-2'><a href="/">Home</a></li>
-        <li className='text-2xl mb-2'><a href="/courses">Courses</a></li>
-        <li className='text-2xl mb-2'><a href="/tutor">Tutor</a></li>
+        <li className='text-2xl mb-2'><a href="/tutors">Tutors</a></li>
+        <li className='text-2xl mb-2'><a href="/schedule">My Schedule</a></li>
         <li className='text-2xl mb-2'><a href="/help">Help</a></li>
       </ul>
       <button onClick={() => setSideBarActive(!sidebarActive)} className="text-3xl h-fit">&#x2573;</button>
@@ -47,8 +47,8 @@ export default function Header(){
       <button onClick={() => setSideBarActive(!sidebarActive)} className="ml-[5%] bg-[url(/icons8-menu-black.svg)] dark:bg-[url(/icons8-menu-white.svg)] bg-cover h-8 w-8"/> : 
       <ul className="ml-6">
         <li className='mr-10 inline'><a href="/">Home</a></li>
-        <li className='mr-10 inline'><a href="/courses">Courses</a></li>
-        <li className='mr-10 inline'><a href="/tutor">Tutor</a></li>
+        <li className='mr-10 inline'><a href="/tutors">Tutors</a></li>
+        <li className='mr-10 inline'><a href="/schedule">My Schedule</a></li>
         <li className='mr-10 inline'><a href="/help">Help</a></li>
       </ul>;
   }
