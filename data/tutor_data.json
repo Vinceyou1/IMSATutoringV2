@@ -1,0 +1,2312 @@
+[
+    {
+      "last_name": "Wiggins",
+      "first_name": "Dheeran",
+      "id": "123249",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "BC Calculus 2",
+        "BC Calculus 3",
+        "Multivariable Calculus"
+      ],
+      "physics_courses": [
+        "SI Physics",
+        "Modern Physics",
+        "Sound & Light"
+      ],
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "Russian 1",
+        "Russian 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Matthews",
+      "first_name": "Wyatt",
+      "id": "124125",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 1/2",
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Panchagnula",
+      "first_name": "Sreekeerthi",
+      "id": "123177",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "BC Calculus 1"
+      ],
+      "physics_courses": null,
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": [
+        "Biochemistry",
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Barrow",
+      "first_name": "Dean",
+      "id": "123015",
+      "year": "Class of 2023",
+      "math_courses": [
+        "BC Calculus 1",
+        "BC Calculus 2",
+        "BC Calculus 3",
+        "Multivariable Calculus"
+      ],
+      "physics_courses": [
+        "SI Physics",
+        "Modern Physics"
+      ],
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": [
+        "SI Chemistry",
+        "Advanced Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "Mandarin 1",
+        "Mandarin 2",
+        "Mandarin 3"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Dziamentsyeu",
+      "first_name": "Stsiapan",
+      "id": "123062",
+      "year": "Class of 2023",
+      "math_courses": null,
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": [
+        "Russian 1",
+        "Russian 2",
+        "Russian 3"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Cianciolo",
+      "first_name": "Dean",
+      "id": "123040",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathmatical Investigations 1/2",
+        "Mathematical Investigations 3",
+        "BC Calculus 1",
+        "BC Calculus 2",
+        "Linear Algebra"
+      ],
+      "physics_courses": [
+        "Modern Physics"
+      ],
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": null,
+      "cs_courses": [
+        "Object Oriented Programming"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Kozak",
+      "first_name": "Nathan",
+      "id": "124109",
+      "year": "Class of 2024",
+      "math_courses": null,
+      "physics_courses": null,
+      "bio_courses": [
+        "SI Physics"
+      ],
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "Mandarin 1"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Bayliss",
+      "first_name": "George",
+      "id": "123017",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 1/2",
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "BC Calculus 2",
+        "BC Calculus 3",
+        "Multivariable Calculus",
+        "Differential Equations",
+        "Theory of Analysis"
+      ],
+      "physics_courses": [
+        "Modern Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": [
+        "Object Oriented Programming",
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "French 1",
+        "French 2",
+        "French 3",
+        "French 4",
+        "French 5"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Leigh",
+      "first_name": "Dashiell",
+      "id": "124115",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "BC Calculus 1"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": [
+        "Spanish 2",
+        "Spanish 3",
+        "Spanish 4"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Rudd",
+      "first_name": "Jackson",
+      "id": "124187",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "BC Calculus 2"
+      ],
+      "physics_courses": [
+        "Sound & Light"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Park",
+      "first_name": "Sooah",
+      "id": "123179",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "BC Calculus 2",
+        "BC Calculus 3"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": [
+        "SI Chemistry",
+        "Advanced Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry",
+        "Web Technologies"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Chirumamilla",
+      "first_name": "Shivani",
+      "id": "124039",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigation 4",
+        "BC Calculus 1",
+        "BC Calculus 2"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "Mandarin 1"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Lala",
+      "first_name": "Ayati",
+      "id": "123128",
+      "year": "Class of 2023",
+      "math_courses": [
+        "BC Calculus 1"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": [
+        "Advanced Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "French 1",
+        "French 2",
+        "French 3",
+        "French 4"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "zasiebida",
+      "first_name": "sofia",
+      "id": "123253",
+      "year": "Class of 2023",
+      "math_courses": [
+        "BC Calculus 1",
+        "BC Calculus 2"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry",
+        "Advanced Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Pae",
+      "first_name": "Rebecca",
+      "id": "123175",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "BC Calculus 2",
+        "BC Calculus 3"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry",
+        "Advanced Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Abendroth",
+      "first_name": "Alyssa",
+      "id": "124001",
+      "year": "Class of 2024",
+      "math_courses": null,
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": [
+        "Method in Scientific Inquiry"
+      ]
+    },
+    {
+      "last_name": "Cano",
+      "first_name": "Daniel",
+      "id": "124029",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathmatical Investigations 1/2"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "Mandarin 1"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Chen",
+      "first_name": "Ivan",
+      "id": "124037",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "BC Calculus 2"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Advanced Programming"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Solone",
+      "first_name": "Joshua",
+      "id": "124204",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Ajayi",
+      "first_name": "Ayobami",
+      "id": "124004",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "Spanish 1",
+        "Spanish 2",
+        "Spanish 3",
+        "Spanish 4"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Lee",
+      "first_name": "Joshua",
+      "id": "124113",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 1/2",
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "McCullough",
+      "first_name": "Daunovan",
+      "id": "123149",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 1/2",
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": [
+        "Computer Science Inquiry",
+        "Object Oriented Programming"
+      ],
+      "language_courses": [
+        "Spanish 2",
+        "Spanish 3"
+      ],
+      "other_courses": [
+        "Biochemistry"
+      ]
+    },
+    {
+      "last_name": "Tenedor",
+      "first_name": "Patrick Andrei",
+      "id": "123232",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "BC Calculus 1"
+      ],
+      "physics_courses": [
+        "SI Physics",
+        "Physics: Sound and Light"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "Russian 1",
+        "Russian 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Zhang",
+      "first_name": "Kevin",
+      "id": "123254",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Differential Equations",
+        "BC Calculus 3",
+        "BC Calculus 2",
+        "BC Calculus 1",
+        "Mathematical Investigations 4",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 2"
+      ],
+      "physics_courses": [
+        "Modern Physics",
+        "Physics: Calculus Based Mechanics",
+        "Physics: Calculus Based Electricity and Magnetism",
+        "Physics: Sound and Light",
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": [
+        "Computer Science Inquiry",
+        "Object Oriented Programming"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Venegas",
+      "first_name": "Renaldo",
+      "id": "123241",
+      "year": "Class of 2023",
+      "math_courses": [
+        "BC Calculus 1",
+        "BC Calculus 2",
+        "BC Calculus 3",
+        "Multivariable Calculus",
+        "Differential Equations"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Duan",
+      "first_name": "Jeff",
+      "id": "123059",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 1/2",
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "Multivariable Calculus",
+        "Differential Equations",
+        "Linear Algebra"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Nair",
+      "first_name": "Ashwin",
+      "id": "124145",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 3"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Sisodia",
+      "first_name": "Aashima Singh",
+      "id": "124201",
+      "year": "Class of 2024",
+      "math_courses": [
+        "BC Calculus 1",
+        "BC Calculus 2"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "Spanish 4"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Johnson",
+      "first_name": "Jazmyn",
+      "id": "124283",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathmatical Investigations 1/2",
+        "Mathematical Investigations 2"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "Spanish 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Lu",
+      "first_name": "George",
+      "id": "124120",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathmatical Investigations 1/2",
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "BC Calculus 2"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Choudhary",
+      "first_name": "Divya",
+      "id": "123039",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "BC Calculus 2",
+        "BC Calculus 3",
+        "Statistics"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": [
+        "SI Chemistry",
+        "Medical Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "French 1",
+        "French 2",
+        "French 3",
+        "French 4"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Ryan",
+      "first_name": "Alyssa",
+      "id": "123205",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathmatical Investigations 1/2"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": [
+        "Spanish 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Hernandez Aguirre",
+      "first_name": "Luis",
+      "id": "123095",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 4",
+        "BC Calculus 1"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "Mandarin 1"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Kubon",
+      "first_name": "Marcus",
+      "id": "124111",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 4",
+        "BC Calculus 1"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "Mandarin 1",
+        "Spanish 2",
+        "Spanish 3",
+        "Spanish 4"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Shukla",
+      "first_name": "Sajal",
+      "id": "123214",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "BC Calulus 3"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Guan",
+      "first_name": "Ellen",
+      "id": "124074",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 4",
+        "BC Calculus 1"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Mixer",
+      "first_name": "Ella",
+      "id": "123154",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 2"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": [
+        "German 1"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "O'Malley",
+      "first_name": "Gavin",
+      "id": "124153",
+      "year": "Class of 2024",
+      "math_courses": [
+        "BC Calculus 1",
+        "BC Calculus 2",
+        "Mathematical Investigations 1/2",
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "German 1",
+        "German 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Chalasani",
+      "first_name": "Sindhu",
+      "id": "124033",
+      "year": "Class of 2024",
+      "math_courses": [
+        "BC Calculus 1",
+        "BC Calculus 2"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "Medical Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "French 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Capriotti",
+      "first_name": "Michael",
+      "id": "124030",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 1/2",
+        "Mathematical Investigations 3"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "French I"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Mutharasan",
+      "first_name": "Meera",
+      "id": "124142",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigation 1/2",
+        "Mathematical Investigations 2"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "Spanish 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Veeravalli",
+      "first_name": "Sahil",
+      "id": "124223",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "German 1"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Shaikh",
+      "first_name": "Faizaan",
+      "id": "124197",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 1/2",
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Talusan",
+      "first_name": "Raphael",
+      "id": "124215",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "BC Calculus 1"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "German 1",
+        "German 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Wang",
+      "first_name": "Yina",
+      "id": "123245",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 1/2",
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "Multivariable Calculus",
+        "Differential Equations"
+      ],
+      "physics_courses": null,
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": [
+        "SI Chemistry",
+        "Advanced Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry",
+        "Object Oriented Programming"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Johnson",
+      "first_name": "Kevin",
+      "id": "123109",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathmatical Investigations 1/2"
+      ],
+      "physics_courses": null,
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": [
+        "Biochemistry",
+        "Medicinal Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "Mandarin 1",
+        "Mandarin 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Wilson-Ahlstrom",
+      "first_name": "Malcolm",
+      "id": "124231",
+      "year": "Class of 2024",
+      "math_courses": null,
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Sinha",
+      "first_name": "Raghav",
+      "id": "124345",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 2"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": [
+        "Object Oriented Programming"
+      ],
+      "language_courses": [
+        "French I"
+      ],
+      "other_courses": [
+        "Method in Scientific Inquiry"
+      ]
+    },
+    {
+      "last_name": "Stabile",
+      "first_name": "Pietro",
+      "id": "123222",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "BC Calculus 2",
+        "BC Calculus 3"
+      ],
+      "physics_courses": [
+        "SI Physics",
+        "Physics: Calculus Based Electricity and Magnetism",
+        "Physics: Calculus Based Mechanics"
+      ],
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry",
+        "Object Oriented Programming"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Thekiniath",
+      "first_name": "Rithik",
+      "id": "124217",
+      "year": "Class of 2024",
+      "math_courses": [
+        "BC Calculus 2"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": null,
+      "other_courses": [
+        "Method in Scientific Inquiry"
+      ]
+    },
+    {
+      "last_name": "Dickson",
+      "first_name": "David",
+      "id": "124047",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "Mandarin 1",
+        "Mandarin 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Park",
+      "first_name": "Jesse",
+      "id": "123178",
+      "year": "Class of 2023",
+      "math_courses": [
+        "BC Calculus 1",
+        "BC Calculus 2",
+        "BC Calculus 3"
+      ],
+      "physics_courses": [
+        "Physics: Calculus Based Electricity and Magnetism",
+        "Physics: Calculus Based Mechanics"
+      ],
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": [
+        "Spanish 3",
+        "Spanish 4",
+        "Spanish 5"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Healy",
+      "first_name": "Will",
+      "id": "123285",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Geometry",
+        "Mathmatical Investigations 1/2"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "Spanish 2",
+        "Spanish 3"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Cullen",
+      "first_name": "Braeden",
+      "id": "123048",
+      "year": "Class of 2023",
+      "math_courses": [
+        "BC Calculus 1",
+        "BC Calculus 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": [
+        "Environmental Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry",
+        "Object Oriented Programming"
+      ],
+      "language_courses": null,
+      "other_courses": [
+        "Moving & Learning"
+      ]
+    },
+    {
+      "last_name": "Plepel",
+      "first_name": "Cole",
+      "id": "123188",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "BC Calculus 1"
+      ],
+      "physics_courses": [
+        "SI Physics",
+        "Physics: Calculus Based Mechanics"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": [
+        "Computer Science Inquiry",
+        "Object Oriented Programming",
+        "Advanced Programming"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Kumar",
+      "first_name": "Aditi",
+      "id": "123125",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 4"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry",
+        "Object Oriented Programming"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Hellrung",
+      "first_name": "William",
+      "id": "124081",
+      "year": "Class of 2024",
+      "math_courses": null,
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "Mandarin 1"
+      ],
+      "other_courses": [
+        "Method in Scientific Inquiry"
+      ]
+    },
+    {
+      "last_name": "Gonzalez",
+      "first_name": "Ava",
+      "id": "124068",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 2"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "Spanish 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Zyskowski",
+      "first_name": "Michael",
+      "id": "124237",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 2"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Senthilvenkatesh",
+      "first_name": "Vidyoot",
+      "id": "124195",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 1/2",
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry",
+        "Object Oriented Programming",
+        "Advanced Programming"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Nagumalli",
+      "first_name": "Laasya",
+      "id": "124144",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "Mandarin 1"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Bakshi",
+      "first_name": "Rohun",
+      "id": "124369",
+      "year": "Class of 2024",
+      "math_courses": null,
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Tuteja",
+      "first_name": "Sachleen",
+      "id": "123237",
+      "year": "Class of 2023",
+      "math_courses": null,
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": [
+        "Spanish II - IV"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Solone",
+      "first_name": "Joshua",
+      "id": "124204",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "German 1"
+      ],
+      "other_courses": [
+        "Moving & Learning"
+      ]
+    },
+    {
+      "last_name": "Jenks",
+      "first_name": "Catherine",
+      "id": "124282",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathmatical Investigations 1/2",
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "Spanish 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Duda",
+      "first_name": "Aleks",
+      "id": "124049",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "Spanish 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Jones",
+      "first_name": "Blaise",
+      "id": "124284",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 2"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "German 1"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Paras",
+      "first_name": "Joseph",
+      "id": "124326",
+      "year": "Class of 2024",
+      "math_courses": [
+        "BC Calculus 1"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "Spanish 4"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Thakkar",
+      "first_name": "Ritu",
+      "id": "124216",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": [
+        "German 1",
+        "German 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Morgan",
+      "first_name": "Ireland",
+      "id": "123157",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": [
+        "Spanish 3",
+        "Spanish 4"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Davis",
+      "first_name": "Manya",
+      "id": "124259",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "BC Calculus 1"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Kamath",
+      "first_name": "Diya",
+      "id": "124099",
+      "year": "Class of 2024",
+      "math_courses": [
+        "BC Calculus 1",
+        "Mathematical Investigations 4"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "French 2"
+      ],
+      "other_courses": [
+        "Method in Scientific Inquiry",
+        "Moving & Learning"
+      ]
+    },
+    {
+      "last_name": "Rao",
+      "first_name": "Vikram",
+      "id": "124176",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "BC Calculus 2"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Riley",
+      "first_name": "Shanan",
+      "id": "123197",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "Statistics"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": [
+        "Enviromental Chem"
+      ],
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Kamineni",
+      "first_name": "Himani",
+      "id": "123113",
+      "year": "Class of 2023",
+      "math_courses": [
+        "BC Calculus 1",
+        "BC Caluclus 2",
+        "BC Calculus 3"
+      ],
+      "physics_courses": null,
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Eom",
+      "first_name": "Taegeon",
+      "id": "124052",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Ludwig",
+      "first_name": "Charles",
+      "id": "124121",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": null,
+      "other_courses": [
+        "Method in Scientific Inquiry"
+      ]
+    },
+    {
+      "last_name": "Cherukuri",
+      "first_name": "Arjun",
+      "id": "124038",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "BC Caluclus 2"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "German 1"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Hota",
+      "first_name": "Madhav",
+      "id": "124088",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 4",
+        "Differential Equations",
+        "Multivariable Calculus"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Web Technologies"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Kostiv",
+      "first_name": "Justina",
+      "id": "124108",
+      "year": "Class of 2024",
+      "math_courses": [
+        "BC Calculus 1"
+      ],
+      "physics_courses": [
+        "Sound & Light"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "Mandarin 1"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Shafiabady",
+      "first_name": "Daniel",
+      "id": "124341",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Geometry"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "Spanish 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Tiruvannamalai",
+      "first_name": "Vignesh",
+      "id": "124219",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "Spanish 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Bhamidi",
+      "first_name": "Surya Ninad",
+      "id": "123020",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "BC Calculus 1"
+      ],
+      "physics_courses": [
+        "SI Physics",
+        "Modern Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": [
+        "Web Technologies"
+      ],
+      "language_courses": [
+        "German 1",
+        "German 2",
+        "German 3"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Germo",
+      "first_name": "Jazmyne",
+      "id": "123077",
+      "year": "Class of 2023",
+      "math_courses": [
+        "BC Calculus 1",
+        "BC Calculus 2"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": [
+        "Advanced Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "French 1",
+        "French 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Azhar",
+      "first_name": "Nouran",
+      "id": "123011",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 4",
+        "BC Calculus 1"
+      ],
+      "physics_courses": null,
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": [
+        "SI Chemistry",
+        "Medical Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry",
+        "Web Technologies"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Liu",
+      "first_name": "Rebecca",
+      "id": "123137",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "BC Caluclus 2",
+        "BC Calculus 3"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": [
+        "Computer Science Inquiry",
+        "Object Oriented Programming",
+        "CS Seminar: Linux"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Chakraborty",
+      "first_name": "Shreya",
+      "id": "123034",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "BC Calculus 1"
+      ],
+      "physics_courses": [
+        "Planetary Science",
+        "SI Physics"
+      ],
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": [
+        "Advanced Chemistry",
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry",
+        "Object Oriented Programming",
+        "CS Seminar: Machine Learning"
+      ],
+      "language_courses": [
+        "Mandarin 1",
+        "Mandarin 2",
+        "Mandarin 3"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Doshi",
+      "first_name": "Shaan",
+      "id": "123057",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "BC Calculus 2",
+        "Discrete Mathematics"
+      ],
+      "physics_courses": [
+        "SI Physics",
+        "Modern Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": [
+        "Computer Science Inquiry",
+        "Object Oriented Programming",
+        "CS Seminar: Android Apps"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Doodin",
+      "first_name": "Riman",
+      "id": "123276",
+      "year": "Class of 2023",
+      "math_courses": null,
+      "physics_courses": null,
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "French 1",
+        "French 2",
+        "French 3"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Kirby",
+      "first_name": "Kevin",
+      "id": "123120",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "BC Caluclus 2",
+        "BC Calculus 3"
+      ],
+      "physics_courses": [
+        "SI Physics",
+        "Physics: Sound and Light"
+      ],
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Tabiti",
+      "first_name": "Damilola",
+      "id": "123229",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 1/2"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": [
+        "Organic Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "French 1"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "O'Brien-Dull",
+      "first_name": "Claire",
+      "id": "124320",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 4",
+        "BC Calculus 1"
+      ],
+      "physics_courses": [
+        "Sound & Light"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Sun",
+      "first_name": "Danica",
+      "id": "124212",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 4"
+      ],
+      "physics_courses": [
+        "SI Physics",
+        "Physics: Sound & Light"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": [
+        "Moving & Learning"
+      ]
+    },
+    {
+      "last_name": "Thomas",
+      "first_name": "Janelle",
+      "id": "123234",
+      "year": "Class of 2023",
+      "math_courses": null,
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": [
+        "Mandarin 1",
+        "Mandarin 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Kholoshenko",
+      "first_name": "Anthony",
+      "id": "123119",
+      "year": "Class of 2023",
+      "math_courses": [
+        "BC Calculus 1",
+        "BC Calculus 2",
+        "BC Calculus 3",
+        "Multivariable Calculus"
+      ],
+      "physics_courses": [
+        "SI Physics",
+        "Physics: Calculus Based Mechanics",
+        "Physics: Calculus Based Electricity and Magnetism"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": [
+        "Spanish 4",
+        "Spanish 5"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Lemus",
+      "first_name": "Kevin",
+      "id": "123132",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "BC Calculus 1"
+      ],
+      "physics_courses": null,
+      "bio_courses": [
+        "Advanced Biological Systems"
+      ],
+      "chem_course": [
+        "Biochemistry",
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "French 1",
+        "French 2"
+      ],
+      "other_courses": [
+        "Engineering",
+        "Method in Scientific Inquiry"
+      ]
+    },
+    {
+      "last_name": "Espinoza",
+      "first_name": "Steven",
+      "id": "124053",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": null,
+      "cs_courses": null,
+      "language_courses": [
+        "Mandarin 1"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Nguyen",
+      "first_name": "Ellen",
+      "id": "124148",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 2"
+      ],
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
+      "last_name": "Vonder Haar",
+      "first_name": "Kohl",
+      "id": "124224",
+      "year": "Class of 2024",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "French I"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Cruz",
+      "first_name": "Kelly",
+      "id": "123046",
+      "year": "Class of 2023",
+      "math_courses": null,
+      "physics_courses": null,
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry",
+        "Organic Chemistry"
+      ],
+      "cs_courses": null,
+      "language_courses": [
+        "Spanish 1",
+        "Spanish 2"
+      ],
+      "other_courses": null
+    },
+    {
+      "last_name": "Pennaka",
+      "first_name": "Amrut",
+      "id": "123185",
+      "year": "Class of 2023",
+      "math_courses": [
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3",
+        "Mathematical Investigations 4",
+        "BC Calculus 1",
+        "BC Calculus 1",
+        "BC Calculus 2"
+      ],
+      "physics_courses": null,
+      "bio_courses": [
+        "Advanced Biological Systems",
+        "Biochemistry"
+      ],
+      "chem_course": [
+        "Organic Chemistry I/II"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry",
+        "Object Oriented Programming"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    }
+  ]
+  
