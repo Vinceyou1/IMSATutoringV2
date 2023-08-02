@@ -8,13 +8,56 @@ import Loading from '@/components/Loading';
 export default function TutorPage({params}){
   const [tutor, updateTutor] = useState<TutorData>();
   const [tutorExists, updateTutorExists] = useState(true);
-
+  const [courses, updateCourses] = useState([<></>]);
   useEffect(() => {
     tutors.forEach((tutor: TutorData) => {
       if(tutor.id == params.id) updateTutor(tutor);
     });
     if(!tutor) updateTutorExists(false);
-  }, [])
+    sortTutorSubjects();
+  }, [tutor])
+
+  const dataNameToText = {
+    "math_courses": "Math Courses",
+    physics_courses: "Physics Courses",
+    bio_courses: "Biology Courses",
+    chem_course: "Chemistry Courses",
+    cs_courses: "CS Courses",
+    language_courses: "Language Courses",
+    other_courses: "Other Science Courses"
+  }
+
+  // Sorts the class list by their length 
+  function sortTutorSubjects(){
+    if(!tutor) return;
+    const temp = JSON.parse(JSON.stringify(tutor));
+    delete temp['last_name'];
+    delete temp['first_name'];
+    delete temp['id'];
+    delete temp['year'];
+
+    const sorted = Object.keys(temp).map((key) => [key, temp[key]]);
+    sorted.sort((a, b) => {
+      if(!a[1]) return 1;
+      if(!b[1]) return -1;
+      return b[1].length - a[1].length;
+    });
+    const ans = sorted.map((element) => {
+      if(element[1]){
+        return(
+          <div className = "courses" key={element[0]}>
+            <h3 id = "labelUnder">{dataNameToText[element[0]]}</h3>
+            <div className="courses">
+              {element[1].map((course) => {
+                return <ul>{course}</ul>
+              })}
+            </div>
+          </div>
+        );
+      } else return (<></>)
+    });
+    if(ans) updateCourses(ans);
+  }
 
   if(!tutor) return <Loading />
   return (
@@ -29,27 +72,10 @@ export default function TutorPage({params}){
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit accusantium rem ad molestiae, itaque architecto! Doloremque possimus ex, odio assumenda ratione laborum maiores, facere perferendis voluptatum mollitia hic molestias libero.
               </p>
             </div>
-            <div className = "tutorSubjectsDiv">
-              <h3 id = "label">Subjects I Tutor:</h3>
-              <div className = "tutorCourses">
-                {tutor.math_courses ? 
-                <div className = "courses">
-                  <h3 id = "labelUnder">Math Courses</h3>
-                  <div className="courses">
-                    {tutor.math_courses?.map((course) => {
-                      return <ul>{course}</ul>
-                    })}
-                  </div>
-                </div> :<></> }
-                {tutor.cs_courses ? 
-                <div className = "courses">
-                  <h3 id = "labelUnder">CS Courses</h3>
-                  <div className="courses">
-                    {tutor.math_courses?.map((course) => {
-                      return <ul>{course}</ul>
-                    })}
-                  </div>
-                </div> :<></> }
+            <div className = "mt-4">
+              <h3 id = "label">Classes I Tutor:</h3>
+              <div className = "tutorCourses mt-2">
+                {courses}
               </div>
             </div>
             <div id = "twotable">
@@ -64,16 +90,16 @@ export default function TutorPage({params}){
               </div>
           </div>
           <div className = "imageSelector">
-                <div
-                    className="base-image-input"
-                  >
-                  <span
-                      v-if="!imageData"
-                      className="placeholder"
-                  >
-                  Image Here
-                  </span>
-              </div>
+            <div
+                className="base-image-input"
+              >
+              <span
+                  v-if="!imageData"
+                  className="placeholder"
+              >
+              Image Here
+              </span>
+            </div>
           </div>
           <br/>
           <br/>

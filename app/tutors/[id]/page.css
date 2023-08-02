@@ -21,6 +21,9 @@
     overflow-y: scroll;
     display: flex;
     flex-flow: column nowrap;
+    @apply bg-[url(/scattered-forcefields4.svg)] dark:bg-[url(/scattered-forcefields4-dark.svg)];
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   
   ::-webkit-scrollbar {
@@ -32,16 +35,12 @@
   }
   @layer components{
     .mainTextArea {
-        display: flex;
-        flex-direction: row;
-        /*flex: 1;*/
-        margin: 0% !important;
-        width: 100%;
-        background-image: url(/scattered-forcefields4.svg);
-        @apply dark:bg-[url(/scattered-forcefields4-dark.svg)];
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-color: white;
+      display: flex;
+      flex-direction: row;
+      /*flex: 1;*/
+      flex-grow: 1000;
+      margin: 0% !important;
+      width: 100%;
     }
   }
   
@@ -255,10 +254,6 @@
     margin-top: 2%;
   }
   
-  .tutorSubjectsDiv {
-    margin-top: 2%;
-  }
-  
   #Submit {
     border: 0px;
     height: 7vh;
@@ -281,7 +276,8 @@
   .tutorCourses {
     display: flex;
     flex-direction: row;
-    gap: 1.2em;
+    column-gap: 1.2em;
+    row-gap: 0.5em;
     flex-wrap: wrap;
   }
   
