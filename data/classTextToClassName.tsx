@@ -18,4 +18,6 @@ classTextToClassName.set("OOP", "Object Oriented Programming");
 classTextToClassName.set("Physics C: Mechanics", "Physics: Calculus Based Mechanics");
 classTextToClassName.set("Physics C: E&M", "Physics: Calculus Based Electricity and Magnetism");
 
+classTextToClassName.set("MSI", "Method in Scientific Inquiry")
+
 export default classTextToClassName
