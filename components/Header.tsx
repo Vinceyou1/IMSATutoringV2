@@ -1,5 +1,4 @@
 'use client'
-
 import { FirebaseAuthContext } from "@/contexts/FirebaseContext"
 import { MobileContext } from "@/contexts/MobileContext";
 import { UserDataContext } from "@/contexts/UserContext";
@@ -37,8 +36,8 @@ export default function Header(){
       <a href="https://github.com/Vinceyou1/IMSATutoringV2" className="bg-[url(/github-mark.svg)] dark:bg-[url(/github-mark-white.svg)] bg-cover inline-block w-fit h-fit flex-shrink-0"><img src='/github-mark.svg' className="invisible w-[3.075rem] h-12"></img></a>
     </div>
   </div> : <></>
-  if(auth){
-    user ? signInOut = (<button className={signInOutCommon + ' hover:bg-[#ff6666]'} 
+  if(!user[1]){
+    user[0] ? signInOut = (<button className={signInOutCommon + ' hover:bg-[#ff6666]'} 
         onClick={() => auth.signOut()}>Sign Out</button>) : 
       signInOut = (<button className={signInOutCommon + ' hover:bg-secondary hover:dark:bg-secondary-dark' }
         onClick={() => signIn()}>Sign in</button>);
@@ -54,7 +53,7 @@ export default function Header(){
   }
   
   return(
-    <div className="h-20 bg-[white] dark:bg-[#334155] flex items-center justify-between border-b-2 border-[grey] w-full">
+    <div className="font-[Arial,_Helvetica,_sans-serif] h-20 bg-[white] dark:bg-secondary flex items-center justify-between border-b-2 border-secondary dark:border-secondary-dark w-full">
       {sidebar}
       {navbar}
       {signInOut}

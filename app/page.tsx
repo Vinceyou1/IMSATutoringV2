@@ -1,15 +1,11 @@
 'use client'
 import './page.css'
 import { useContext, useEffect, useState } from 'react'
-import { UserDataContext } from '@/contexts/UserContext'
-import { FirebaseAuthContext } from '@/contexts/FirebaseContext';
 import Loading from '@/components/Loading';
 import { MobileContext } from '@/contexts/MobileContext';
 import Footer from '@/components/Footer';
 
 export default function Home() {
-  const auth = useContext(FirebaseAuthContext);
-  const user = useContext(UserDataContext);
   const [loading, updateLoading] = useState(true);
   const isMobile = useContext(MobileContext);
 
@@ -29,7 +25,7 @@ export default function Home() {
   const img3 = isMobile ? <></> : <img src='/Page2IMG2.png' alt=""/>
   const br = isMobile ? <></> : <br />
   return(
-    <div className='h-[calc(100%-5rem)]'>
+    <main className='h-[calc(100%-5rem)]'>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='' />
       <div className = "w-full bg-[url(/scattered-forcefields.svg)] dark:bg-[url(/scattered-forcefields-dark.svg)] bg-cover h-fit pb-20 border-b-2">
@@ -49,7 +45,7 @@ export default function Home() {
         </div>
         
       </div>
-      <div className = "flex flex-center flex-col justify-items-center relative w-full bg-[55%] bg-[url(/scattered-forcefields3.svg)] dark:bg-[url(/scattered-forcefields3-dark.svg)] bg-cover h-fit pb-20 border-b-2">
+      <div className = "flex flex-center flex-col justify-items-center relative w-full bg-[55%] bg-[url(/scattered-forcefields3.svg)] dark:bg-[url(/scattered-forcefields3-dark.svg)] bg-cover h-fit pb-20">
         <div className={"flex flex-row justify-between items-end mt-20 ml-auto mr-auto " + (isMobile ? 'w-[80%]' : 'w-[72rem]')}>
           {img2}
           <div>
@@ -92,6 +88,6 @@ export default function Home() {
         </div>
       </div>
       <Footer />
-    </div>
+    </main>
   )
 }
