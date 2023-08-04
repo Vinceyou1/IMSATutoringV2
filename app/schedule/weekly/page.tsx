@@ -9,13 +9,16 @@ import Loading from "@/components/Loading";
 import { LocalizationProvider, TimeClock } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { WeeklyAvailability } from "@/types/weeklyAvailability";
+import { FirebaseFirestoreContext } from "@/contexts/FirebaseContext";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export default function Weekly(){
   const user = useContext(UserDataContext);
   const isMobile = useContext(MobileContext);
+  const db = useContext(FirebaseFirestoreContext);
   
   const [tutor, updateTutor] = useState<TutorData>();
-  const [tutorExists, updateTutorExists] = useState(true);
+  const [tutorExists, updateTutorExists] = useState(false);
 
   useEffect(() => {
     if(!user){
@@ -73,6 +76,20 @@ export default function Weekly(){
     "Saturday": [],
   });
 
+  useEffect(() => {
+    const getData = async () =>{
+      if(!tutor || !tutor.id) return;
+      const tutorRef = doc(db, 'tutors', tutor?.id);
+      await getDoc(tutorRef).then((res) => {
+        console.log(res.data())
+        if(res.get('weekly')){
+          updateAvailability(res.get('weekly'));
+        }
+      })
+    }
+    getData()
+  }, [tutor])
+
 
   function time(slot: number, day: Weekday){
     const h = currSelectedHour[day] + (currSelectedHour[day] == 0 ? 12 : 0);
@@ -111,6 +128,22 @@ export default function Weekly(){
     console.log(temp);
   }
 
+  const [saving, updateSaving] = useState(false);
+
+  async function saveAvailability(){
+    if(!tutor || !tutor.id){
+      alert("Error! Are you signed in?");
+      return;
+    }
+    const tutorRef = doc(db, 'tutors', tutor?.id);
+    updateSaving(true);
+    await setDoc(tutorRef, { weekly: availabilty }, { merge: true }).catch(() => {
+      alert("There's been an error. Please try again.");
+    }).then(() => {
+      updateSaving(false);
+    });
+  }
+
   if(user[1]){
     return (
       <main className="h-[calc(100%-5rem)]">
@@ -123,14 +156,6 @@ export default function Weekly(){
     return(
       <main className="flex items-center text-lg justify-center h-[calc(100%-5rem)] bg-[url(/scattered-forcefields5.svg)] dark:bg-[url(/scattered-forcefields5-dark.svg)] bg-cover bg-no-repeat">
         Please Sign In With Your IMSA email
-      </main>
-    )
-  }
-
-  if(tutorExists && !tutor){
-    return (
-      <main className="h-[calc(100%-5rem)]">
-        <Loading />
       </main>
     )
   }
@@ -368,6 +393,20 @@ export default function Weekly(){
             </div>
           </div>
         </div>
+      </div>
+      <div id="save" className="flex flex-row items-center justify-center mb-2">
+        <button className="border-2 p-4 w-32 rounded-md mr-6" onClick={saveAvailability}>{saving ? "SAVING...": "SAVE"}</button>
+        <button className="border-2 p-4 w-32 rounded-md mr-6" onClick={() => {
+          updateAvailability({
+            "Sunday": [],
+            "Monday": [],
+            "Tuesday": [],
+            "Wednesday": [],
+            "Thursday": [],
+            "Friday": [],
+            "Saturday": [],
+          });
+        }}>CLEAR</button>
       </div>
       <Footer />
     </main>
