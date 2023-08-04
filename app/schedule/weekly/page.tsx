@@ -2,7 +2,7 @@
 import Footer from "@/components/Footer";
 import { MobileContext } from "@/contexts/MobileContext";
 import { UserDataContext } from "@/contexts/UserContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import tutors from '../../../data/tutor_data.json'
 import { TutorData } from "@/types/tutordata";
 import Loading from "@/components/Loading";
@@ -11,6 +11,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { WeeklyAvailability } from "@/types/weeklyAvailability";
 import { FirebaseFirestoreContext } from "@/contexts/FirebaseContext";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+
+export type Weekday = "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday";
 
 export default function Weekly(){
   const user = useContext(UserDataContext);
@@ -21,13 +23,12 @@ export default function Weekly(){
   const [tutorExists, updateTutorExists] = useState(false);
 
   useEffect(() => {
-    if(!user){
+    if(!user[0] || !user[0].displayName){
       updateTutorExists(false);
       return;
     }
 
-    // const name = user.displayName.split(" ");
-    const name = "Vidyoot Senthilvenkatesh".split(" ");
+    const name = user[0].displayName.split(" ");
     let first_name = "";
     let last_name = "";
     // Weird middle name handling, sometimes counted as part of either first or last name in data
@@ -53,7 +54,7 @@ export default function Weekly(){
     });
   }, [user])
 
-  type Weekday = "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday";
+  
 
   const [activeDay, updateActiveDay] = useState<Weekday | "">("Sunday");
   const [AM, updateAM] = useState(true);
@@ -90,7 +91,6 @@ export default function Weekly(){
     getData()
   }, [tutor])
 
-
   function time(slot: number, day: Weekday){
     const h = currSelectedHour[day] + (currSelectedHour[day] == 0 ? 12 : 0);
     let m = "00";
@@ -125,7 +125,6 @@ export default function Weekly(){
       temp[activeDay].push(str);
     }
     updateAvailability(temp)
-    console.log(temp);
   }
 
   const [saving, updateSaving] = useState(false);
@@ -135,7 +134,7 @@ export default function Weekly(){
       alert("Error! Are you signed in?");
       return;
     }
-    const tutorRef = doc(db, 'tutors', tutor?.id);
+    const tutorRef = doc(db, 'tutors', tutor.id);
     updateSaving(true);
     await setDoc(tutorRef, { weekly: availabilty }, { merge: true }).catch(() => {
       alert("There's been an error. Please try again.");
@@ -168,7 +167,7 @@ export default function Weekly(){
     )
   }
   // general idea: lots of collapsables, so one dropdown for each day, then a dropdown for each hour, then buttons for each 15-minute block
-  if(!isMobile)
+  if(!isMobile){
   return (
     <main className="flex flex-col justify-between h-[calc(100%-5rem)] bg-[right_35%] bg-[url(/scattered-forcefields5.svg)] dark:bg-[url(/scattered-forcefields5-dark.svg)] bg-cover bg-no-repeat">
       <div className={"flex flex-col flex-grow h-fit justify-start m-4 mt-6"}>
@@ -394,9 +393,9 @@ export default function Weekly(){
           </div>
         </div>
       </div>
-      <div id="save" className="flex flex-row items-center justify-center mb-2">
+      <div className="flex flex-row items-center justify-center mb-2">
         <button className="border-2 p-4 w-32 rounded-md mr-6" onClick={saveAvailability}>{saving ? "SAVING...": "SAVE"}</button>
-        <button className="border-2 p-4 w-32 rounded-md mr-6" onClick={() => {
+        <button className="border-2 p-4 w-32 rounded-md" onClick={() => {
           updateAvailability({
             "Sunday": [],
             "Monday": [],
@@ -410,5 +409,233 @@ export default function Weekly(){
       </div>
       <Footer />
     </main>
-  )
+  )} else {
+    return (
+      <main className="m-4 h-[calc(100%-5rem)]">
+        <div className="flex-col w-fit ml-auto mr-auto">
+          <div className="w-full border-2 rounded-t-lg">
+            <select className="bg-primary text-lg block mr-auto ml-auto" onChange={(change) => updateActiveDay(change.target.value)}>
+              <option value="Sunday">Sunday</option>
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+            </select>
+          </div>
+          <div className={"border-2 border-t-0 rounded-b-lg flex flex-col items-center p-4 duration-0 " + (activeDay == "Sunday" ? "visible" : "hidden pointer-events-none")}>
+            <div>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <TimeClock ampm={true} sx={{
+                    margin: 0,
+                  }} onChange={(value) => {
+                    const temp = JSON.parse(JSON.stringify(currSelectedHour));
+                    temp.Sunday = value.$H;
+                    updateCurrSelectedHour(temp);
+                  }}
+                  views={['hours']} />
+              </LocalizationProvider>
+            </div>
+            <div className="m-0 flex flex-row justify-center">
+              <button onClick={() => {updateAM(true)}} className={"rounded-sm p-4 mr-4 " + (AM ? "bg-[deepskyblue]":"")}>
+                AM
+              </button>
+              <button onClick={() => {updateAM(false)}} className={"rounded-sm p-4 " + (!AM ? "bg-[deepskyblue]":"")}>
+                PM
+              </button>
+            </div>
+            <div className={"w-full flex flex-col items-center " + (currSelectedHour.Sunday == -1 ? "hidden" : "")}>
+              <button onClick={() => handleAvailability(0, "Sunday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Sunday") ? "bg-[deepskyblue]":"")}>{time(0, "Sunday")}</button>
+              <button onClick={() => handleAvailability(1, "Sunday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Sunday") ? "bg-[deepskyblue]":"")}>{time(1, "Sunday")}</button>
+              <button onClick={() => handleAvailability(2, "Sunday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Sunday") ? "bg-[deepskyblue]":"")}>{time(2, "Sunday")}</button>
+              <button onClick={() => handleAvailability(3, "Sunday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Sunday") ? "bg-[deepskyblue]":"")}>{time(3, "Sunday")}</button>
+            </div>
+          </div>
+          <div className={"border-2 border-t-0 rounded-b-lg flex flex-col items-center p-4 duration-0 " + (activeDay == "Monday" ? "visible" : "hidden pointer-events-none")}>
+            <div>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <TimeClock ampm={true} sx={{
+                    margin: 0,
+                  }} onChange={(value) => {
+                    const temp = JSON.parse(JSON.stringify(currSelectedHour));
+                    temp.Monday = value.$H;
+                    updateCurrSelectedHour(temp);
+                  }}
+                  views={['hours']} />
+              </LocalizationProvider>
+            </div>
+            <div className="m-0 flex flex-row justify-center">
+              <button onClick={() => {updateAM(true)}} className={"rounded-sm p-4 mr-4 " + (AM ? "bg-[deepskyblue]":"")}>
+                AM
+              </button>
+              <button onClick={() => {updateAM(false)}} className={"rounded-sm p-4 " + (!AM ? "bg-[deepskyblue]":"")}>
+                PM
+              </button>
+            </div>
+            <div className={"w-full flex flex-col items-center " + (currSelectedHour.Monday == -1 ? "hidden" : "")}>
+              <button onClick={() => handleAvailability(0, "Monday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Monday") ? "bg-[deepskyblue]":"")}>{time(0, "Monday")}</button>
+              <button onClick={() => handleAvailability(1, "Monday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Monday") ? "bg-[deepskyblue]":"")}>{time(1, "Monday")}</button>
+              <button onClick={() => handleAvailability(2, "Monday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Monday") ? "bg-[deepskyblue]":"")}>{time(2, "Monday")}</button>
+              <button onClick={() => handleAvailability(3, "Monday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Monday") ? "bg-[deepskyblue]":"")}>{time(3, "Monday")}</button>
+            </div>
+          </div>
+          <div className={"border-2 border-t-0 rounded-b-lg flex flex-col items-center p-4 duration-0 " + (activeDay == "Tuesday" ? "visible" : "hidden pointer-events-none")}>
+            <div>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <TimeClock ampm={true} sx={{
+                    margin: 0,
+                  }} onChange={(value) => {
+                    const temp = JSON.parse(JSON.stringify(currSelectedHour));
+                    temp.Tuesday = value.$H;
+                    updateCurrSelectedHour(temp);
+                  }}
+                  views={['hours']} />
+              </LocalizationProvider>
+            </div>
+            <div className="m-0 flex flex-row justify-center">
+              <button onClick={() => {updateAM(true)}} className={"rounded-sm p-4 mr-4 " + (AM ? "bg-[deepskyblue]":"")}>
+                AM
+              </button>
+              <button onClick={() => {updateAM(false)}} className={"rounded-sm p-4 " + (!AM ? "bg-[deepskyblue]":"")}>
+                PM
+              </button>
+            </div>
+            <div className={"w-full flex flex-col items-center " + (currSelectedHour.Tuesday == -1 ? "hidden" : "")}>
+              <button onClick={() => handleAvailability(0, "Tuesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Tuesday") ? "bg-[deepskyblue]":"")}>{time(0, "Tuesday")}</button>
+              <button onClick={() => handleAvailability(1, "Tuesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Tuesday") ? "bg-[deepskyblue]":"")}>{time(1, "Tuesday")}</button>
+              <button onClick={() => handleAvailability(2, "Tuesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Tuesday") ? "bg-[deepskyblue]":"")}>{time(2, "Tuesday")}</button>
+              <button onClick={() => handleAvailability(3, "Tuesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Tuesday") ? "bg-[deepskyblue]":"")}>{time(3, "Tuesday")}</button>
+            </div>
+          </div>
+          <div className={"border-2 border-t-0 rounded-b-lg flex flex-col items-center p-4 duration-0 " + (activeDay == "Wednesday" ? "visible" : "hidden pointer-events-none")}>
+            <div>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <TimeClock ampm={true} sx={{
+                    margin: 0,
+                  }} onChange={(value) => {
+                    const temp = JSON.parse(JSON.stringify(currSelectedHour));
+                    temp.Wednesday = value.$H;
+                    updateCurrSelectedHour(temp);
+                  }}
+                  views={['hours']} />
+              </LocalizationProvider>
+            </div>
+            <div className="m-0 flex flex-row justify-center">
+              <button onClick={() => {updateAM(true)}} className={"rounded-sm p-4 mr-4 " + (AM ? "bg-[deepskyblue]":"")}>
+                AM
+              </button>
+              <button onClick={() => {updateAM(false)}} className={"rounded-sm p-4 " + (!AM ? "bg-[deepskyblue]":"")}>
+                PM
+              </button>
+            </div>
+            <div className={"w-full flex flex-col items-center " + (currSelectedHour.Wednesday == -1 ? "hidden" : "")}>
+              <button onClick={() => handleAvailability(0, "Wednesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Wednesday") ? "bg-[deepskyblue]":"")}>{time(0, "Wednesday")}</button>
+              <button onClick={() => handleAvailability(1, "Wednesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Wednesday") ? "bg-[deepskyblue]":"")}>{time(1, "Wednesday")}</button>
+              <button onClick={() => handleAvailability(2, "Wednesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Wednesday") ? "bg-[deepskyblue]":"")}>{time(2, "Wednesday")}</button>
+              <button onClick={() => handleAvailability(3, "Wednesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Wednesday") ? "bg-[deepskyblue]":"")}>{time(3, "Wednesday")}</button>
+            </div>
+          </div>
+          <div className={"border-2 border-t-0 rounded-b-lg flex flex-col items-center p-4 duration-0 " + (activeDay == "Thursday" ? "visible" : "hidden pointer-events-none")}>
+            <div>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <TimeClock ampm={true} sx={{
+                    margin: 0,
+                  }} onChange={(value) => {
+                    const temp = JSON.parse(JSON.stringify(currSelectedHour));
+                    temp.Thursday = value.$H;
+                    updateCurrSelectedHour(temp);
+                  }}
+                  views={['hours']} />
+              </LocalizationProvider>
+            </div>
+            <div className="m-0 flex flex-row justify-center">
+              <button onClick={() => {updateAM(true)}} className={"rounded-sm p-4 mr-4 " + (AM ? "bg-[deepskyblue]":"")}>
+                AM
+              </button>
+              <button onClick={() => {updateAM(false)}} className={"rounded-sm p-4 " + (!AM ? "bg-[deepskyblue]":"")}>
+                PM
+              </button>
+            </div>
+            <div className={"w-full flex flex-col items-center " + (currSelectedHour.Thursday == -1 ? "hidden" : "")}>
+              <button onClick={() => handleAvailability(0, "Thursday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Thursday") ? "bg-[deepskyblue]":"")}>{time(0, "Thursday")}</button>
+              <button onClick={() => handleAvailability(1, "Thursday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Thursday") ? "bg-[deepskyblue]":"")}>{time(1, "Thursday")}</button>
+              <button onClick={() => handleAvailability(2, "Thursday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Thursday") ? "bg-[deepskyblue]":"")}>{time(2, "Thursday")}</button>
+              <button onClick={() => handleAvailability(3, "Thursday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Thursday") ? "bg-[deepskyblue]":"")}>{time(3, "Thursday")}</button>
+            </div>
+          </div>
+          <div className={"border-2 border-t-0 rounded-b-lg flex flex-col items-center p-4 duration-0 " + (activeDay == "Friday" ? "visible" : "hidden pointer-events-none")}>
+            <div>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <TimeClock ampm={true} sx={{
+                    margin: 0,
+                  }} onChange={(value) => {
+                    const temp = JSON.parse(JSON.stringify(currSelectedHour));
+                    temp.Friday = value.$H;
+                    updateCurrSelectedHour(temp);
+                  }}
+                  views={['hours']} />
+              </LocalizationProvider>
+            </div>
+            <div className="m-0 flex flex-row justify-center">
+              <button onClick={() => {updateAM(true)}} className={"rounded-sm p-4 mr-4 " + (AM ? "bg-[deepskyblue]":"")}>
+                AM
+              </button>
+              <button onClick={() => {updateAM(false)}} className={"rounded-sm p-4 " + (!AM ? "bg-[deepskyblue]":"")}>
+                PM
+              </button>
+            </div>
+            <div className={"w-full flex flex-col items-center " + (currSelectedHour.Friday == -1 ? "hidden" : "")}>
+              <button onClick={() => handleAvailability(0, "Friday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Friday") ? "bg-[deepskyblue]":"")}>{time(0, "Friday")}</button>
+              <button onClick={() => handleAvailability(1, "Friday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Friday") ? "bg-[deepskyblue]":"")}>{time(1, "Friday")}</button>
+              <button onClick={() => handleAvailability(2, "Friday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Friday") ? "bg-[deepskyblue]":"")}>{time(2, "Friday")}</button>
+              <button onClick={() => handleAvailability(3, "Friday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Friday") ? "bg-[deepskyblue]":"")}>{time(3, "Friday")}</button>
+            </div>
+          </div>
+          <div className={"border-2 border-t-0 rounded-b-lg flex flex-col items-center p-4 duration-0 " + (activeDay == "Saturday" ? "visible" : "hidden pointer-events-none")}>
+            <div>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <TimeClock ampm={true} sx={{
+                    margin: 0,
+                  }} onChange={(value) => {
+                    const temp = JSON.parse(JSON.stringify(currSelectedHour));
+                    temp.Saturday = value.$H;
+                    updateCurrSelectedHour(temp);
+                  }}
+                  views={['hours']} />
+              </LocalizationProvider>
+            </div>
+            <div className="m-0 flex flex-row justify-center">
+              <button onClick={() => {updateAM(true)}} className={"rounded-sm p-4 mr-4 " + (AM ? "bg-[deepskyblue]":"")}>
+                AM
+              </button>
+              <button onClick={() => {updateAM(false)}} className={"rounded-sm p-4 " + (!AM ? "bg-[deepskyblue]":"")}>
+                PM
+              </button>
+            </div>
+            <div className={"w-full flex flex-col items-center " + (currSelectedHour.Saturday == -1 ? "hidden" : "")}>
+              <button onClick={() => handleAvailability(0, "Saturday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Saturday") ? "bg-[deepskyblue]":"")}>{time(0, "Saturday")}</button>
+              <button onClick={() => handleAvailability(1, "Saturday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Saturday") ? "bg-[deepskyblue]":"")}>{time(1, "Saturday")}</button>
+              <button onClick={() => handleAvailability(2, "Saturday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Saturday") ? "bg-[deepskyblue]":"")}>{time(2, "Saturday")}</button>
+              <button onClick={() => handleAvailability(3, "Saturday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Saturday") ? "bg-[deepskyblue]":"")}>{time(3, "Saturday")}</button>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-row items-center justify-center mb-2 mt-8">
+          <button className="border-2 p-4 w-32 rounded-md mr-6" onClick={saveAvailability}>{saving ? "SAVING...": "SAVE"}</button>
+          <button className="border-2 p-4 w-32 rounded-md" onClick={() => {
+            updateAvailability({
+              "Sunday": [],
+              "Monday": [],
+              "Tuesday": [],
+              "Wednesday": [],
+              "Thursday": [],
+              "Friday": [],
+              "Saturday": [],
+            });
+          }}>CLEAR</button>
+        </div>
+      </main>
+    )
+  }
 }
