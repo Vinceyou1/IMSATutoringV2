@@ -221,37 +221,37 @@ export default function Daily(){
   return (
     <main className="flex flex-col h-[calc(100%-5rem)]">
       <div className="flex flex-col flex-grow justify-between">
-        <div className="flex flex-row flex-grow w-full justify-center items-center p-4">
-          <div className="mr-16">
-            <Calendar locale="en-US" minDetail="month" defaultValue={new Date()} onChange={(val) => updateDay(new Date(val))} />
+        <div className={"flex flex-grow w-full justify-center items-center p-4 " + (isMobile ? "flex-col" : "flex-row " )}>
+          <div className={(isMobile) ? "mb-4" : "mr-16"}>
+            <Calendar className={(isMobile) ? "w-[350px]" : "w-[500px]"} locale="en-US" minDetail="month" defaultValue={new Date()} onChange={(val) => updateDay(new Date(val))} />
           </div>
-          <div className="dark:text-primary flex flex-col justify-start items-center overflow-x-hidden h-fit border-2 p-4 rounded-lg ">
-              <div>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <TimeClock ampm={true} sx={{
-                    }} onChange={(value) => {
-                      updateCurrSelectedHour(value.$H);
-                    }}
-                    views={['hours']} />
-                </LocalizationProvider>
-              </div>
-              <div className="m-0 flex flex-row">
-                <button onClick={() => {updateAM(true)}} className={"duration-200 rounded-sm p-4 mr-4 " + (AM ? "bg-[deepskyblue]":"")}>
-                  AM
-                </button>
-                <button onClick={() => {updateAM(false)}} className={"duration-200 rounded-sm p-4 " + (!AM ? "bg-[deepskyblue]":"")}>
-                  PM
-                </button>
-              </div>
-              <div className={"w-full flex flex-col items-center " + (currSelectedHour == -1 ? "hidden" : "")}>
-                <button onClick={() => handleAvailability(0)} className={"mt-4 w-full p-2 rounded-lg border-2 " + getColor(0)}>{time(0)}</button>
-                <button onClick={() => handleAvailability(1)} className={"mt-4 w-full p-2 rounded-lg border-2 " + getColor(1)}>{time(1)}</button>
-                <button onClick={() => handleAvailability(2)} className={"mt-4 w-full p-2 rounded-lg border-2 " + getColor(2)}>{time(2)}</button>
-                <button onClick={() => handleAvailability(3)} className={"mt-4 w-full p-2 rounded-lg border-2 " + getColor(3)}>{time(3)}</button>
-              </div>
+          <div className={"dark:text-primary flex flex-col justify-start items-center overflow-x-hidden h-fit border-2 p-4 rounded-lg w-[350px]"}>
+            <div>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <TimeClock ampm={true} sx={{
+                  }} onChange={(value) => {
+                    updateCurrSelectedHour(value.$H);
+                  }}
+                  views={['hours']} />
+              </LocalizationProvider>
             </div>
+            <div className="m-0 flex flex-row">
+              <button onClick={() => {updateAM(true)}} className={"duration-200 rounded-sm p-4 mr-4 " + (AM ? "bg-[deepskyblue]":"")}>
+                AM
+              </button>
+              <button onClick={() => {updateAM(false)}} className={"duration-200 rounded-sm p-4 " + (!AM ? "bg-[deepskyblue]":"")}>
+                PM
+              </button>
+            </div>
+            <div className={"w-full flex flex-col items-center " + (currSelectedHour == -1 ? "hidden" : "")}>
+              <button onClick={() => handleAvailability(0)} className={"mt-4 w-full p-2 rounded-lg border-2 " + getColor(0)}>{time(0)}</button>
+              <button onClick={() => handleAvailability(1)} className={"mt-4 w-full p-2 rounded-lg border-2 " + getColor(1)}>{time(1)}</button>
+              <button onClick={() => handleAvailability(2)} className={"mt-4 w-full p-2 rounded-lg border-2 " + getColor(2)}>{time(2)}</button>
+              <button onClick={() => handleAvailability(3)} className={"mt-4 w-full p-2 rounded-lg border-2 " + getColor(3)}>{time(3)}</button>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-row items-center justify-center mb-2">
+        <div className="flex flex-row items-center justify-center mb-4">
           <button className="border-2 p-4 w-32 rounded-md mr-6" onClick={saveAvailability}>{saving ? "SAVING...": "SAVE"}</button>
           <button className="border-2 p-4 w-32 rounded-md" onClick={getData}>RESET</button>
         </div>
