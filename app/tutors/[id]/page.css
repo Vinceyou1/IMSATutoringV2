@@ -3,6 +3,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
+  /* width */
+  #slots::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  #slots::-webkit-scrollbar-track {
+  }
+
+  /* Handle */
+  #slots::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+
+  /* Handle on hover */
+  #slots::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+
   #indexheader {
     position: relative !important;
     text-align: center;
@@ -17,7 +38,9 @@
     gap: 0rem !important;
     display: flex;
     flex-flow: column nowrap;
-    @apply bg-[url(/scattered-forcefields4.svg)] dark:bg-[url(/scattered-forcefields4-dark.svg)];
+    @apply bg-[url(/scattered-forcefields6.svg)] dark:bg-[url(/scattered-forcefields6-dark.svg)];
+    background-position-y: 45%;
+    background-position-x: 25%;
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -155,7 +178,7 @@
     line-height: 1.125em;
     height: fit-content;
   }
-  
+
   @layer base{
     #react-calendar{
       @apply bg-[white] dark:bg-primary-dark dark:border-[white]
@@ -320,4 +343,9 @@
   
   .react-calendar--selectRange .react-calendar__tile--hover {
     background-color: #e6e6e6;
+  }
+
+  .modal {
+    width: 75vw;
+    height: 25vh;
   }

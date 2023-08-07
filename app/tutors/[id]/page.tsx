@@ -7,12 +7,16 @@ import Loading from '@/components/Loading';
 import Calendar from 'react-calendar'
 import { MobileContext } from '@/contexts/MobileContext'
 import Footer from '@/components/Footer'
-import { doc, getDoc } from 'firebase/firestore'
+import { addDoc, collection, doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore'
 import { FirebaseFirestoreContext } from '@/contexts/FirebaseContext'
 import { WeeklyAvailability } from '@/types/weeklyAvailability'
+import { time } from 'console'
+import { UserDataContext } from '@/contexts/UserContext'
+import Popup from 'reactjs-popup'
 
 export default function TutorPage({params}){
   const isMobile = useContext(MobileContext);
+  const user = useContext(UserDataContext);
   const [tutor, updateTutor] = useState<TutorData>();
   const [tutorExists, updateTutorExists] = useState(true);
   const [courses, updateCourses] = useState([<></>]);
@@ -20,6 +24,7 @@ export default function TutorPage({params}){
     let exists = false;
     tutors.forEach((tutor: TutorData) => {
       if(tutor.id == params.id) {
+        console.log(tutor);
         updateTutor(tutor);
         exists = true;
       }
@@ -46,6 +51,7 @@ export default function TutorPage({params}){
     delete temp['first_name'];
     delete temp['id'];
     delete temp['year'];
+    delete temp['email']
 
     const sorted = Object.keys(temp).map((key) => [key, temp[key]]);
     sorted.sort((a, b) => {
@@ -88,18 +94,20 @@ export default function TutorPage({params}){
   const getData = async () =>{
     if(!tutor || !tutor.id) return;
     const tutorRef = doc(db, 'tutors', tutor.id);
-    await getDoc(tutorRef).then((res) => {
-      const d = res.data();
-      if(res.get('weekly')){
-        updateWeeklyAvailability(res.get('weekly'));
+    onSnapshot(tutorRef, (doc) => {
+      let d = doc.data();
+      if(doc.get('weekly')){
+        updateWeeklyAvailability(doc.get('weekly'));
         delete d['weekly'];
       }
       updateChanges(d);
-    })
+      console.log(doc);
+    });
   }
 
   useEffect(() => {  
     getData();
+    
   }, [tutor])
 
   const [slotsContainer, updateSlotsContainer] = useState(<></>);
@@ -143,6 +151,22 @@ export default function TutorPage({params}){
   useEffect(() => {
     const w = numToWeekday(day);
     const d = dateToDay(day);
+    if(user[1]){
+      updateSlotsContainer(
+        <div className='border-2 border-[rgb(203,_213,_224)] dark:border-[white] flex-grow p-2 flex flex-row items-center'>
+          <p className='text-center border-2 w-full'>Loading...</p>
+        </div>
+      )
+      return;
+    }
+    if(!user[0]){
+      updateSlotsContainer(
+        <div className='border-2 border-[rgb(203,_213,_224)] dark:border-[white] flex-grow p-2 flex flex-row items-center'>
+          <p className='text-center'>Please Sign In With Your IMSA email</p>
+        </div>
+      )
+      return;
+    }
     if(weeklyAvailabilty[w].length == 0 && !changes.hasOwnProperty(d)){
       updateSlotsContainer(
         <div className='border-2 border-[rgb(203,_213,_224)] dark:border-[white] flex-grow p-2 flex flex-row items-center'>
@@ -164,27 +188,76 @@ export default function TutorPage({params}){
       slots.sort((a, b) => {
         return value(a) - value(b);
       })
-      console.log(slots);
       updateSlotsContainer(
-        <div className='border-2 border-[rgb(203,_213,_224)] dark:border-[white] flex-grow p-4 overflow-y-auto'>
+        <div id="slots" className='border-2 border-[rgb(203,_213,_224)] dark:border-[white] flex-grow p-4 overflow-y-auto'>
           {slots.map((value) => {
             const s = [d, value];
-            console.log(s);
             return <button onClick={() => {updateSlot(s)}} className={"mb-4 w-full p-2 rounded-lg border-2 last:mb-0 " + ((JSON.stringify(slot) == JSON.stringify([d, value])) ? "bg-[deepskyblue]": "")}>{value}</button>
           })}
         </div>
       )
     }
-  }, [weeklyAvailabilty, changes, day, slot])
+  }, [weeklyAvailabilty, changes, day, slot, user])
 
   useEffect(() => {
     updateSlot(["", ""]);
   }, [day])
 
-  useEffect(() => {
-    console.log(slot);
-    console.log(JSON.stringify(slot) == JSON.stringify(['8/6/2023', '12:15 PM']));
-  }, [slot])
+  const [booking, updateBooking] = useState(false);
+  const [error, updateError] = useState(false);
+
+  const [popupOpen, updatePopupOpen] = useState(false);
+
+  async function book(){
+    if(!user[0]){
+      updatePopupOpen(true);
+      return;
+    }
+    if(slot[0] == "") return;
+    if(!tutor || !tutor.id) {
+      alert("This tutor doesn't exist?");
+      return;
+    }
+    const tutorRef = doc(db, 'tutors', tutor.id);
+    updateError(false);
+    updateBooking(true);
+    let booked = [slot[1]];
+    if(changes.hasOwnProperty(slot[0])){
+      booked = booked.concat(changes[slot[0]].booked);
+    }
+    let error = false;
+    await setDoc(tutorRef, {[slot[0]] : {
+      booked: booked
+    }}, { merge: true }).catch(() => {
+      updateError(true);
+      error = true;
+    }).then(() => {
+      if(error) {
+        updateBooking(false);
+        updateSlot(["", ""])
+        return;
+      }
+    });
+
+    await addDoc(collection(db, "mail"), {
+      to: tutor.email,
+      cc: user[0].email,
+      template: {
+        name: "Booked",
+        data: {
+          name: user[0].displayName,
+          tutor: tutor.first_name,
+          time: slot[1],
+          day: slot[0],
+        },
+      },
+    }).catch(() => {
+      updateError(true);
+    }).then(() => {
+      updateBooking(false);
+      updateSlot(["", ""])
+    });
+  }
 
   if(!tutorExists){
     window.location.replace("/tutors");
@@ -192,6 +265,18 @@ export default function TutorPage({params}){
   if(!tutor) return <Loading />
   return (
     <main className='flex flex-col justify-between'>
+      <Popup
+        open={popupOpen}
+        modal
+        onClose={() => updatePopupOpen(false)}
+        closeOnDocumentClick
+      >
+        <div className="modal flex flex-col justify-center bg-primary dark:bg-primary-dark border-2 rounded-lg">
+          <div className="text-center p-0 text-3xl">
+            Please Sign in With Your IMSA Email
+          </div>
+        </div>
+      </Popup>
       <div className='mr-8'>
         <h2> {tutor.first_name + " " + tutor.last_name} </h2>
         <div className = "mainTextArea h-full">
@@ -225,7 +310,7 @@ export default function TutorPage({params}){
                 <Calendar className={"" + (isMobile ? "w-[350px]" : "w-[500px]")} locale="en-US" minDetail="month" defaultValue={new Date()} onChange={(val) => updateDay(new Date(val))} />
                 <div className='flex flex-col justify-between w-40 ml-4 h-[318px]'>
                   {slotsContainer}
-                  <button className='bg-[deepskyblue] rounded-md mt-2 p-2 font-bold text-[white] hover:bg-[#00afef]'>BOOK</button>
+                  <button onClick={book} className={'duration-300 rounded-md mt-2 p-2 font-bold text-[white] ' + (error ? "bg-[red]":(slot[0] == "" ? "bg-[grey]" : "bg-[deepskyblue] hover:bg-[#00afef]"))}>{error ? "Error" : (booking ? "Booking..." : "BOOK")}</button>
                 </div>
               </div>
             </div>
