@@ -72,8 +72,6 @@ export default function Daily(){
 
   const [changes, updateChanges] = useState({});
 
-  const [availabilty, updateAvailability] = useState<DocumentSnapshot>();
-
   function time(slot: number){
     const h = currSelectedHour + (currSelectedHour == 0 ? 12 : 0);
     let m = "00";
@@ -124,15 +122,18 @@ export default function Daily(){
     let temp = JSON.parse(JSON.stringify(changes));
     const d = dateToDay(day);
     if(!changes.hasOwnProperty(d)){
-      temp[d] = [];
+      temp[d] = {
+        changes: [],
+        booked: []
+      };
     }
-    if(temp[d].includes(t)){
-      temp[d].splice(temp[d].indexOf(t), 1);
-      if(temp[d].length == 0){
+    if(temp[d].changes.includes(t)){
+      temp[d].changes.splice(temp[d].changes.indexOf(t), 1);
+      if(temp[d].changes.length == 0 && temp[d].booked.length == 0){
         delete temp[d];
       }
     } else {
-      temp[d].push(t);
+      temp[d].changes.push(t);
     }
     updateChanges(temp);
     console.log(temp);
@@ -163,14 +164,14 @@ export default function Daily(){
     const t = time(slot);
     const d = dateToDay(day);
     if(weeklyAvailabilty[numToWeekday(day)].includes(t)){
-      if(changes.hasOwnProperty(d) && changes[d].includes(t)){
+      if(changes.hasOwnProperty(d) && changes[d].changes.includes(t)){
         console.log("here");
         return "bg-[red]"
       } else {
         return "bg-[deepskyblue]"
       }
     } else {
-      if(changes.hasOwnProperty(d) && changes[d].includes(t)){
+      if(changes.hasOwnProperty(d) && changes[d].changes.includes(t)){
         return "bg-[green]"
       } else {
         return "bg-none"
