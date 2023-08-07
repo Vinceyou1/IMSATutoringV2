@@ -1,5 +1,32 @@
 [
     {
+      "last_name": "You",
+      "first_name": "Vincent",
+      "id": "125236",
+      "year": "Class of 2025",
+      "email": "vyou@imsa.edu",
+      "math_courses": [
+        "Mathematical Investigations 4",
+        "BC Calculus 1"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry"
+      ],
+      "language_courses": [
+        "German 1"
+      ],
+      "other_courses": [
+        "Method in Scientific Inquiry"
+      ]
+    },
+    {
       "last_name": "Wiggins",
       "first_name": "Dheeran",
       "id": "123249",

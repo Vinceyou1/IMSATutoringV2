@@ -82,7 +82,6 @@ export default function Weekly(){
       if(!tutor || !tutor.id) return;
       const tutorRef = doc(db, 'tutors', tutor?.id);
       await getDoc(tutorRef).then((res) => {
-        console.log(res.data())
         if(res.get('weekly')){
           updateAvailability(res.get('weekly'));
         }

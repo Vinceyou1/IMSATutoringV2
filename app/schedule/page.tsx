@@ -81,7 +81,7 @@ export default function MySchedule(){
   }
   
   return(
-    <main className="flex flex-col justify-between pt-4 h-[calc(100%-5rem)] bg-[url(/scattered-forcefields5.svg)] dark:bg-[url(/scattered-forcefields5-dark.svg)] bg-cover bg-no-repeat">
+    <main className="flex flex-col justify-between pt-4 h-[calc(100%-5rem)] bg-[right_35%] bg-[url(/scattered-forcefields5.svg)] dark:bg-[url(/scattered-forcefields5-dark.svg)] bg-cover bg-no-repeat">
       <div className="flex-grow flex flex-col justify-center ">
         <h1 className="text-center text-2xl">Welcome {user[0].displayName?.split(" ").at(0)}!</h1>
         <div className={"mt-20 flex justify-center items-center " + (isMobile ? "flex-col" : "flex-row")}>

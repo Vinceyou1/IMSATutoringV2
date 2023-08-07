@@ -27,7 +27,6 @@ export default function Tutors(){
   }, [])
 
   useEffect(() => {
-    console.log(classFilter);
     let tempTutors: TutorData[] = [];
     if(classFilter === "any") {
       tempTutors = [...tutors];
@@ -49,7 +48,6 @@ export default function Tutors(){
         }
         else if(tutor.math_courses && tutor.math_courses.includes(classNameFull)){
           canTutorClass = true;
-          console.log("here");
         }
         else if(tutor.physics_courses && tutor.physics_courses.includes(classNameFull)){
           canTutorClass = true;

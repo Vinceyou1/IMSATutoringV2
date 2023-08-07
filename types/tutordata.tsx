@@ -3,6 +3,7 @@ export type TutorData = {
     "first_name": string,
     "id": string,
     "year": string,
+    "email": string,
     "math_courses": string[] | null,
     "physics_courses": string[] | null,
     "bio_courses": string[] | null,

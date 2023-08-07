@@ -17,7 +17,7 @@ export default function Header(){
     } catch {}
   }
   let navbar = <></>;
-  const signInOutCommon = 'duration-200 pt-3 pb-3 pl-4 pr-4 text-lg shadow-xl rounded-none mr-4 text-secondary dark:text-secondary-dark hover:text-primary hover:dark:text-primary-dark'
+  const signInOutCommon = 'duration-200 pt-3 pb-3 pl-4 pr-4 text-lg shadow-xl rounded-none mr-4 text-secondary dark:text-[white] hover:text-primary hover:dark:text-primary-dark'
   let signInOut = <></>;
 
   const sidebar = isMobile ?
@@ -39,7 +39,7 @@ export default function Header(){
   if(!user[1]){
     user[0] ? signInOut = (<button className={signInOutCommon + ' hover:bg-[#ff6666]'} 
         onClick={() => auth.signOut()}>Sign Out</button>) : 
-      signInOut = (<button className={signInOutCommon + ' hover:bg-secondary hover:dark:bg-secondary-dark' }
+      signInOut = (<button className={signInOutCommon + ' hover:bg-secondary hover:dark:bg-[white]' }
         onClick={() => signIn()}>Sign in</button>);
     // Menu icon by Icons8
     navbar = isMobile ? 
