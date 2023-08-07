@@ -7,8 +7,9 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
-import {onRequest} from "firebase-functions/v2/https";
-import * as logger from "firebase-functions/logger";
+import * as functions from "firebase-functions";
+import {getAuth} from "firebase-admin/auth";
+import * as admin from "firebase-admin";
 
 // Start writing functions
 // https://firebase.google.com/docs/functions/typescript
@@ -17,3 +18,20 @@ import * as logger from "firebase-functions/logger";
 //   logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
+
+admin.initializeApp();
+export const onNewUserCreated =
+functions.auth.user().onCreate((user) =>{
+  const email = user.email;
+  if (email?.slice(email.indexOf("@")) != "@imsa.edu") {
+    getAuth().deleteUser(user.uid).then(() =>
+      {
+        console.log("Successfully deleted user");
+      }
+    ).catch((error) =>
+      {
+        console.log("Error deleting user:", error);
+      }
+    );
+  }
+});
