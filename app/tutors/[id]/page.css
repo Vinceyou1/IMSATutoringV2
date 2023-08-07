@@ -1,40 +1,30 @@
 @tailwind components;
+@tailwind base;
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-  main {
-    font-family: 'Nunito';
-  }
+
   #indexheader {
     position: relative !important;
     text-align: center;
   }
   
   main {
+    font-family: 'Nunito', sans-serif;
     margin-top:  0px !important;
     padding: 0% !important;
     width: 100%;
     min-height: 90%;
     gap: 0rem !important;
-    overflow-y: scroll;
     display: flex;
     flex-flow: column nowrap;
     @apply bg-[url(/scattered-forcefields4.svg)] dark:bg-[url(/scattered-forcefields4-dark.svg)];
     background-repeat: no-repeat;
     background-size: cover;
   }
-  
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: rgb(203, 213, 224);
-  }
+
   .mainTextArea {
     display: flex;
     flex-direction: row;
-    /*flex: 1;*/
-    flex-grow: 1000;
     margin: 0% !important;
     width: 100%;
   }
@@ -45,76 +35,48 @@
       margin: 2%;
       padding-bottom: 2%;
       font-size: 25px;
-      border-bottom: solid 2px black;
+      border-bottom: solid 2px;
       margin-bottom: 0%;
   }
   
   .publicProfile {
-      display: flex;
-      flex-direction: row;
-      flex: 1;
-      width: 100%;
-      height: 100%;
-      margin-left: 2%;
-      margin-right: 2%;
-      overflow-y: auto !important;
-      margin-top: 2%;
-  }
-  
-  @media only screen and (max-width: 900px)  {
-    .publicProfile {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        margin-left: 2%;
-        margin-right: 2%;
-        overflow-y: auto !important;
-        margin-top: 2%;
-    }
-  }
-  
-  .textSelector {
-      width: 100%;
-      height: 100%;
-  }
-  
-  label {
-      font-weight: bold;
-      font-size: 26px;
-  }
-  
-  form {
-      width: 65%;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    margin-left: 2%;
+    margin-right: 2%;
+    overflow-y: auto !important;
+    margin-top: 2%;
   }
   
   #sign-up-form {
-      display: flex;
-      flex-direction: column;
-      justify-content: column;
-      padding: 3%;
-      height: fit-content;
-      border-radius: 10px;
-      border: solid 1px;
-      width: 75%;
-      border: solid rgb(203, 213, 224) 2px;
-      background-color: white;
-      row-gap: 0.5em;
+    padding: 2rem;
+    border-radius: 10px;
+    border: solid 1px;
+    flex-grow: 1;
+    border: solid rgb(203, 213, 224) 2px;
+    row-gap: 0.5em;
+  }
+
+  @layer base{
+    #sign-up-form{
+      @apply bg-[white] dark:bg-primary-dark dark:border-[white]
+    }
   }
   
   #label {
-      display: flex;
-      flex-direction: column;
-      justify-content: column;
-      align-items: baseline;
-      text-align: left;
-      font-size: 16px;
-      gap: 0.55rem;
-      font-weight: 700;
-      color: black;
-      width: 100%;
-      transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: column;
+    align-items: baseline;
+    text-align: left;
+    font-size: 16px;
+    gap: 0.55rem;
+    font-weight: 700;
+    width: 100%;
+    transition: 0.3s;
   }
   
   #labelUnder {
@@ -128,91 +90,8 @@
       margin-top: 1.5%;
       font-weight: 500;
       text-decoration: underline;
-      color: black;
       width: 100%;
       transition: 0.3s;
-  }
-  
-  textarea:hover {
-      border-color: rgb(92, 158, 235) !important;
-      transition: 0.3s;
-  }
-  
-  
-  #bluetextlink {
-      color: rgb(52, 129, 218);
-  }
-  
-  #updateButton:hover{
-    background-color: rgb(74, 132, 220) !important;
-      transition: 0.3s;
-  }
-  
-  .imageSelector {
-      width: 50%;
-      margin: 3%;
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      align-items: center !important;
-  }
-  
-  .imageSelector #label{
-      text-align: center !important;
-      align-items: center;
-      padding: 2%;
-      background-color: white;
-      width: fit-content;
-      border-radius: 8px;
-  }
-  
-  .base-image-input {
-    display: flex;
-    width: 300px;
-    height: 300px;
-    cursor: pointer;
-    background-size: cover;
-    background-position: center center;
-    border-radius: 50%;
-    margin-top: 5%;
-    background-color: white;
-    border:solid 1.75px rgb(203, 213, 224);
-  }
-  
-  .base-image-input:hover {
-      border-color: rgb(52, 129, 218);
-  }
-  
-  .placeholder {
-    background: #ffffff;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    border-radius: 50%;
-    border: solid 1.75px  rgb(203, 213, 224);
-  }
-  
-  .placeholder:hover {
-    background: #E0E0E0;
-  }
-  
-  .file-input {
-    display: none;
-  }
-  
-  .Bar2 {
-      display: flex;
-      justify-content: center;
-      padding-bottom: 10px;
-      gap: 1em;
-      flex: 1;
-  }
-  
-  .Bar2 #label{
-      padding: 0px;
   }
   
   #hall {
@@ -248,26 +127,7 @@
     align-items: flex-start;
     margin-top: 2%;
   }
-  
-  #Submit {
-    border: 0px;
-    height: 7vh;
-    border-radius: 5px;
-    background-color: rgb(93, 170, 244) !important;
-    color: white;
-    font-size: large;
-    text-align: center;
-    margin-bottom: 0.5%;
-    vertical-align: center;
-    cursor: pointer;
-    margin-top: 2%;
-  }
-  
-  #Submit:hover{
-    background-color: rgb(74, 132, 220) !important;
-      transition: 0.3s;
-  } 
-  
+
   .tutorCourses {
     display: flex;
     flex-direction: row;
@@ -280,4 +140,184 @@
     display: flex;
     flex-direction: column;
     row-gap: 0.25em;
+  }
+
+  @layer base {
+    .react-calendar{
+      @apply bg-primary dark:bg-primary-dark
+    }
+  }
+
+  .react-calendar {
+    max-width: 100%;
+    border: 2px solid rgb(203, 213, 224);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.125em;
+    height: fit-content;
+  }
+  
+  @layer base{
+    #react-calendar{
+      @apply bg-[white] dark:bg-primary-dark dark:border-[white]
+    }
+  }
+
+  .react-calendar--doubleView {
+    width: 1000px;
+  }
+  
+  .react-calendar--doubleView .react-calendar__viewContainer {
+    display: flex;
+    margin: -0.5em;
+  }
+  
+  .react-calendar--doubleView .react-calendar__viewContainer > * {
+    width: 50%;
+    margin: 0.5em;
+  }
+  
+  .react-calendar,
+  .react-calendar *,
+  .react-calendar *:before,
+  .react-calendar *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  .react-calendar button {
+    margin: 0;
+    border: 0;
+    outline: none;
+  }
+  
+  .react-calendar button:enabled:hover {
+    cursor: pointer;
+  }
+  
+  .react-calendar__navigation {
+    display: flex;
+    height: 44px;
+    margin-bottom: 1em;
+    font-size: larger;
+  }
+  
+  .react-calendar__navigation button {
+    min-width: 44px;
+    background: none;
+  }
+  
+  .react-calendar__navigation button:disabled {
+
+  }
+  
+  .react-calendar__month-view__days__day--weekend {
+    color: #d10000;
+  }
+
+  .react-calendar__navigation button:enabled:hover,
+  .react-calendar__navigation button:enabled:focus {
+    background-color: #e6e6e6;
+  }
+
+  @media (prefers-color-scheme: dark){
+    .react-calendar__navigation button:enabled:hover,
+    .react-calendar__navigation button:enabled:focus {
+      background-color: #334155;
+    }
+  }
+  
+  .react-calendar__month-view__weekdays {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.75em;
+  }
+  
+  .react-calendar__month-view__weekdays__weekday {
+    padding: 0.5em;
+  }
+  
+  .react-calendar__month-view__weekNumbers .react-calendar__tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+  
+  .react-calendar__month-view__days__day--weekend {
+  }
+  
+  .react-calendar__month-view__days__day--neighboringMonth {
+    color: #757575;
+  }
+  
+  .react-calendar__year-view .react-calendar__tile,
+  .react-calendar__decade-view .react-calendar__tile,
+  .react-calendar__century-view .react-calendar__tile {
+    padding: 2em 0.5em;
+  }
+  
+  .react-calendar__tile {
+    max-width: 100%;
+    padding: 10px 6.6667px;
+    background: none;
+    text-align: center;
+    line-height: 24px;
+    font-size: 1.5rem !important;
+  }
+  
+  .react-calendar__tile:disabled {
+    background-color: #f0f0f0;
+  }
+  
+  .react-calendar__tile:enabled:hover,
+  .react-calendar__tile:enabled:focus {
+    background-color: #e6e6e6;
+  }
+  @media (prefers-color-scheme: dark) {
+    .react-calendar__tile:enabled:hover,
+    .react-calendar__tile:enabled:focus {
+        background-color: #475569;
+    }
+  }
+  
+  .react-calendar__tile--now {
+    color: #60a5fa;
+    font-weight: 700;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .react-calendar__tile--now {
+    }
+  }
+  
+  .react-calendar__tile--hasActive {
+    background: #76baff;
+  }
+  
+  .react-calendar__tile--hasActive:enabled:hover,
+  .react-calendar__tile--hasActive:enabled:focus {
+    background: #a9d4ff;
+  }
+  
+  .react-calendar__tile--active {
+    background: #006edc;
+    color: white;
+  }
+  
+  @media (prefers-color-scheme: dark){
+    .react-calendar__tile--active {
+      background: #64748b !important;
+      color: white;
+    }
+  }
+  .react-calendar__tile--active:enabled:hover,
+  .react-calendar__tile--active:enabled:focus {
+    background: #1087ff;
+  }
+  
+  .react-calendar--selectRange .react-calendar__tile--hover {
+    background-color: #e6e6e6;
   }
