@@ -7,7 +7,7 @@ export default function NotFound(){
       {
         // Image by pikisuperstar Freepik
       }
-      <img src="/5060709_2663518.svg" className="justify-center items-start max-w-[34rem] max-h-[24rem]"/>
+      <img alt="" src="/5060709_2663518.svg" className="justify-center items-start max-w-[34rem] max-h-[24rem]"/>
       <p className="text-center"> The page you are looking for might have been temporarily removed, had its name changed, or is temporarily unavailable </p>
 
       <a href="/" className="buttonClickable3d">Return Home</a>

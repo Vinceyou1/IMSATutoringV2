@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { MobileContext } from "@/contexts/MobileContext";
 import { UserDataContext } from "@/contexts/UserContext";
 import { useContext, useEffect, useMemo, useState } from "react";
-import tutors from '../../../data/tutor_data.json'
+import tutors from '../../../public/tutor_data.json'
 import { TutorData } from "@/types/tutordata";
 import Loading from "@/components/Loading";
 import { LocalizationProvider, TimeClock } from '@mui/x-date-pickers';
@@ -88,7 +88,7 @@ export default function Weekly(){
       })
     }
     getData()
-  }, [tutor])
+  }, [tutor, db])
 
   function time(slot: number, day: Weekday){
     const h = currSelectedHour[day] + (currSelectedHour[day] == 0 ? 12 : 0);
@@ -152,7 +152,7 @@ export default function Weekly(){
 
   if(!user[0]){
     return(
-      <main className="flex items-center text-lg justify-center h-[calc(100%-5rem)] bg-[url(/scattered-forcefields5.svg)] dark:bg-[url(/scattered-forcefields5-dark.svg)] bg-cover bg-no-repeat">
+      <main className="flex items-center text-lg justify-center h-[calc(100%-5rem)]">
         Please Sign In With Your IMSA email
       </main>
     )
@@ -160,15 +160,15 @@ export default function Weekly(){
 
   if(!tutorExists){
     return (
-      <main className="flex items-center justify-center text-center text-lg h-[calc(100%-5rem)] bg-[url(/scattered-forcefields5.svg)] dark:bg-[url(/scattered-forcefields5-dark.svg)] bg-cover bg-no-repeat">
-        Hmm, you don't seem to be registered as a peer tutor. <br /> If you are, please fill out the help form.
+      <main className="flex items-center justify-center text-center text-lg h-[calc(100%-5rem)]">
+        Hmm, you don&apos;t seem to be registered as a peer tutor. <br /> If you are, please fill out the help form.
       </main>
     )
   }
   // general idea: lots of collapsables, so one dropdown for each day, then a dropdown for each hour, then buttons for each 15-minute block
   if(!isMobile){
   return (
-    <main className="flex flex-col justify-between h-[calc(100%-5rem)] bg-[right_35%] bg-[url(/scattered-forcefields5.svg)] dark:bg-[url(/scattered-forcefields5-dark.svg)] bg-cover bg-no-repeat">
+    <main className="flex flex-col justify-between h-[calc(100%-5rem)] bg-[right_35%]">
       <div className={"flex flex-col flex-grow h-fit justify-start m-4 mt-6"}>
         <div className="flex flex-row">
           <button onClick={() => updateActiveDay((activeDay == "Sunday") ? "" : "Sunday")} className="w-0 h-fit border-2 p-4 rounded-t-lg flex-grow mr-4">Sunday {(activeDay == "Sunday") ? "\u25B2" : "\u25BC"}</button>

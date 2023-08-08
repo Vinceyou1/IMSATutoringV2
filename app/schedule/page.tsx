@@ -4,7 +4,7 @@ import { FirebaseAuthContext } from "@/contexts/FirebaseContext"
 import { UserDataContext } from "@/contexts/UserContext";
 import { TutorData } from "@/types/tutordata";
 import { useContext, useEffect, useState } from "react"
-import tutors from '../../data/tutor_data.json'
+import tutors from '../../public/tutor_data.json'
 import { MobileContext } from "@/contexts/MobileContext";
 import Footer from "@/components/Footer";
 
@@ -16,13 +16,15 @@ export default function MySchedule(){
   const [tutorExists, updateTutorExists] = useState(true);
 
   useEffect(() => {
-    if(!user){
+    if(user[1]){
+      return;
+    }
+    if(!user[0]){
       updateTutorExists(false);
       return;
     }
 
-    // const name = user.displayName.split(" ");
-    const name = "Vidyoot Senthilvenkatesh".split(" ");
+    const name = user[0].displayName.split(" ");
     let first_name = "";
     let last_name = "";
     // Weird middle name handling, sometimes counted as part of either first or last name in data
@@ -75,7 +77,7 @@ export default function MySchedule(){
   if(!tutorExists){
     return (
       <main className="flex items-center justify-center text-center text-lg h-[calc(100%-5rem)] bg-[url(/scattered-forcefields5.svg)] dark:bg-[url(/scattered-forcefields5-dark.svg)] bg-cover bg-no-repeat">
-        Hmm, you don't seem to be registered as a peer tutor. <br /> If you are, please fill out the help form.
+        Hmm, you don&apos;t seem to be registered as a peer tutor. <br /> If you are, please fill out the help form.
       </main>
     )
   }

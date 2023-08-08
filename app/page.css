@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap'); */
 main {
     font-family: 'Nunito', sans-serif;
     box-sizing: border-box;
@@ -26,14 +26,14 @@ main {
       font-family: 'Nunito', sans-serif;
       font-weight: 400;
   }
-  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap');
+  /* @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap'); */
   .Text{
     font-size: 28px;
     font-weight: 800;
     letter-spacing: 3px;
     font-family: 'Nunito', sans-serif;
   }
-  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap');
+  /* @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap'); */
   .desc{
       font-size: 20px;
       font-weight:400;

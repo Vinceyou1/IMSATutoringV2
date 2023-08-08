@@ -3,8 +3,8 @@ import { FirebaseFirestoreContext } from "@/contexts/FirebaseContext";
 import { MobileContext } from "@/contexts/MobileContext";
 import { UserDataContext } from "@/contexts/UserContext";
 import { TutorData } from "@/types/tutordata";
-import { useContext, useEffect, useState } from "react";
-import tutors from '../../../data/tutor_data.json'
+import { useCallback, useContext, useEffect, useState } from "react";
+import tutors from '../../../public/tutor_data.json'
 import { WeeklyAvailability } from "@/types/weeklyAvailability";
 import { DocumentSnapshot, doc, getDoc, setDoc } from "firebase/firestore";
 import Loading from "@/components/Loading";
@@ -92,22 +92,22 @@ export default function Daily(){
     return h.toString() + ":" + m + " " + (AM ? "AM" : "PM");
   }
 
-  const getData = async () =>{
-      if(!tutor || !tutor.id) return;
-      const tutorRef = doc(db, 'tutors', tutor.id);
-      await getDoc(tutorRef).then((res) => {
-        const d = res.data();
-        if(res.get('weekly')){
-          updateWeeklyAvailability(res.get('weekly'));
-          delete d['weekly'];
-        }
-        updateChanges(d);
-      })
-    }
+  const getData = useCallback(async () => {
+    if(!tutor || !tutor.id) return;
+    const tutorRef = doc(db, 'tutors', tutor.id);
+    await getDoc(tutorRef).then((res) => {
+      const d = res.data();
+      if(res.get('weekly')){
+        updateWeeklyAvailability(res.get('weekly'));
+        delete d['weekly'];
+      }
+      updateChanges(d);
+    })
+  }, [tutor])
   
   useEffect(() => {  
     getData();
-  }, [tutor])
+  }, [tutor, getData])
 
   function dateToDay(date: Date){
     return date.toLocaleString("en-US").split(",").at(0);
@@ -205,7 +205,7 @@ export default function Daily(){
 
   if(!user[0]){
     return(
-      <main className="flex items-center text-lg justify-center h-[calc(100%-5rem)] bg-[url(/scattered-forcefields5.svg)] dark:bg-[url(/scattered-forcefields5-dark.svg)] bg-cover bg-no-repeat">
+      <main className="flex items-center text-lg justify-center h-[calc(100%-5rem)]">
         Please Sign In With Your IMSA email
       </main>
     )
@@ -213,8 +213,8 @@ export default function Daily(){
 
   if(!tutorExists){
     return (
-      <main className="flex items-center justify-center text-center text-lg h-[calc(100%-5rem)] bg-[url(/scattered-forcefields5.svg)] dark:bg-[url(/scattered-forcefields5-dark.svg)] bg-cover bg-no-repeat">
-        Hmm, you don't seem to be registered as a peer tutor. <br /> If you are, please fill out the help form.
+      <main className="flex items-center justify-center text-center text-lg h-[calc(100%-5rem)]">
+        Hmm, you don&apos;t seem to be registered as a peer tutor. <br /> If you are, please fill out the help form.
       </main>
     )
   }

@@ -1,8 +1,8 @@
 'use client'
 import './page.css'
 import { TutorData } from '@/types/tutordata'
-import tutors from '../../../data/tutor_data.json'
-import { useContext, useEffect, useState } from 'react'
+import tutors from '../../../public/tutor_data.json'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import Loading from '@/components/Loading';
 import Calendar from 'react-calendar'
 import { MobileContext } from '@/contexts/MobileContext'
@@ -20,31 +20,9 @@ export default function TutorPage({params}){
   const [tutor, updateTutor] = useState<TutorData>();
   const [tutorExists, updateTutorExists] = useState(true);
   const [courses, updateCourses] = useState([<></>]);
-  useEffect(() => {
-    let exists = false;
-    tutors.forEach((tutor: TutorData) => {
-      if(tutor.id == params.id) {
-        console.log(tutor);
-        updateTutor(tutor);
-        exists = true;
-      }
-    });
-    updateTutorExists(exists);
-    sortTutorSubjects();
-  }, [tutor])
-
-  const dataNameToText = {
-    "math_courses": "Math Courses",
-    physics_courses: "Physics Courses",
-    bio_courses: "Biology Courses",
-    chem_course: "Chemistry Courses",
-    cs_courses: "CS Courses",
-    language_courses: "Language Courses",
-    other_courses: "Other Science Courses"
-  }
 
   // Sorts the class list by their length 
-  function sortTutorSubjects(){
+  const sortTutorSubjects = useCallback(() => {
     if(!tutor) return;
     const temp = JSON.parse(JSON.stringify(tutor));
     delete temp['last_name'];
@@ -66,7 +44,7 @@ export default function TutorPage({params}){
             <h3 id = "labelUnder">{dataNameToText[element[0]]}</h3>
             <div className="courses">
               {element[1].map((course) => {
-                return <ul>{course}</ul>
+                return <ul key={course}>{course}</ul>
               })}
             </div>
           </div>
@@ -74,7 +52,31 @@ export default function TutorPage({params}){
       } else return (<></>)
     });
     if(ans) updateCourses(ans);
+  }, [tutor, params.id]);
+
+  useEffect(() => {
+    let exists = false;
+    tutors.forEach((tutor: TutorData) => {
+      if(tutor.id == params.id) {
+        console.log(tutor);
+        updateTutor(tutor);
+        exists = true;
+      }
+    });
+    updateTutorExists(exists);
+    sortTutorSubjects();
+  }, [tutor, params.id, sortTutorSubjects])
+
+  const dataNameToText = {
+    "math_courses": "Math Courses",
+    physics_courses: "Physics Courses",
+    bio_courses: "Biology Courses",
+    chem_course: "Chemistry Courses",
+    cs_courses: "CS Courses",
+    language_courses: "Language Courses",
+    other_courses: "Other Science Courses"
   }
+
 
   const [day, updateDay] = useState<Date>(new Date());
 
@@ -89,25 +91,30 @@ export default function TutorPage({params}){
   });
 
   const db = useContext(FirebaseFirestoreContext);
-  const [changes, updateChanges] = useState({});
+  const [changes, updateChanges] = useState({
+    changes: [],
+    booked: []
+  });
 
-  const getData = async () =>{
-    if(!tutor || !tutor.id) return;
-    const tutorRef = doc(db, 'tutors', tutor.id);
-    onSnapshot(tutorRef, (doc) => {
-      let d = doc.data();
-      if(doc.get('weekly')){
-        updateWeeklyAvailability(doc.get('weekly'));
-        delete d['weekly'];
-      }
-      updateChanges(d);
-      console.log(doc);
-    });
-  }
+  
 
-  useEffect(() => {  
+  useEffect(() => {
+    const getData = async () => {
+      if(!tutor || !tutor.id) return;
+      const tutorRef = doc(db, 'tutors', tutor.id);
+      onSnapshot(tutorRef, (doc) => {
+        let d = doc.data();
+        if(doc.get('weekly')){
+          updateWeeklyAvailability(doc.get('weekly'));
+          delete d['weekly'];
+        }
+        if(d){
+          updateChanges(d);
+        }
+        console.log(doc);
+      });
+    }
     getData();
-    
   }, [tutor])
 
   const [slotsContainer, updateSlotsContainer] = useState(<></>);
@@ -154,7 +161,7 @@ export default function TutorPage({params}){
     if(user[1]){
       updateSlotsContainer(
         <div className='border-2 border-[rgb(203,_213,_224)] dark:border-[white] flex-grow p-2 flex flex-row items-center'>
-          <p className='text-center border-2 w-full'>Loading...</p>
+          <p className='text-center w-full'>Loading...</p>
         </div>
       )
       return;
@@ -162,7 +169,7 @@ export default function TutorPage({params}){
     if(!user[0]){
       updateSlotsContainer(
         <div className='border-2 border-[rgb(203,_213,_224)] dark:border-[white] flex-grow p-2 flex flex-row items-center'>
-          <p className='text-center'>Please Sign In With Your IMSA email</p>
+          <p className='text-center w-full'>Please Sign In With Your IMSA email</p>
         </div>
       )
       return;
@@ -170,7 +177,7 @@ export default function TutorPage({params}){
     if(weeklyAvailabilty[w].length == 0 && !changes.hasOwnProperty(d)){
       updateSlotsContainer(
         <div className='border-2 border-[rgb(203,_213,_224)] dark:border-[white] flex-grow p-2 flex flex-row items-center'>
-          <p className='text-center'>The tutor is not available today.</p>
+          <p className='text-center w-full'>The tutor is not available today.</p>
         </div>
       )
     } else {
@@ -192,7 +199,7 @@ export default function TutorPage({params}){
         <div id="slots" className='border-2 border-[rgb(203,_213,_224)] dark:border-[white] flex-grow p-4 overflow-y-auto'>
           {slots.map((value) => {
             const s = [d, value];
-            return <button onClick={() => {updateSlot(s)}} className={"mb-4 w-full p-2 rounded-lg border-2 last:mb-0 " + ((JSON.stringify(slot) == JSON.stringify([d, value])) ? "bg-[deepskyblue]": "")}>{value}</button>
+            return <button key={value} onClick={() => {updateSlot(s)}} className={"mb-4 w-full p-2 rounded-lg border-2 last:mb-0 " + ((JSON.stringify(slot) == JSON.stringify([d, value])) ? "bg-[deepskyblue]": "")}>{value}</button>
           })}
         </div>
       )
@@ -280,7 +287,7 @@ export default function TutorPage({params}){
       <div className='mr-8'>
         <h2> {tutor.first_name + " " + tutor.last_name} </h2>
         <div className = "mainTextArea h-full">
-          <div className = "publicProfile items-stretch">
+          <div className = {"publicProfile items-stretch " + (isMobile ? "flex-col !mt-4" : "flex-row")}>
             <div id="sign-up-form" className=''>
               {/* <div className="aboutmeDiv mb-4">
                 <h3 id = "label">About Me:</h3>
@@ -305,10 +312,10 @@ export default function TutorPage({params}){
                 </div>                  
                 </div>
             </div>
-            <div className = "ml-4">
-              <div className="flex flex-row">
-                <Calendar className={"" + (isMobile ? "w-[350px]" : "w-[500px]")} locale="en-US" minDetail="month" defaultValue={new Date()} onChange={(val) => updateDay(new Date(val))} />
-                <div className='flex flex-col justify-between w-40 ml-4 h-[318px]'>
+            <div className = {(isMobile ? "mt-4": "ml-4")}>
+              <div className={"flex " + (isMobile ? "flex-col" : "flex-row") }>
+                <Calendar className={"" + (isMobile ? "w-[350px]" : " w-[500px]")} locale="en-US" minDetail="month" defaultValue={new Date()} onChange={(val) => updateDay(new Date(val))} />
+                <div className={'flex flex-col flex-grow justify-between h-[314px] ' + (isMobile ? "w-full mt-4" : "ml-4 w-40")}>
                   {slotsContainer}
                   <button onClick={book} className={'duration-300 rounded-md mt-2 p-2 font-bold text-[white] ' + (error ? "bg-[red]":(slot[0] == "" ? "bg-[grey]" : "bg-[deepskyblue] hover:bg-[#00afef]"))}>{error ? "Error" : (booking ? "Booking..." : "BOOK")}</button>
                 </div>

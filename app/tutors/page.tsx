@@ -1,8 +1,8 @@
 'use client'
 import { MobileContext } from "@/contexts/MobileContext"
 import { useContext, useEffect, useState } from 'react'
-import classes from '../../data/classes.json'
-import tutors from '../../data/tutor_data.json'
+import classes from '../../public/classes.json'
+import tutors from '../../public/tutor_data.json'
 import Loading from "@/components/Loading"
 import classTextToClassName from '../../data/classTextToClassName'
 import TutorBox from "@/components/TutorBox"
@@ -85,7 +85,7 @@ export default function Tutors(){
       <option hidden disabled value="default"> -- select a subject -- </option>
       {
         Object.keys(classes).map((key) =>{
-          return <option value={key}>{key}</option>
+          return <option value={key} key={key}>{key}</option>
         })
       }
     </>
@@ -111,7 +111,7 @@ export default function Tutors(){
       <>
         {
           classes[value].map((className) => {
-            return <option value={className}>{className}</option>
+            return <option value={className} key={className}>{className}</option>
           })
         }
       </>
@@ -122,21 +122,23 @@ export default function Tutors(){
   }
   return(
     <div className="h-[calc(100%-5rem)] bg-primary dark:bg-primary-dark p-4">
-      <div className={"mb-4 ml-auto mr-auto w-fit p-2 h-fit flex border-2 border-secondary dark:border-secondary-dark rounded-md " + (isMobile ? "flex-col" : "flex-row")}>
-        <select defaultValue="default" id="subject" name="subject" className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + (isMobile ? 'mb-2' : "mr-4")} onChange={(event) => changeSubject(event.target.value)}>
-          {subjects}
-        </select>
-        <select defaultValue="default" id="class" name="class" className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + (isMobile ? 'mb-2' : "mr-4")} onChange={(event) => updateClassFilter(event.target.value)}>
-          {classList}
-        </select>
-        <select id="hall" className='border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm' onChange={(event) => { updateHallFilter(event.target.value) }}>
-          {halls}
-        </select>
+      <div className={"mb-4 w-full p-2 h-fit flex border-2 border-secondary dark:border-secondary-dark rounded-md " + (isMobile ? "flex-col" : "flex-row")}>
+        <div className="w-fit ml-auto mr-auto">
+          <select defaultValue="default" id="subject" name="subject" className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + (isMobile ? 'mb-2' : "mr-4")} onChange={(event) => changeSubject(event.target.value)}>
+            {subjects}
+          </select>
+          <select defaultValue="default" id="class" name="class" className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + (isMobile ? 'mb-2' : "mr-4")} onChange={(event) => updateClassFilter(event.target.value)}>
+            {classList}
+          </select>
+          <select id="hall" className='border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm' onChange={(event) => { updateHallFilter(event.target.value) }}>
+            {halls}
+          </select>
+        </div>
       </div>
       <Grid2 container spacing={1}>
         {filteredTutors.map((tutor) => {
           return (
-            <Grid2 xs={isMobile ? 12 : 3}>
+            <Grid2 key={tutor.id} xs={isMobile ? 12 : 3}>
               <TutorBox data={tutor}/>
             </Grid2>
           )

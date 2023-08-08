@@ -1,12 +1,12 @@
 import { FirebaseProvider } from '@/contexts/FirebaseContext'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Nunito_Sans } from 'next/font/google'
 import { UserDataProvider } from '@/contexts/UserContext'
 import { MobileProvider } from '@/contexts/MobileContext'
 import Header from '@/components/Header'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Nunito_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'IMSA Tutoring',

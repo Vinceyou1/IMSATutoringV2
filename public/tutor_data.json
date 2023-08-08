@@ -27,6 +27,32 @@
       ]
     },
     {
+      "last_name": "Senthilvenkatesh",
+      "first_name": "Vidyoot",
+      "id": "124195",
+      "year": "Class of 2024",
+      "email": "vsenthilvenkatesh@imsa.edu",
+      "math_courses": [
+        "Mathematical Investigations 1/2",
+        "Mathematical Investigations 2",
+        "Mathematical Investigations 3"
+      ],
+      "physics_courses": [
+        "SI Physics"
+      ],
+      "bio_courses": null,
+      "chem_course": [
+        "SI Chemistry"
+      ],
+      "cs_courses": [
+        "Computer Science Inquiry",
+        "Object Oriented Programming",
+        "Advanced Programming"
+      ],
+      "language_courses": null,
+      "other_courses": null
+    },
+    {
       "last_name": "Wiggins",
       "first_name": "Dheeran",
       "id": "123249",
@@ -1394,31 +1420,7 @@
       "language_courses": null,
       "other_courses": null
     },
-    {
-      "last_name": "Senthilvenkatesh",
-      "first_name": "Vidyoot",
-      "id": "124195",
-      "year": "Class of 2024",
-      "math_courses": [
-        "Mathematical Investigations 1/2",
-        "Mathematical Investigations 2",
-        "Mathematical Investigations 3"
-      ],
-      "physics_courses": [
-        "SI Physics"
-      ],
-      "bio_courses": null,
-      "chem_course": [
-        "SI Chemistry"
-      ],
-      "cs_courses": [
-        "Computer Science Inquiry",
-        "Object Oriented Programming",
-        "Advanced Programming"
-      ],
-      "language_courses": null,
-      "other_courses": null
-    },
+    
     {
       "last_name": "Nagumalli",
       "first_name": "Laasya",

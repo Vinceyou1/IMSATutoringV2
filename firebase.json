@@ -25,6 +25,12 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "rewrites": [
+      {
+        "source": "/tutors/**",
+        "destination": "/tutors/[id]/index.html"
+      }
+    ],
     "frameworksBackend": {
       "region": "us-central1"
     }

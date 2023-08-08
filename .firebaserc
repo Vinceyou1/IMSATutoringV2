@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "imsa-tutoring"
-  }
+    "default": "imsa-tutoring",
+    "test": "test-5994c"
+  },
+  "targets": {},
+  "etags": {}
 }

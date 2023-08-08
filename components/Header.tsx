@@ -4,6 +4,7 @@ import { MobileContext } from "@/contexts/MobileContext";
 import { UserDataContext } from "@/contexts/UserContext";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useContext, useState } from "react"
+import Image from 'next/image'
 
 export default function Header(){
   const provider = new GoogleAuthProvider();
@@ -33,7 +34,7 @@ export default function Header(){
     </div>
     <div className="flex flex-row justify-between items-center">
       <a className='text-lg overflow-hidden' href="https://www.imsa.edu/academics/academic-support-services/">IMSA Academic Support Services</a>
-      <a href="https://github.com/Vinceyou1/IMSATutoringV2" className="bg-[url(/github-mark.svg)] dark:bg-[url(/github-mark-white.svg)] bg-cover inline-block w-fit h-fit flex-shrink-0"><img src='/github-mark.svg' className="invisible w-[3.075rem] h-12"></img></a>
+      <a href="https://github.com/Vinceyou1/IMSATutoringV2" className="bg-[url(/github-mark.svg)] dark:bg-[url(/github-mark-white.svg)] bg-cover inline-block w-fit h-fit flex-shrink-0"><Image alt="Github" src='/github-mark.svg' fill className="invisible"/></a>
     </div>
   </div> : <></>
   if(!user[1]){
@@ -53,7 +54,7 @@ export default function Header(){
   }
   
   return(
-    <div className="font-[Arial,_Helvetica,_sans-serif] h-20 bg-[white] dark:bg-secondary flex items-center justify-between border-b-2 border-secondary dark:border-secondary-dark w-full">
+    <div className="h-20 bg-[white] dark:bg-secondary flex items-center justify-between border-b-2 border-secondary dark:border-secondary-dark w-full">
       {sidebar}
       {navbar}
       {signInOut}

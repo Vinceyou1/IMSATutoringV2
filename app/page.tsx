@@ -1,5 +1,6 @@
 'use client'
 import './page.css'
+import Image from 'next/image'
 import { useContext, useEffect, useState } from 'react'
 import Loading from '@/components/Loading';
 import { MobileContext } from '@/contexts/MobileContext';
@@ -20,9 +21,10 @@ export default function Home() {
       </div>
     )
   }
-  const img1 = isMobile ? <></> : <img src='/thinking-person.png' className='h-[32rem]'/>
-  const img2 = isMobile ? <></> : <img src='/Page2IMG1.png' alt="" />
-  const img3 = isMobile ? <></> : <img src='/Page2IMG2.png' alt=""/>
+  const img1 = isMobile ? <></> : <img alt="" src='/thinking-person.png' className='h-[32rem]'/>
+  const img2 = isMobile ? <></> : <Image src='/peertutoring1.jpg' alt="" />
+  const img3 = isMobile ? <></> : <Image src='/Page2IMG2.png' alt=""/>
+
   const br = isMobile ? <></> : <br />
   return(
     <main className='h-[calc(100%-5rem)]'>
@@ -43,12 +45,11 @@ export default function Home() {
           </div>
           {img1}
         </div>
-        
       </div>
       <div className = "flex flex-center flex-col justify-items-center relative w-full bg-[55%] bg-[url(/scattered-forcefields3.svg)] dark:bg-[url(/scattered-forcefields3-dark.svg)] bg-cover h-fit pb-20">
         <div className={"flex flex-row justify-between items-end mt-20 ml-auto mr-auto " + (isMobile ? 'w-[80%]' : 'w-[72rem]')}>
-          {img2}
-          <div>
+          {isMobile ? <></> : <div></div>}
+          <div className=''>
             <div className = "text-right">
               <h1 className="Text">STRUGGLING WITH SCHOOLWORK?</h1>
               <br /><h1 className = "desc">Get live, one-on-one tutoring from {br} certified IMSA students. </h1>
@@ -64,17 +65,17 @@ export default function Home() {
             <div>
                 <h1 className="Text">DOZENS OF COURSES</h1>
                 <br />
-                <h1 className = {"desc break-normal" + (isMobile ? " w-[80%]": "")}>No matter what class you need help in, {br} we'll have a tutor for you. </h1>
+                <h1 className = {"desc break-normal" + (isMobile ? " w-[80%]": "")}>No matter what class you need help in, {br} we&apos;ll have a tutor for you. </h1>
                 <br />
             </div>
             <div className = "button">
               <a href="/tutors"><button className="learn">Explore Courses!</button></a>
             </div>
           </div>
-          {img3}
+          {isMobile ? <></> : <div></div>}
         </div>
         <div className={"flex flex-row justify-between items-end mt-20 ml-auto mr-auto " + (isMobile ? 'w-[80%]' : 'w-[72rem]')}>
-          {img2}
+          {isMobile ? <></> : <div></div>}
           <div>
             <div className = "text-right">
               <h1 className="Text">AVAILABLE ANYTIME</h1>
