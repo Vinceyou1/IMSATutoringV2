@@ -481,28 +481,6 @@
       "other_courses": null
     },
     {
-      "last_name": "Solone",
-      "first_name": "Joshua",
-      "id": "124204",
-      "year": "Class of 2024",
-      "math_courses": [
-        "Mathematical Investigations 3",
-        "Mathematical Investigations 4"
-      ],
-      "physics_courses": [
-        "SI Physics"
-      ],
-      "bio_courses": null,
-      "chem_course": [
-        "SI Chemistry"
-      ],
-      "cs_courses": [
-        "Computer Science Inquiry"
-      ],
-      "language_courses": null,
-      "other_courses": null
-    },
-    {
       "last_name": "Ajayi",
       "first_name": "Ayobami",
       "id": "124004",
