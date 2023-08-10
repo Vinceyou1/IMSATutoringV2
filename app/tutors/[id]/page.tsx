@@ -91,10 +91,7 @@ export default function TutorPage({params}){
   });
 
   const db = useContext(FirebaseFirestoreContext);
-  const [changes, updateChanges] = useState({
-    changes: [],
-    booked: []
-  });
+  const [changes, updateChanges] = useState({});
 
   
 
@@ -160,7 +157,7 @@ export default function TutorPage({params}){
     const d = dateToDay(day);
     if(user[1]){
       updateSlotsContainer(
-        <div className='border-2 border-[rgb(203,_213,_224)] dark:border-[white] flex-grow p-2 flex flex-row items-center'>
+        <div className={(isMobile ? "h-full w-1/2": "h-0 flex-grow") + ' border-2 border-[rgb(203,_213,_224)] dark:border-[white] p-2 flex flex-row items-center'}>
           <p className='text-center w-full'>Loading...</p>
         </div>
       )
@@ -168,39 +165,41 @@ export default function TutorPage({params}){
     }
     if(!user[0]){
       updateSlotsContainer(
-        <div className='border-2 border-[rgb(203,_213,_224)] dark:border-[white] flex-grow p-2 flex flex-row items-center'>
+        <div className={(isMobile ? "h-full w-1/2": "h-0 flex-grow") + ' h-0 border-2 border-[rgb(203,_213,_224)] dark:border-[white] p-2 flex flex-row items-center'}>
           <p className='text-center w-full'>Please Sign In With Your IMSA email</p>
         </div>
       )
       return;
     }
-    if(weeklyAvailabilty[w].length == 0 && !changes.hasOwnProperty(d)){
-      updateSlotsContainer(
-        <div className='border-2 border-[rgb(203,_213,_224)] dark:border-[white] flex-grow p-2 flex flex-row items-center'>
-          <p className='text-center w-full'>The tutor is not available today.</p>
-        </div>
-      )
-    } else {
-      let slots = [];
-      weeklyAvailabilty[w].forEach((value) => {
-        if(!(changes.hasOwnProperty(d) && (changes[d].changes.includes(value) || changes[d].booked.includes(value)))) slots.push(value);
-      });
-      if(changes.hasOwnProperty(d)){
-        changes[d].changes.forEach((value) => {
-          if(!weeklyAvailabilty[w].includes(value) && !changes[d].booked.includes(value)){
-            slots.push(value);
-          }
-        })
-      }
-      slots.sort((a, b) => {
-        return value(a) - value(b);
+    let slots = [];
+    console.log(changes);
+    weeklyAvailabilty[w].forEach((value) => {
+      if(!(changes.hasOwnProperty(d) && (changes[d].changes.includes(value) || changes[d].booked.includes(value)))) slots.push(value);
+    });
+    if(changes.hasOwnProperty(d)){
+      changes[d].changes.forEach((value) => {
+        if(!weeklyAvailabilty[w].includes(value) && !changes[d].booked.includes(value)){
+          slots.push(value);
+        }
       })
+    }
+    slots.sort((a, b) => {
+      return value(a) - value(b);
+    })
+    if(slots.length > 0){
       updateSlotsContainer(
-        <div id="slots" className='border-2 border-[rgb(203,_213,_224)] dark:border-[white] flex-grow p-4 overflow-y-auto'>
+        <div id="slots" className={(isMobile ? "h-full w-1/2": "h-0 flex-grow") + ' border-2 border-[rgb(203,_213,_224)] dark:border-[white] p-4 overflow-y-auto'}>
           {slots.map((value) => {
             const s = [d, value];
             return <button key={value} onClick={() => {updateSlot(s)}} className={"mb-4 w-full p-2 rounded-lg border-2 last:mb-0 " + ((JSON.stringify(slot) == JSON.stringify([d, value])) ? "bg-[deepskyblue]": "")}>{value}</button>
           })}
+        </div>
+      )
+    }
+    else {
+      updateSlotsContainer(
+        <div className={(isMobile ? "h-full w-1/2": "h-0 flex-grow") + ' border-2 border-[rgb(203,_213,_224)] dark:border-[white] p-2 flex flex-row items-center'}>
+          <p className='text-center w-full'>The tutor is not available today.</p>
         </div>
       )
     }
@@ -233,8 +232,10 @@ export default function TutorPage({params}){
       booked = booked.concat(changes[slot[0]].booked);
     }
     let error = false;
+    const c = ((changes.hasOwnProperty(slot[0]) && changes[slot[0]].hasOwnProperty("changes")) ? changes[slot[0]].changes : []);
     await setDoc(tutorRef, {[slot[0]] : {
-      booked: booked
+      booked: booked,
+      changes: c
     }}, { merge: true }).catch(() => {
       updateError(true);
       error = true;
@@ -246,6 +247,9 @@ export default function TutorPage({params}){
       }
     });
 
+    let info = "";
+    const info_element = (document.getElementById("info") as HTMLTextAreaElement);
+    if(info_element) info = info_element.value;
     await addDoc(collection(db, "mail"), {
       to: tutor.email,
       cc: user[0].email,
@@ -256,19 +260,48 @@ export default function TutorPage({params}){
           tutor: tutor.first_name,
           time: slot[1],
           day: slot[0],
+          info: info
         },
       },
     }).catch(() => {
       updateError(true);
     }).then(() => {
       updateBooking(false);
-      updateSlot(["", ""])
+      updateSlot(["", ""]);
+      info_element.value = "";
     });
   }
+
 
   if(!tutorExists){
     window.location.replace("/tutors");
   }
+
+  const bookingSection =
+  <div className = {(isMobile ? "mt-4": "ml-4")}>
+    {isMobile ? 
+      <div className='flex flex-col w-[325px]'>
+        <Calendar className="w-[350px]" locale="en-US" minDetail="month" defaultValue={new Date()} onChange={(val) => updateDay(new Date(val))} />
+        <div className='flex flex-row mt-4 h-[200px] w-full'>
+          {slotsContainer}
+          <textarea id='info' className='rounded-none ml-2 flex-grow resize-none border-2 h-full p-2 border-[rgb(203,_213,_224)] dark:border-[white] bg-primary dark:bg-primary-dark' placeholder='Additional Notes (optional)'></textarea>
+        </div>
+        <button onClick={book} className={'mb-4 w-full duration-300 rounded-md mt-2 p-2 font-bold text-[white] ' + (error ? "bg-[red]":(slot[0] == "" ? "bg-[grey]" : "bg-[deepskyblue] hover:bg-[#00afef]"))}>{error ? "Error" : (booking ? "Booking..." : "BOOK")}</button>
+      </div>
+    :
+      <div className='flex flex-col'>
+        <div className={"flex flex-row items-stretch"}>
+          <Calendar className="w-[500px]" locale="en-US" minDetail="month" defaultValue={new Date()} onChange={(val) => updateDay(new Date(val))} />
+          <div className={'flex flex-col justify-between ml-4 w-40 ' + (isMobile ? "w-full mt-4" : "ml-4 w-40")}>
+            {slotsContainer}
+            <textarea id='info' className='flex-grow-0 resize-none border-2 mt-2 h-24 p-2 border-[rgb(203,_213,_224)] dark:border-[white] bg-primary dark:bg-primary-dark' placeholder='Additional Notes (optional)'></textarea>
+          </div>
+        </div>
+        <button onClick={book} className={'duration-300 rounded-md mt-2 p-2 font-bold text-[white] ' + (error ? "bg-[red]":(slot[0] == "" ? "bg-[grey]" : "bg-[deepskyblue] hover:bg-[#00afef]"))}>{error ? "Error" : (booking ? "Booking..." : "BOOK")}</button>
+      </div>
+    }
+  </div>
+
   if(!tutor) return <Loading />
   return (
     <main className='flex flex-col justify-between'>
@@ -312,15 +345,7 @@ export default function TutorPage({params}){
                 </div>                  
                 </div>
             </div>
-            <div className = {(isMobile ? "mt-4": "ml-4")}>
-              <div className={"flex " + (isMobile ? "flex-col" : "flex-row") }>
-                <Calendar className={"" + (isMobile ? "w-[350px]" : " w-[500px]")} locale="en-US" minDetail="month" defaultValue={new Date()} onChange={(val) => updateDay(new Date(val))} />
-                <div className={'flex flex-col flex-grow justify-between h-[314px] ' + (isMobile ? "w-full mt-4" : "ml-4 w-40")}>
-                  {slotsContainer}
-                  <button onClick={book} className={'duration-300 rounded-md mt-2 p-2 font-bold text-[white] ' + (error ? "bg-[red]":(slot[0] == "" ? "bg-[grey]" : "bg-[deepskyblue] hover:bg-[#00afef]"))}>{error ? "Error" : (booking ? "Booking..." : "BOOK")}</button>
-                </div>
-              </div>
-            </div>
+            {bookingSection}
           </div>
         </div> 
       </div>
