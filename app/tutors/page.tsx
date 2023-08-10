@@ -109,7 +109,7 @@ export default function Tutors(){
       return;
     }
     updateLanguageClassList(
-      <select onChange={(event) => {updateSelectedLanguageClass(event.target.value)}} className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + (isMobile ? 'mb-2' : "mr-4")}>
+      <select onChange={(event) => {updateSelectedLanguageClass(event.target.value)}} className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + ((isMobile) ? 'ml-2': '')}>
         {classes.Language[classFilter].map((className) => {
           return <option value={className} key={className}>{className}</option>
         })}
@@ -166,7 +166,7 @@ export default function Tutors(){
       )
       updateSelectedLanguageClass("Spanish II");
       updateLanguageClassList(
-        <select onChange={(event) => {updateSelectedLanguageClass(event.target.value)}} className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + (isMobile ? 'mb-2' : "mr-4")}>
+        <select onChange={(event) => {updateSelectedLanguageClass(event.target.value)}} className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + ((isMobile) ? 'ml-2': 'mr-4')}>
           {classes.Language.Spanish.map((className) => {
             return <option value={className} key={className}>{className}</option>
           })}
@@ -193,20 +193,20 @@ export default function Tutors(){
   }
   return(
     <div className="h-[calc(100%-5rem)] bg-primary dark:bg-primary-dark flex flex-col">
-      <div className="p-4 flex-grow flex flex-col">
-        <div className={"mb-4 w-full p-2 h-fit flex border-2 border-secondary dark:border-secondary-dark rounded-md " + (isMobile ? "flex-col" : "flex-row")}>
-          <div className="w-fit ml-auto mr-auto">
-            <select defaultValue="default" id="subject" name="subject" className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + (isMobile ? 'mb-2' : "mr-4")} onChange={(event) => changeSubject(event.target.value)}>
-              {subjects}
-            </select>
+      <div className="p-4 flex-grow flex flex-col ">
+        <div className={"mb-4 w-full p-2 h-fit flex border-2 border-secondary dark:border-secondary-dark rounded-md "+ (isMobile ? "flex-col" : "flex-row justify-center")}>
+          <select defaultValue="default" id="subject" name="subject" className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + (isMobile ? 'mb-2 block ml-auto mr-auto ' : "mr-4")} onChange={(event) => changeSubject(event.target.value)}>
+            {subjects}
+          </select>
+          <div className={(isMobile) ? 'block ml-auto mr-auto': ''}>
             <select defaultValue="default" id="class" name="class" className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + (isMobile ? 'mb-2' : "mr-4")} onChange={(event) => updateClassFilter(event.target.value)}>
               {classList}
             </select>
             {languageClassList}
-            <select id="hall" className='border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm' onChange={(event) => { updateHallFilter(event.target.value) }}>
-              {halls}
-            </select>
           </div>
+          <select id="hall" className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + ((isMobile) ? 'block ml-auto mr-auto': '')} onChange={(event) => { updateHallFilter(event.target.value) }}>
+            {halls}
+          </select>
         </div>
         {
           filteredTutors?.length ? 
