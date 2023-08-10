@@ -58,7 +58,6 @@ export default function TutorPage({params}){
     let exists = false;
     tutors.forEach((tutor: TutorData) => {
       if(tutor.id == params.id) {
-        console.log(tutor);
         updateTutor(tutor);
         exists = true;
       }
@@ -108,7 +107,6 @@ export default function TutorPage({params}){
         if(d){
           updateChanges(d);
         }
-        console.log(doc);
       });
     }
     getData();
@@ -172,7 +170,6 @@ export default function TutorPage({params}){
       return;
     }
     let slots = [];
-    console.log(changes);
     weeklyAvailabilty[w].forEach((value) => {
       if(!(changes.hasOwnProperty(d) && (changes[d].changes.includes(value) || changes[d].booked.includes(value)))) slots.push(value);
     });

@@ -136,7 +136,6 @@ export default function Daily(){
       temp[d].changes.push(t);
     }
     updateChanges(temp);
-    console.log(temp);
   }
 
   function numToWeekday(date: Date){
@@ -165,7 +164,6 @@ export default function Daily(){
     const d = dateToDay(day);
     if(weeklyAvailabilty[numToWeekday(day)].includes(t)){
       if(changes.hasOwnProperty(d) && changes[d].changes.includes(t)){
-        console.log("here");
         return "bg-[red]"
       } else {
         return "bg-[deepskyblue]"

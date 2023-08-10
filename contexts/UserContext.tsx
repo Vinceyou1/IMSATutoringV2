@@ -28,7 +28,6 @@ export function UserDataProvider({children}){
           if(user.email?.slice(user.email?.indexOf("@")) != "@imsa.edu"){
             updateBadEmail(true)
             setUser(null);
-            console.log("bad");
             auth.signOut();
           }
         }

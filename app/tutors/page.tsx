@@ -41,7 +41,6 @@ export default function Tutors(){
       tempTutors = [...tutors];
     } else {
       let classNameFull = ((selectedLanguageClass == "") ? classFilter : selectedLanguageClass);
-      console.log(classNameFull);
       if(classTextToClassName.has(classNameFull)){
         classNameFull = classTextToClassName.get(classNameFull);
       }
