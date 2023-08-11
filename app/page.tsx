@@ -46,7 +46,7 @@ export default function Home() {
           {img1}
         </div>
       </div>
-      <div className = "flex flex-center flex-col justify-items-center relative w-full bg-[55%] bg-[url(/scattered-forcefields3.svg)] dark:bg-[url(/scattered-forcefields3-dark.svg)] bg-cover h-fit pb-20">
+      <div className = "flex flex-center flex-col justify-items-center w-full bg-[55%] bg-[url(/scattered-forcefields3.svg)] dark:bg-[url(/scattered-forcefields3-dark.svg)] bg-cover h-fit pb-20">
         <div className={"flex flex-row justify-between items-end mt-20 ml-auto mr-auto " + (isMobile ? 'w-[80%]' : 'w-[72rem]')}>
           {isMobile ? <></> : <div></div>}
           <div className=''>

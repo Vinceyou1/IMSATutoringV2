@@ -22,7 +22,7 @@ export default function Header(){
   let signInOut = <></>;
 
   const sidebar = isMobile ?
-  <div className={"flex flex-col justify-between p-4 ease-in-out z-10 absolute h-full w-3/5 bg-[white] dark:dark:bg-[#334155] top-0 border-r-[grey] border-r-2 rounded-r-sm " + (sidebarActive ? "left-0 duration-[400ms]" : "-left-[60%] duration-200")}>
+  <div className={"flex flex-col justify-between p-4 ease-in-out z-10 fixed h-full w-3/5 bg-[white] dark:dark:bg-[#334155] top-0 border-r-[grey] border-r-2 rounded-r-sm " + (sidebarActive ? "left-0 duration-[400ms]" : "-left-[60%] duration-200")}>
     <div className="flex flex-row justify-between">
       <ul>
         <li className='text-2xl mb-2'><a href="/">Home</a></li>
@@ -33,8 +33,8 @@ export default function Header(){
       <button onClick={() => setSideBarActive(!sidebarActive)} className="text-3xl h-fit">&#x2573;</button>
     </div>
     <div className="flex flex-row justify-between items-center">
-      <a className='text-lg overflow-hidden' href="https://www.imsa.edu/academics/academic-support-services/">IMSA Academic Support Services</a>
-      <a href="https://github.com/Vinceyou1/IMSATutoringV2" className="bg-[url(/github-mark.svg)] dark:bg-[url(/github-mark-white.svg)] bg-cover inline-block w-fit h-fit flex-shrink-0"><Image alt="Github" src='/github-mark.svg' fill className="invisible"/></a>
+      <a className='text-lg overflow-hidden' href="https://www.imsa.edu/academics/academic-support-services/">IMSA Academic <br /> Support Services</a>
+      <a href="https://github.com/Vinceyou1/IMSATutoringV2" className="bg-[url(/github-mark.svg)] dark:bg-[url(/github-mark-white.svg)] bg-cover inline-block w-fit h-fit flex-shrink-0 z-20"><Image width={49.2} height={48} alt="Github" src='/github-mark.svg' className="invisible"/></a>
     </div>
   </div> : <></>
   if(!user[1]){
@@ -54,10 +54,15 @@ export default function Header(){
   }
   
   return(
-    <div className="h-20 bg-[white] dark:bg-secondary flex items-center justify-between border-b-2 border-secondary dark:border-secondary-dark w-full">
-      {sidebar}
-      {navbar}
-      {signInOut}
-    </div>
+    <>
+      <div className="h-full fixed">
+        {sidebar}
+        <div className="fixed top-0 h-20 z-[1] bg-[white] dark:bg-secondary flex items-center justify-between border-b-2 border-secondary dark:border-secondary-dark w-full">
+          {navbar}
+          {signInOut}
+        </div>
+      </div>
+      <div className="h-20 static"></div>
+    </>
   )
 }
