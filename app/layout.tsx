@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import { Nunito_Sans } from 'next/font/google'
 import { UserDataProvider } from '@/contexts/UserContext'
 import { MobileProvider } from '@/contexts/MobileContext'
-import Header from '@/components/Header'
+import Layout from '@/components/Layout'
 
 const inter = Nunito_Sans({ subsets: ['latin'] })
 
@@ -23,8 +23,9 @@ export default function RootLayout({
         <FirebaseProvider>
         <UserDataProvider>
         <MobileProvider>
-          <Header />
-          {children}
+          <Layout>
+            {children}
+          </Layout>
         </MobileProvider>
         </UserDataProvider>
         </FirebaseProvider>

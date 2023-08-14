@@ -6,11 +6,10 @@ import { TutorData } from "@/types/tutordata";
 import { useCallback, useContext, useEffect, useState } from "react";
 import tutors from '../../../public/tutor_data.json'
 import { WeeklyAvailability } from "@/types/weeklyAvailability";
-import { DocumentSnapshot, doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import Loading from "@/components/Loading";
 import './page.css'
 import Calendar from "react-calendar";
-import Footer from "@/components/Footer";
 import { LocalizationProvider, TimeClock } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
@@ -218,7 +217,7 @@ export default function Daily(){
   }
 
   return (
-    <main className="flex flex-col h-[calc(100%-5rem)]">
+    <div className="flex flex-col h-full w-full">
       <div className="flex flex-col flex-grow justify-between">
         <div className={"flex flex-grow w-full justify-center items-center p-4 " + (isMobile ? "flex-col" : "flex-row " )}>
           <div className={(isMobile) ? "mb-4" : "mr-16"}>
@@ -255,7 +254,6 @@ export default function Daily(){
           <button className="border-2 p-4 w-32 rounded-md" onClick={getData}>RESET</button>
         </div>
       </div>
-      {isMobile ? <></> : <Footer />}
-    </main>
+    </div>
   )
 }

@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { useContext, useEffect, useState } from 'react'
 import Loading from '@/components/Loading';
 import { MobileContext } from '@/contexts/MobileContext';
-import Footer from '@/components/Footer';
 
 export default function Home() {
   const [loading, updateLoading] = useState(true);
@@ -16,9 +15,7 @@ export default function Home() {
 
   if(loading){
     return (
-      <div className='h-[calc(100%-5rem)]'>
-        <Loading />
-      </div>
+      <Loading />
     )
   }
   const img1 = isMobile ? <></> : <img alt="" src='/thinking-person.png' className='h-[32rem]'/>
@@ -27,7 +24,7 @@ export default function Home() {
 
   const br = isMobile ? <></> : <br />
   return(
-    <main className='h-[calc(100%-5rem)]'>
+    <>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='' />
       <div className = "w-full bg-[url(/scattered-forcefields.svg)] dark:bg-[url(/scattered-forcefields-dark.svg)] bg-cover h-fit pb-20 border-b-2">
@@ -88,7 +85,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Footer />
-    </main>
+    </>
   )
 }

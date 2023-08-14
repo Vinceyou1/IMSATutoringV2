@@ -1,6 +1,5 @@
 'use client'
 
-import Footer from "@/components/Footer";
 import { FirebaseFirestoreContext } from "@/contexts/FirebaseContext";
 import { addDoc, collection } from "firebase/firestore";
 import { useContext, useState } from "react";
@@ -36,8 +35,8 @@ export default function Help(){
     });
   }
   return (
-    <div className="flex flex-col w-full h-[calc(100%-5rem)] bg-cover bg-[url(/scattered-forcefields2.svg)] dark:bg-[url(/scattered-forcefields2-dark.svg)]">
-      <div className="w-[90%] ml-auto mr-auto flex flex-row flex-grow items-center">
+    <div className="h-full w-full">
+      <div className="h-full w-[90%] ml-auto mr-auto flex flex-row flex-grow items-center bg-cover bg-[url(/scattered-forcefields2.svg)] dark:bg-[url(/scattered-forcefields2-dark.svg)]">
         <div className="w-[min(32rem,_90%)] mt-8 ml-auto mr-auto bg-primary dark:bg-primary-dark rounded-lg border-2 border-[rgb(203,_213,_224)] p-4">
           <div className="mt-2">
             <h3 className="text-center text-2xl mt-4">Contact Us!</h3>
@@ -56,7 +55,6 @@ export default function Help(){
           <button onClick={() => {submitContact()}} id="submit" className="mt-4 h-12 text-primary dark:text-primary-dark duration-300 ease-in-out w-full rounded-md bg-[rgb(93,_170,_244)] hover:bg-[rgb(74,_132,_220)] font-bold">SUBMIT</button>
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

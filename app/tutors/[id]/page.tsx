@@ -10,7 +10,6 @@ import Footer from '@/components/Footer'
 import { addDoc, collection, doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore'
 import { FirebaseFirestoreContext } from '@/contexts/FirebaseContext'
 import { WeeklyAvailability } from '@/types/weeklyAvailability'
-import { time } from 'console'
 import { UserDataContext } from '@/contexts/UserContext'
 import Popup from 'reactjs-popup'
 
@@ -275,7 +274,7 @@ export default function TutorPage({params}){
   }
 
   const bookingSection =
-  <div className = {(isMobile ? "mt-4": "ml-4")}>
+  <div className = {"h-fit " + (isMobile ? "mt-4": "ml-4")}>
     {isMobile ? 
       <div className='flex flex-col w-[325px]'>
         <Calendar className="w-[350px]" locale="en-US" minDetail="month" defaultValue={new Date()} onChange={(val) => updateDay(new Date(val))} />
@@ -301,7 +300,7 @@ export default function TutorPage({params}){
 
   if(!tutor) return <Loading />
   return (
-    <main className='flex flex-col justify-between'>
+    <div className='flex flex-col justify-between h-full w-full'>
       <Popup
         open={popupOpen}
         modal
@@ -316,9 +315,9 @@ export default function TutorPage({params}){
       </Popup>
       <div className='mr-8'>
         <h2> {tutor.first_name + " " + tutor.last_name} </h2>
-        <div className = "mainTextArea h-full">
+        <div className = "mainTextArea h-fit">
           <div className = {"publicProfile items-stretch " + (isMobile ? "flex-col !mt-4" : "flex-row")}>
-            <div id="sign-up-form" className=''>
+            <div id="sign-up-form">
               {/* <div className="aboutmeDiv mb-4">
                 <h3 id = "label">About Me:</h3>
                 <p className = "aboutMe">
@@ -346,7 +345,6 @@ export default function TutorPage({params}){
           </div>
         </div> 
       </div>
-      <Footer />
-    </main>
+    </div>
   )
 }

@@ -1,5 +1,4 @@
 'use client'
-import Footer from "@/components/Footer";
 import { MobileContext } from "@/contexts/MobileContext";
 import { UserDataContext } from "@/contexts/UserContext";
 import { useContext, useEffect, useMemo, useState } from "react";
@@ -168,7 +167,7 @@ export default function Weekly(){
   // general idea: lots of collapsables, so one dropdown for each day, then a dropdown for each hour, then buttons for each 15-minute block
   if(!isMobile){
   return (
-    <main className="flex flex-col justify-between h-[calc(100%-5rem)] bg-[right_35%]">
+    <div className="flex flex-col justify-between h-full w-full bg-[url(/scattered-forcefields5.svg)] dark:bg-[url(/scattered-forcefields5-dark.svg)] bg-cover bg-no-repeat bg-[right_35%]">
       <div className={"flex flex-col flex-grow h-fit justify-start m-4 mt-6"}>
         <div className="flex flex-row">
           <button onClick={() => updateActiveDay((activeDay == "Sunday") ? "" : "Sunday")} className="w-0 h-fit border-2 p-4 rounded-t-lg flex-grow mr-4">Sunday {(activeDay == "Sunday") ? "\u25B2" : "\u25BC"}</button>
@@ -406,11 +405,10 @@ export default function Weekly(){
           });
         }}>CLEAR</button>
       </div>
-      <Footer />
-    </main>
+    </div>
   )} else {
     return (
-      <main className="m-4 h-[calc(100%-5rem)]">
+      <div className="m-4 bg-[url(/scattered-forcefields5.svg)] dark:bg-[url(/scattered-forcefields5-dark.svg)] bg-cover bg-no-repeat">
         <div className="flex-col w-fit ml-auto mr-auto">
           <div className="w-full border-2 rounded-t-lg">
             <select className="bg-primary text-lg block mr-auto ml-auto" onChange={(change) => updateActiveDay(change.target.value)}>
@@ -634,7 +632,7 @@ export default function Weekly(){
             });
           }}>CLEAR</button>
         </div>
-      </main>
+      </div>
     )
   }
 }

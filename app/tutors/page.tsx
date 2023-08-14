@@ -8,7 +8,6 @@ import classTextToClassName from '../../data/classTextToClassName'
 import TutorBox from "@/components/TutorBox"
 import Grid2 from "@mui/material/Unstable_Grid2"
 import { TutorData } from "@/types/tutordata"
-import Footer from "@/components/Footer"
 
 
 export default function Tutors(){
@@ -191,39 +190,36 @@ export default function Tutors(){
     updateClassFilter(classes[value][0]);
   }
   return(
-    <div className="h-[calc(100%-5rem)] bg-primary dark:bg-primary-dark flex flex-col">
-      <div className="p-4 flex-grow flex flex-col ">
-        <div className={"mb-4 w-full p-2 h-fit flex border-2 border-secondary dark:border-secondary-dark rounded-md "+ (isMobile ? "flex-col" : "flex-row justify-center")}>
-          <select defaultValue="default" id="subject" name="subject" className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + (isMobile ? 'mb-2 block ml-auto mr-auto ' : "mr-4")} onChange={(event) => changeSubject(event.target.value)}>
-            {subjects}
+    <div className="h-full w-full bg-primary dark:bg-primary-dark p-4 flex-grow flex flex-col ">
+      <div className={"mb-4 w-full p-2 h-fit flex border-2 border-secondary dark:border-secondary-dark rounded-md "+ (isMobile ? "flex-col" : "flex-row justify-center")}>
+        <select defaultValue="default" id="subject" name="subject" className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + (isMobile ? 'mb-2 block ml-auto mr-auto ' : "mr-4")} onChange={(event) => changeSubject(event.target.value)}>
+          {subjects}
+        </select>
+        <div className={(isMobile) ? 'block ml-auto mr-auto': ''}>
+          <select defaultValue="default" id="class" name="class" className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + (isMobile ? 'mb-2' : "mr-4")} onChange={(event) => updateClassFilter(event.target.value)}>
+            {classList}
           </select>
-          <div className={(isMobile) ? 'block ml-auto mr-auto': ''}>
-            <select defaultValue="default" id="class" name="class" className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + (isMobile ? 'mb-2' : "mr-4")} onChange={(event) => updateClassFilter(event.target.value)}>
-              {classList}
-            </select>
-            {languageClassList}
-          </div>
-          <select id="hall" className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + ((isMobile) ? 'block ml-auto mr-auto': '')} onChange={(event) => { updateHallFilter(event.target.value) }}>
-            {halls}
-          </select>
+          {languageClassList}
         </div>
-        {
-          filteredTutors?.length ? 
-            <Grid2 container spacing={1}>
-              {filteredTutors.map((tutor) => {
-                return (
-                  <Grid2 key={tutor.id} xs={isMobile ? 12 : 3}>
-                    <TutorBox data={tutor}/>
-                  </Grid2>
-                )
-              })}
-            </Grid2> : 
-            <div className="flex flex-col justify-center items-center flex-grow">
-              There are no tutors for that subject.
-            </div>
-        }
+        <select id="hall" className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + ((isMobile) ? 'block ml-auto mr-auto': '')} onChange={(event) => { updateHallFilter(event.target.value) }}>
+          {halls}
+        </select>
       </div>
-      <Footer />
+      {
+        filteredTutors?.length ? 
+          <Grid2 container spacing={1}>
+            {filteredTutors.map((tutor) => {
+              return (
+                <Grid2 key={tutor.id} xs={isMobile ? 12 : 3}>
+                  <TutorBox data={tutor}/>
+                </Grid2>
+              )
+            })}
+          </Grid2> : 
+          <div className="flex flex-col justify-center items-center flex-grow">
+            There are no tutors for that subject.
+          </div>
+      }
     </div>
   )
 }

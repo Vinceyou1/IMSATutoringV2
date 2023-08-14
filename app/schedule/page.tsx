@@ -6,7 +6,6 @@ import { TutorData } from "@/types/tutordata";
 import { useContext, useEffect, useState } from "react"
 import tutors from '../../public/tutor_data.json'
 import { MobileContext } from "@/contexts/MobileContext";
-import Footer from "@/components/Footer";
 
 export default function MySchedule(){
   const user = useContext(UserDataContext);
@@ -83,19 +82,16 @@ export default function MySchedule(){
   }
   
   return(
-    <main className="flex flex-col justify-between pt-4 h-[calc(100%-5rem)] bg-[right_35%] bg-[url(/scattered-forcefields5.svg)] dark:bg-[url(/scattered-forcefields5-dark.svg)] bg-cover bg-no-repeat">
-      <div className="flex-grow flex flex-col justify-center ">
-        <h1 className="text-center text-2xl">Welcome {user[0].displayName?.split(" ").at(0)}!</h1>
-        <div className={"mt-20 flex justify-center items-center " + (isMobile ? "flex-col" : "flex-row")}>
-          <a href="/schedule/weekly" className={"w-[min(20rem,100%)] text-center p-4 rounded-xl border-2 " + (isMobile ? "mb-4": "mr-10") }>
-            <p>Update My Weekly Availability</p>
-          </a>
-          <a href="/schedule/daily" className={"w-[min(20rem,100%)] text-center p-4 rounded-xl border-2 " + (isMobile ? "mb-4": "")} >
-            Edit a Specific Day
-          </a>
-        </div>
+    <div className="h-full w-full flex flex-col justify-center pt-4 bg-[right_35%_top_20%] bg-[url(/scattered-forcefields5.svg)] dark:bg-[url(/scattered-forcefields5-dark.svg)] bg-cover bg-no-repeat ">
+      <h1 className="text-center text-2xl">Welcome {user[0].displayName?.split(" ").at(0)}!</h1>
+      <div className={"mt-20 flex justify-center items-center " + (isMobile ? "flex-col" : "flex-row")}>
+        <a href="/schedule/weekly" className={"w-[min(20rem,100%)] text-center p-4 rounded-xl border-2 " + (isMobile ? "mb-4": "mr-10") }>
+          <p>Update My Weekly Availability</p>
+        </a>
+        <a href="/schedule/daily" className={"w-[min(20rem,100%)] text-center p-4 rounded-xl border-2 " + (isMobile ? "mb-4": "")} >
+          Edit a Specific Day
+        </a>
       </div>
-      <Footer />
-    </main>
+    </div>
   )
 }

@@ -12,7 +12,7 @@ export const MobileProvider = ({ children }) => {
   
     return (
       <MobileContext.Provider value={mobile}>
-          {children}
+        {children}
       </MobileContext.Provider>
     );
   };
