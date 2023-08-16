@@ -4,7 +4,7 @@ import { MobileContext } from "@/contexts/MobileContext";
 import { UserDataContext } from "@/contexts/UserContext";
 import { TutorData } from "@/types/tutordata";
 import { useCallback, useContext, useEffect, useState } from "react";
-import tutors from '../../../public/tutor_data.json'
+import tutors from '../../../../public/tutor_data.json'
 import { WeeklyAvailability } from "@/types/weeklyAvailability";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import Loading from "@/components/Loading";
@@ -194,25 +194,23 @@ export default function Daily(){
 
   if(user[1]){
     return (
-      <main className="h-[calc(100%-5rem)]">
-        <Loading />
-      </main>
+      <Loading />
     )
   }
 
   if(!user[0]){
     return(
-      <main className="flex items-center text-lg justify-center h-[calc(100%-5rem)]">
+      <div className="flex items-center text-lg justify-center h-full">
         Please Sign In With Your IMSA email
-      </main>
+      </div>
     )
   }
 
   if(!tutorExists){
     return (
-      <main className="flex items-center justify-center text-center text-lg h-[calc(100%-5rem)]">
+      <div className="flex items-center justify-center text-center text-lg h-full">
         Hmm, you don&apos;t seem to be registered as a peer tutor. <br /> If you are, please fill out the help form.
-      </main>
+      </div>
     )
   }
 

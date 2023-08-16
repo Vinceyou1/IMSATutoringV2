@@ -2,7 +2,7 @@
 import { MobileContext } from "@/contexts/MobileContext";
 import { UserDataContext } from "@/contexts/UserContext";
 import { useContext, useEffect, useMemo, useState } from "react";
-import tutors from '../../../public/tutor_data.json'
+import tutors from '../../../../public/tutor_data.json'
 import { TutorData } from "@/types/tutordata";
 import Loading from "@/components/Loading";
 import { LocalizationProvider, TimeClock } from '@mui/x-date-pickers';
@@ -143,31 +143,29 @@ export default function Weekly(){
 
   if(user[1]){
     return (
-      <main className="h-[calc(100%-5rem)]">
-        <Loading />
-      </main>
+      <Loading />
     )
   }
 
   if(!user[0]){
     return(
-      <main className="flex items-center text-lg justify-center h-[calc(100%-5rem)]">
+      <div className="flex items-center text-lg justify-center h-full">
         Please Sign In With Your IMSA email
-      </main>
+      </div>
     )
   }
 
   if(!tutorExists){
     return (
-      <main className="flex items-center justify-center text-center text-lg h-[calc(100%-5rem)]">
+      <div className="flex items-center justify-center text-center text-lg h-full">
         Hmm, you don&apos;t seem to be registered as a peer tutor. <br /> If you are, please fill out the help form.
-      </main>
+      </div>
     )
   }
   // general idea: lots of collapsables, so one dropdown for each day, then a dropdown for each hour, then buttons for each 15-minute block
   if(!isMobile){
   return (
-    <div className="flex flex-col justify-between h-full w-full bg-[url(/scattered-forcefields5.svg)] dark:bg-[url(/scattered-forcefields5-dark.svg)] bg-cover bg-no-repeat bg-[right_35%]">
+    <div className="flex flex-col justify-between h-full w-full bg-[url(/scattered-forcefields5.svg)] bg-cover bg-no-repeat bg-[right_35%]">
       <div className={"flex flex-col flex-grow h-fit justify-start m-4 mt-6"}>
         <div className="flex flex-row">
           <button onClick={() => updateActiveDay((activeDay == "Sunday") ? "" : "Sunday")} className="w-0 h-fit border-2 p-4 rounded-t-lg flex-grow mr-4">Sunday {(activeDay == "Sunday") ? "\u25B2" : "\u25BC"}</button>
@@ -408,7 +406,7 @@ export default function Weekly(){
     </div>
   )} else {
     return (
-      <div className="m-4 bg-[url(/scattered-forcefields5.svg)] dark:bg-[url(/scattered-forcefields5-dark.svg)] bg-cover bg-no-repeat">
+      <div className="m-4 bg-[url(/scattered-forcefields5.svg)]bg-cover bg-no-repeat">
         <div className="flex-col w-fit ml-auto mr-auto">
           <div className="w-full border-2 rounded-t-lg">
             <select className="bg-primary text-lg block mr-auto ml-auto" onChange={(change) => updateActiveDay(change.target.value)}>

@@ -118,9 +118,7 @@ export default function Tutors(){
 
   if(loading){
     return (
-      <div className='h-[calc(100%-5rem)]'>
-        <Loading />
-      </div>
+      <Loading />
     )
   }
 

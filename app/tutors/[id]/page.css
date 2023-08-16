@@ -36,7 +36,7 @@
     gap: 0rem !important;
     display: flex;
     flex-flow: column nowrap;
-    @apply bg-[url(/scattered-forcefields6.svg)] dark:bg-[url(/scattered-forcefields6-dark.svg)];
+    @apply bg-[url(/scattered-forcefields6.svg)];
     background-position-y: 45%;
     background-position-x: 25%;
     background-repeat: no-repeat;

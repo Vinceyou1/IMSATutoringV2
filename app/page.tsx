@@ -27,7 +27,7 @@ export default function Home() {
     <>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='' />
-      <div className = "w-full bg-[url(/scattered-forcefields.svg)] dark:bg-[url(/scattered-forcefields-dark.svg)] bg-cover h-fit pb-20 border-b-2">
+      <div className = "w-full bg-[url(/scattered-forcefields.svg)] bg-cover h-fit pb-20 border-b-2">
         <div className={"flex flex-row justify-between items-center ml-auto mr-auto mt-20 " + (isMobile ? 'w-[80%]' : 'w-[72rem]')}>
           <div>
             <div>
@@ -43,7 +43,7 @@ export default function Home() {
           {img1}
         </div>
       </div>
-      <div className = "flex flex-center flex-col justify-items-center w-full bg-[55%] bg-[url(/scattered-forcefields3.svg)] dark:bg-[url(/scattered-forcefields3-dark.svg)] bg-cover h-fit pb-20">
+      <div className = "flex flex-center flex-col justify-items-center w-full bg-[55%] bg-[url(/scattered-forcefields3.svg)] bg-cover h-fit pb-20">
         <div className={"flex flex-row justify-between items-end mt-20 ml-auto mr-auto " + (isMobile ? 'w-[80%]' : 'w-[72rem]')}>
           {isMobile ? <></> : <div></div>}
           <div className=''>

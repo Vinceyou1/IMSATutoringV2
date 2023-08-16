@@ -36,7 +36,7 @@ export default function Help(){
   }
   return (
     <div className="h-full w-full">
-      <div className="h-full w-[90%] ml-auto mr-auto flex flex-row flex-grow items-center bg-cover bg-[url(/scattered-forcefields2.svg)] dark:bg-[url(/scattered-forcefields2-dark.svg)]">
+      <div className="h-full w-[90%] ml-auto mr-auto flex flex-row flex-grow items-center bg-cover bg-[url(/scattered-forcefields2.svg)]">
         <div className="w-[min(32rem,_90%)] mt-8 ml-auto mr-auto bg-primary dark:bg-primary-dark rounded-lg border-2 border-[rgb(203,_213,_224)] p-4">
           <div className="mt-2">
             <h3 className="text-center text-2xl mt-4">Contact Us!</h3>
