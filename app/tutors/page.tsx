@@ -114,7 +114,7 @@ export default function Tutors(){
       </select>
     )
     updateSelectedLanguageClass(classes.Language[classFilter][0]);
-  }, [classFilter])
+  }, [classFilter, subject, isMobile])
 
   if(loading){
     return (

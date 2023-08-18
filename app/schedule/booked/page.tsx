@@ -67,7 +67,7 @@ export default function Booked(){
       });
     }
     getData();
-  }, [user])
+  }, [user, db, tutor])
 
 
   useEffect(() => {
@@ -89,7 +89,7 @@ export default function Booked(){
     }
     getStudentData();
     updateLoading(false);
-  }, [user])
+  }, [user, db])
 
   const [loadingArray, updateLoadingArray] = useState<string[]>([]);
 
@@ -170,7 +170,7 @@ export default function Booked(){
     <Grid2 container spacing={2}>
       {
         Object.keys(studentData).map((key) => (
-          <Grid2 xs={12 / (isMobile ? 1 : 4)}>
+          <Grid2 key={key} xs={12 / (isMobile ? 1 : 4)}>
             <div className="rounded-lg p-2 border-2 border-[rgb(203,_213,_224)] flex flex-row justify-between items-center">
               <p className="pl-2 mr-2">{key} - {idToTutor(studentData[key])}</p>
               <button className="w-12 h-12" onClick={() => {

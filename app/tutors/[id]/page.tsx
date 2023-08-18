@@ -19,6 +19,15 @@ export default function TutorPage({params}){
   const [tutorExists, updateTutorExists] = useState(true);
   const [courses, updateCourses] = useState([<></>]);
 
+  const dataNameToText = {
+    math_courses: "Math Courses",
+    physics_courses: "Physics Courses",
+    bio_courses: "Biology Courses",
+    chem_course: "Chemistry Courses",
+    cs_courses: "CS Courses",
+    language_courses: "Language Courses",
+    other_courses: "Other Science Courses"
+  };
   // Sorts the class list by their length 
   const sortTutorSubjects = useCallback(() => {
     if(!tutor) return;
@@ -35,6 +44,7 @@ export default function TutorPage({params}){
       if(!b[1]) return -1;
       return b[1].length - a[1].length;
     });
+
     const ans = sorted.map((element) => {
       if(element[1]){
         return(
@@ -50,7 +60,7 @@ export default function TutorPage({params}){
       } else return (<></>)
     });
     if(ans) updateCourses(ans);
-  }, [tutor, params.id]);
+  }, [tutor, params.id, dataNameToText]);
 
   useEffect(() => {
     let exists = false;
@@ -63,16 +73,6 @@ export default function TutorPage({params}){
     updateTutorExists(exists);
     sortTutorSubjects();
   }, [tutor, params.id, sortTutorSubjects])
-
-  const dataNameToText = {
-    "math_courses": "Math Courses",
-    physics_courses: "Physics Courses",
-    bio_courses: "Biology Courses",
-    chem_course: "Chemistry Courses",
-    cs_courses: "CS Courses",
-    language_courses: "Language Courses",
-    other_courses: "Other Science Courses"
-  }
 
 
   const [day, updateDay] = useState<Date>(new Date());
@@ -108,7 +108,7 @@ export default function TutorPage({params}){
       });
     }
     getData();
-  }, [tutor])
+  }, [tutor, db])
 
   const [slotsContainer, updateSlotsContainer] = useState(<></>);
 
@@ -198,7 +198,7 @@ export default function TutorPage({params}){
         </div>
       )
     }
-  }, [weeklyAvailabilty, changes, day, slot, user])
+  }, [weeklyAvailabilty, changes, day, slot, user, isMobile])
 
   useEffect(() => {
     updateSlot(["", ""]);
