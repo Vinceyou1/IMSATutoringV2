@@ -6,8 +6,7 @@ import { useCallback, useContext, useEffect, useState } from 'react'
 import Loading from '@/components/Loading';
 import Calendar from 'react-calendar'
 import { MobileContext } from '@/contexts/MobileContext'
-import Footer from '@/components/Footer'
-import { addDoc, collection, doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore'
+import { addDoc, collection, doc, onSnapshot, setDoc } from 'firebase/firestore'
 import { FirebaseFirestoreContext } from '@/contexts/FirebaseContext'
 import { WeeklyAvailability } from '@/types/weeklyAvailability'
 import { UserDataContext } from '@/contexts/UserContext'
@@ -233,6 +232,22 @@ export default function TutorPage({params}){
       booked: booked,
       changes: c
     }}, { merge: true }).catch(() => {
+      updateError(true);
+      error = true;
+    }).then(() => {
+      if(error) {
+        updateBooking(false);
+        updateSlot(["", ""])
+        return;
+      }
+    });
+
+    
+    const studentRef = doc(db, 'bookings', user[0].uid);
+    const fullTime = slot[0] + " " + slot[1];
+    await setDoc(studentRef, {
+      [fullTime]: tutor.id 
+    }, { merge: true }).catch(() => {
       updateError(true);
       error = true;
     }).then(() => {

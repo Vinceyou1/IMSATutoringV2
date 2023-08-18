@@ -1,0 +1,23 @@
+.reverse-spinner {
+    width: 100px;
+    background: top/100% 50% no-repeat;
+    background-image:
+      radial-gradient(farthest-side at bottom,transparent 95%,#1976d2 96% 99%,transparent 100%);
+    animation: spin 1.5s linear infinite;
+  }
+  
+  .reverse-spinner::before {
+    content: "";
+    display:block;
+    padding-top:100%;
+    background:inherit;
+    background-image:
+      radial-gradient(farthest-side at bottom,transparent 73%,#03a9f4 74% 79%,transparent 80%);
+    animation: spin 0.5s linear infinite reverse;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
