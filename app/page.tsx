@@ -49,11 +49,11 @@ export default function Home() {
           <div className=''>
             <div className = "text-right">
               <h1 className="Text">STRUGGLING WITH SCHOOLWORK?</h1>
-              <br /><h1 className = "desc">Get live, one-on-one tutoring from {br} certified IMSA students. </h1>
+              <br /><h1 className = "desc">Get one-on-one tutoring from {br} certified IMSA students. </h1>
               <br />
             </div>
             <div className = "button float-right">
-              <a href="/tutors"><button className="learn">Get Live Help!</button></a>
+              <a href="/tutors"><button className="learn">Find Help!</button></a>
             </div>
           </div>
         </div>
@@ -75,8 +75,8 @@ export default function Home() {
           {isMobile ? <></> : <div></div>}
           <div>
             <div className = "text-right">
-              <h1 className="Text">AVAILABLE ANYTIME</h1>
-              <br /><h1 className = "desc">With over 100 volunteers, a peer tutor will be available {br} whenever you need them.</h1>
+              <h1 className="Text">A TUTOR THAT FITS YOU</h1>
+              <br /><h1 className = "desc">With over 100 volunteers, we'll have a peer tutor {br} that matches your learning style.</h1>
               <br />
             </div>
             <div className = "button float-right">
