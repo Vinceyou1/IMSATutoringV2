@@ -76,7 +76,7 @@ export default function Home() {
           <div>
             <div className = "text-right">
               <h1 className="Text">A TUTOR THAT FITS YOU</h1>
-              <br /><h1 className = "desc">With over 100 volunteers, we'll have a peer tutor {br} that matches your learning style.</h1>
+              <br /><h1 className = "desc">With over 100 volunteers, we&apos;ll have a peer tutor {br} that matches your learning style.</h1>
               <br />
             </div>
             <div className = "button float-right">

@@ -102,7 +102,7 @@ export default function Daily(){
       }
       updateChanges(d);
     })
-  }, [tutor])
+  }, [tutor, db])
   
   useEffect(() => {  
     getData();

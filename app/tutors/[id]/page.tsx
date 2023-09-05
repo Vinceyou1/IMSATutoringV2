@@ -72,7 +72,7 @@ export default function TutorPage({params}){
     });
     updateTutorExists(exists);
     sortTutorSubjects();
-  }, [tutor, params.id, sortTutorSubjects])
+  }, [tutor, sortTutorSubjects])
 
 
   const [day, updateDay] = useState<Date>(new Date());
