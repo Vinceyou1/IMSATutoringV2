@@ -79,7 +79,6 @@ export default function Booked(){
     const getStudentData = async () => {
       const studentRef = doc(db, 'bookings', user[0].uid);
       onSnapshot(studentRef, (doc) => {
-        console.log(doc.data());
         if(doc.data()){
           updateStudentData(
             doc.data()
@@ -113,10 +112,11 @@ export default function Booked(){
     return tutor_name
   }
 
-  async function removeBooking(time: string, tutor_id: number){
-    updateLoadingArray(loadingArray.concat(time));
-    console.log(tutor_id);
-
+  async function removeBooking(key: string, tutor_id: number){
+    const s = key.split(" ");
+    const day = s.at(0);
+    const time = s.at(1) + " " + s.at(2);
+    updateLoadingArray(loadingArray.concat(day + " " + time));
     let tutor : TutorData = null;
     tutors.forEach((t: TutorData) => {
       if(t.id == tutor_id.toString()){
@@ -129,18 +129,18 @@ export default function Booked(){
     const tutorRef = doc(db, 'tutors', tutor_id.toString());
     await getDoc(tutorRef).then(async (doc) => {
       let d = doc.data();
+      console.log(d);
       if(d){
-        const split = time.split(" ");
-        if(d.hasOwnProperty(split.at(0)) && d[split.at(0)].booked.hasOwnProperty(split.at(1))){
-          delete d[split.at(0)].booked[split.at(1)];
+        if(d.hasOwnProperty(day) && d[day].booked.includes(time)){
+          d[day].booked.splice(d[day].booked.indexOf(time), 1);
+          await setDoc(tutorRef, d);
         }
-        await setDoc(tutorRef, d);
       }
     })
 
     const studentRef = doc(db, 'bookings', user[0].uid);
     const d = JSON.parse(JSON.stringify(studentData));
-    delete d[time];
+    delete d[day + " " + time];
     await setDoc(studentRef, d);
 
     await addDoc(collection(db, "mail"), {
@@ -151,14 +151,14 @@ export default function Booked(){
         data: {
           name: user[0].displayName,
           tutor: tutor.first_name,
-          time: time.split(" ").at(1),
-          day: time.split(" ").at(0),
+          time: time,
+          day: day,
         },
       },
     })
 
     let temp = [...loadingArray];
-    temp.splice(temp.indexOf(time), 1);
+    temp.splice(temp.indexOf(day + " " + time), 1);
     updateLoadingArray(temp);
   }
 
