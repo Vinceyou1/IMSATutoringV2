@@ -292,7 +292,7 @@ export default function TutorPage({params}){
   <div className = {"h-fit " + (isMobile ? "mt-4": "ml-4")}>
     {isMobile ? 
       <div className='flex flex-col w-[325px]'>
-        <Calendar className="w-[350px]" locale="en-US" minDetail="month" defaultValue={new Date()} onChange={(val) => updateDay(new Date(val))} />
+        <Calendar minDate={new Date()} className="w-[350px]" locale="en-US" minDetail="month" defaultValue={new Date()} onChange={(val) => updateDay(new Date(val))} />
         <div className='flex flex-row mt-4 h-[200px] w-full'>
           {slotsContainer}
           <textarea id='info' className='rounded-none ml-2 flex-grow resize-none border-2 h-full p-2 border-[rgb(203,_213,_224)] dark:border-[white] bg-primary dark:bg-primary-dark' placeholder='Additional Notes (optional)'></textarea>
@@ -302,7 +302,7 @@ export default function TutorPage({params}){
     :
       <div className='flex flex-col'>
         <div className={"flex flex-row items-stretch"}>
-          <Calendar className="w-[500px]" locale="en-US" minDetail="month" defaultValue={new Date()} onChange={(val) => updateDay(new Date(val))} />
+          <Calendar minDate={new Date()} className="w-[500px]" locale="en-US" minDetail="month" defaultValue={new Date()} onChange={(val) => updateDay(new Date(val))} />
           <div className={'flex flex-col justify-between ml-4 w-40 ' + (isMobile ? "w-full mt-4" : "ml-4 w-40")}>
             {slotsContainer}
             <textarea id='info' className='flex-grow-0 resize-none border-2 mt-2 h-24 p-2 border-[rgb(203,_213,_224)] dark:border-[white] bg-primary dark:bg-primary-dark' placeholder='Additional Notes (optional)'></textarea>

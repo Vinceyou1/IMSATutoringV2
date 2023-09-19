@@ -219,7 +219,7 @@ export default function Daily(){
       <div className="flex flex-col flex-grow justify-between">
         <div className={"flex flex-grow w-full justify-center items-center p-4 " + (isMobile ? "flex-col" : "flex-row " )}>
           <div className={(isMobile) ? "mb-4" : "mr-16"}>
-            <Calendar className={(isMobile) ? "w-[350px]" : "w-[500px]"} locale="en-US" minDetail="month" defaultValue={new Date()} onChange={(val) => updateDay(new Date(val))} />
+            <Calendar minDate={new Date()} className={(isMobile) ? "w-[350px]" : "w-[500px]"} locale="en-US" minDetail="month" defaultValue={new Date()} onChange={(val) => updateDay(new Date(val))} />
           </div>
           <div className={"dark:text-primary flex flex-col justify-start items-center overflow-x-hidden h-fit border-2 p-4 rounded-lg w-[350px]"}>
             <div>
