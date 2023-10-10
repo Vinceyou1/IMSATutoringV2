@@ -315,7 +315,7 @@ export default function TutorPage({params}){
 
   if(!tutor) return <Loading />
   return (
-    <div className='flex flex-col justify-between h-full w-full'>
+    <div className='flex flex-col justify-between w-full'>
       <Popup
         open={popupOpen}
         modal
