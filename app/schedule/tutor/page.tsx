@@ -46,6 +46,7 @@ export default function MySchedule(){
         updateTutorExists(true);
       }
     });
+    if(!tutor) updateTutorExists(false);
   }, [user])
 
   if(user[1]){
