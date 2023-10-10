@@ -11,7 +11,7 @@ export default function MySchedule(){
   const isMobile = useContext(MobileContext);
   
   const [tutor, updateTutor] = useState<TutorData>();
-  const [tutorExists, updateTutorExists] = useState(true);
+  const [tutorExists, updateTutorExists] = useState(false);
 
   useEffect(() => {
     if(user[1]){
@@ -46,7 +46,6 @@ export default function MySchedule(){
         updateTutorExists(true);
       }
     });
-    if(!tutor) updateTutorExists(false);
   }, [user])
 
   if(user[1]){
