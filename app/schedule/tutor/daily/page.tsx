@@ -79,13 +79,7 @@ export default function Daily(){
         m = "00";
         break;
       case 1:
-        m = "15";
-        break;
-      case 2:
         m = "30";
-        break;
-      case 3:
-        m = "45";
         break;
     }
     return h.toString() + ":" + m + " " + (AM ? "AM" : "PM");
@@ -242,8 +236,6 @@ export default function Daily(){
             <div className={"w-full flex flex-col items-center " + (currSelectedHour == -1 ? "hidden" : "")}>
               <button onClick={() => handleAvailability(0)} className={"mt-4 w-full p-2 rounded-lg border-2 " + getColor(0)}>{time(0)}</button>
               <button onClick={() => handleAvailability(1)} className={"mt-4 w-full p-2 rounded-lg border-2 " + getColor(1)}>{time(1)}</button>
-              <button onClick={() => handleAvailability(2)} className={"mt-4 w-full p-2 rounded-lg border-2 " + getColor(2)}>{time(2)}</button>
-              <button onClick={() => handleAvailability(3)} className={"mt-4 w-full p-2 rounded-lg border-2 " + getColor(3)}>{time(3)}</button>
             </div>
           </div>
         </div>

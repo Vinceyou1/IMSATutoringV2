@@ -97,19 +97,13 @@ export default function Weekly(){
         m = "00";
         break;
       case 1:
-        m = "15";
-        break;
-      case 2:
         m = "30";
-        break;
-      case 3:
-        m = "45";
         break;
     }
     return h.toString() + ":" + m + " " + (AM ? "AM" : "PM");
   }
 
-  function availabiltyIncluded(slot: number, day: Weekday){
+  function availabilityIncluded(slot: number, day: Weekday){
     return availabilty[day].includes(time(slot, day));
   }
 
@@ -117,7 +111,7 @@ export default function Weekly(){
     if(activeDay == "") return;
     const str = time(slot, day);
     const temp = JSON.parse(JSON.stringify(availabilty));
-    if(availabiltyIncluded(slot, day)){
+    if(availabilityIncluded(slot, day)){
       temp[activeDay].splice(availabilty[activeDay].indexOf(str), 1);
     } else {
       temp[activeDay].push(str);
@@ -162,7 +156,7 @@ export default function Weekly(){
       </div>
     )
   }
-  // general idea: lots of collapsables, so one dropdown for each day, then a dropdown for each hour, then buttons for each 15-minute block
+  // general idea: lots of collapsables, so one dropdown for each day, then a dropdown for each hour, then buttons for each 15-minute block and location
   if(!isMobile){
   return (
     <div className="flex flex-col justify-between h-full w-full bg-[url(/scattered-forcefields5.svg)] bg-cover bg-no-repeat bg-[right_35%]">
@@ -201,10 +195,8 @@ export default function Weekly(){
               </button>
             </div>
             <div className={"w-full flex flex-col items-center " + (currSelectedHour.Sunday == -1 ? "hidden" : "")}>
-              <button onClick={() => handleAvailability(0, "Sunday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Sunday") ? "bg-[deepskyblue]":"")}>{time(0, "Sunday")}</button>
-              <button onClick={() => handleAvailability(1, "Sunday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Sunday") ? "bg-[deepskyblue]":"")}>{time(1, "Sunday")}</button>
-              <button onClick={() => handleAvailability(2, "Sunday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Sunday") ? "bg-[deepskyblue]":"")}>{time(2, "Sunday")}</button>
-              <button onClick={() => handleAvailability(3, "Sunday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Sunday") ? "bg-[deepskyblue]":"")}>{time(3, "Sunday")}</button>
+              <button onClick={() => handleAvailability(0, "Sunday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(0, "Sunday") ? "bg-[deepskyblue]":"")}>{time(0, "Sunday")}</button>
+              <button onClick={() => handleAvailability(1, "Sunday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(1, "Sunday") ? "bg-[deepskyblue]":"")}>{time(1, "Sunday")}</button>
             </div>
           </div>
           <div className={"dark:text-primary flex flex-col justify-start items-center w-0 overflow-x-hidden h-fit border-2 border-t-0 p-4 rounded-b-lg flex-grow mr-4 duration-300 " + (activeDay == "Monday" ? "opacity-100" : "opacity-0 pointer-events-none")}>
@@ -231,10 +223,8 @@ export default function Weekly(){
               </button>
             </div>
             <div className={"w-full flex flex-col items-center " + (currSelectedHour.Monday == -1 ? "hidden" : "")}>
-              <button onClick={() => handleAvailability(0, "Monday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Monday") ? "bg-[deepskyblue]":"")}>{time(0, "Monday")}</button>
-              <button onClick={() => handleAvailability(1, "Monday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Monday") ? "bg-[deepskyblue]":"")}>{time(1, "Monday")}</button>
-              <button onClick={() => handleAvailability(2, "Monday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Monday") ? "bg-[deepskyblue]":"")}>{time(2, "Monday")}</button>
-              <button onClick={() => handleAvailability(3, "Monday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Monday") ? "bg-[deepskyblue]":"")}>{time(3, "Monday")}</button>
+              <button onClick={() => handleAvailability(0, "Monday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(0, "Monday") ? "bg-[deepskyblue]":"")}>{time(0, "Monday")}</button>
+              <button onClick={() => handleAvailability(1, "Monday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(1, "Monday") ? "bg-[deepskyblue]":"")}>{time(1, "Monday")}</button>
             </div>
           </div>
           <div className={"dark:text-primary flex flex-col justify-start items-center w-0 overflow-x-hidden h-fit border-2 border-t-0 p-4 rounded-b-lg flex-grow mr-4 duration-300 " + (activeDay == "Tuesday" ? "opacity-100" : "opacity-0 pointer-events-none")}>
@@ -261,10 +251,8 @@ export default function Weekly(){
               </button>
             </div>
             <div className={"w-full flex flex-col items-center " + (currSelectedHour.Tuesday == -1 ? "hidden" : "")}>
-              <button onClick={() => handleAvailability(0, "Tuesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Tuesday") ? "bg-[deepskyblue]":"")}>{time(0, "Tuesday")}</button>
-              <button onClick={() => handleAvailability(1, "Tuesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Tuesday") ? "bg-[deepskyblue]":"")}>{time(1, "Tuesday")}</button>
-              <button onClick={() => handleAvailability(2, "Tuesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Tuesday") ? "bg-[deepskyblue]":"")}>{time(2, "Tuesday")}</button>
-              <button onClick={() => handleAvailability(3, "Tuesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Tuesday") ? "bg-[deepskyblue]":"")}>{time(3, "Tuesday")}</button>
+              <button onClick={() => handleAvailability(0, "Tuesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(0, "Tuesday") ? "bg-[deepskyblue]":"")}>{time(0, "Tuesday")}</button>
+              <button onClick={() => handleAvailability(1, "Tuesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(1, "Tuesday") ? "bg-[deepskyblue]":"")}>{time(1, "Tuesday")}</button>
             </div>
           </div>
           <div className={"dark:text-primary flex flex-col justify-start items-center w-0 overflow-x-hidden h-fit border-2 border-t-0 p-4 rounded-b-lg flex-grow mr-4 duration-300 " + (activeDay == "Wednesday" ? "opacity-100" : "opacity-0 pointer-events-none")}>
@@ -291,10 +279,8 @@ export default function Weekly(){
               </button>
             </div>
             <div className={"w-full flex flex-col items-center " + (currSelectedHour.Wednesday == -1 ? "hidden" : "")}>
-              <button onClick={() => handleAvailability(0, "Wednesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Wednesday") ? "bg-[deepskyblue]":"")}>{time(0, "Wednesday")}</button>
-              <button onClick={() => handleAvailability(1, "Wednesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Wednesday") ? "bg-[deepskyblue]":"")}>{time(1, "Wednesday")}</button>
-              <button onClick={() => handleAvailability(2, "Wednesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Wednesday") ? "bg-[deepskyblue]":"")}>{time(2, "Wednesday")}</button>
-              <button onClick={() => handleAvailability(3, "Wednesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Wednesday") ? "bg-[deepskyblue]":"")}>{time(3, "Wednesday")}</button>
+              <button onClick={() => handleAvailability(0, "Wednesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(0, "Wednesday") ? "bg-[deepskyblue]":"")}>{time(0, "Wednesday")}</button>
+              <button onClick={() => handleAvailability(1, "Wednesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(1, "Wednesday") ? "bg-[deepskyblue]":"")}>{time(1, "Wednesday")}</button>
             </div>
           </div>
           <div className={"dark:text-primary flex flex-col justify-start items-center w-0 overflow-x-hidden h-fit border-2 border-t-0 p-4 rounded-b-lg flex-grow mr-4 duration-300 " + (activeDay == "Thursday" ? "opacity-100" : "opacity-0 pointer-events-none")}>
@@ -321,10 +307,8 @@ export default function Weekly(){
               </button>
             </div>
             <div className={"w-full flex flex-col items-center " + (currSelectedHour.Thursday == -1 ? "hidden" : "")}>
-              <button onClick={() => handleAvailability(0, "Thursday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Thursday") ? "bg-[deepskyblue]":"")}>{time(0, "Thursday")}</button>
-              <button onClick={() => handleAvailability(1, "Thursday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Thursday") ? "bg-[deepskyblue]":"")}>{time(1, "Thursday")}</button>
-              <button onClick={() => handleAvailability(2, "Thursday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Thursday") ? "bg-[deepskyblue]":"")}>{time(2, "Thursday")}</button>
-              <button onClick={() => handleAvailability(3, "Thursday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Thursday") ? "bg-[deepskyblue]":"")}>{time(3, "Thursday")}</button>
+              <button onClick={() => handleAvailability(0, "Thursday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(0, "Thursday") ? "bg-[deepskyblue]":"")}>{time(0, "Thursday")}</button>
+              <button onClick={() => handleAvailability(1, "Thursday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(1, "Thursday") ? "bg-[deepskyblue]":"")}>{time(1, "Thursday")}</button>
             </div>
           </div>
           <div className={"dark:text-primary flex flex-col justify-start items-center w-0 overflow-x-hidden h-fit border-2 border-t-0 p-4 rounded-b-lg flex-grow mr-4 duration-300 " + (activeDay == "Friday" ? "opacity-100" : "opacity-0 pointer-events-none")}>
@@ -351,10 +335,8 @@ export default function Weekly(){
               </button>
             </div>
             <div className={"w-full flex flex-col items-center " + (currSelectedHour.Friday == -1 ? "hidden" : "")}>
-              <button onClick={() => handleAvailability(0, "Friday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Friday") ? "bg-[deepskyblue]":"")}>{time(0, "Friday")}</button>
-              <button onClick={() => handleAvailability(1, "Friday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Friday") ? "bg-[deepskyblue]":"")}>{time(1, "Friday")}</button>
-              <button onClick={() => handleAvailability(2, "Friday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Friday") ? "bg-[deepskyblue]":"")}>{time(2, "Friday")}</button>
-              <button onClick={() => handleAvailability(3, "Friday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Friday") ? "bg-[deepskyblue]":"")}>{time(3, "Friday")}</button>
+              <button onClick={() => handleAvailability(0, "Friday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(0, "Friday") ? "bg-[deepskyblue]":"")}>{time(0, "Friday")}</button>
+              <button onClick={() => handleAvailability(1, "Friday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(1, "Friday") ? "bg-[deepskyblue]":"")}>{time(1, "Friday")}</button>
             </div>
           </div>
           <div className={"dark:text-primary flex flex-col justify-start items-center w-0 overflow-x-hidden h-fit border-2 border-t-0 p-4 rounded-b-lg flex-grow duration-300 " + (activeDay == "Saturday" ? "opacity-100" : "opacity-0 pointer-events-none")}>
@@ -381,10 +363,8 @@ export default function Weekly(){
               </button>
             </div>
             <div className={"w-full flex flex-col items-center " + (currSelectedHour.Saturday == -1 ? "hidden" : "")}>
-              <button onClick={() => handleAvailability(0, "Saturday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Saturday") ? "bg-[deepskyblue]":"")}>{time(0, "Saturday")}</button>
-              <button onClick={() => handleAvailability(1, "Saturday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Saturday") ? "bg-[deepskyblue]":"")}>{time(1, "Saturday")}</button>
-              <button onClick={() => handleAvailability(2, "Saturday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Saturday") ? "bg-[deepskyblue]":"")}>{time(2, "Saturday")}</button>
-              <button onClick={() => handleAvailability(3, "Saturday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Saturday") ? "bg-[deepskyblue]":"")}>{time(3, "Saturday")}</button>
+              <button onClick={() => handleAvailability(0, "Saturday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(0, "Saturday") ? "bg-[deepskyblue]":"")}>{time(0, "Saturday")}</button>
+              <button onClick={() => handleAvailability(1, "Saturday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(1, "Saturday") ? "bg-[deepskyblue]":"")}>{time(1, "Saturday")}</button>
             </div>
           </div>
         </div>
@@ -441,10 +421,8 @@ export default function Weekly(){
               </button>
             </div>
             <div className={"w-full flex flex-col items-center " + (currSelectedHour.Sunday == -1 ? "hidden" : "")}>
-              <button onClick={() => handleAvailability(0, "Sunday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Sunday") ? "bg-[deepskyblue]":"")}>{time(0, "Sunday")}</button>
-              <button onClick={() => handleAvailability(1, "Sunday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Sunday") ? "bg-[deepskyblue]":"")}>{time(1, "Sunday")}</button>
-              <button onClick={() => handleAvailability(2, "Sunday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Sunday") ? "bg-[deepskyblue]":"")}>{time(2, "Sunday")}</button>
-              <button onClick={() => handleAvailability(3, "Sunday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Sunday") ? "bg-[deepskyblue]":"")}>{time(3, "Sunday")}</button>
+              <button onClick={() => handleAvailability(0, "Sunday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(0, "Sunday") ? "bg-[deepskyblue]":"")}>{time(0, "Sunday")}</button>
+              <button onClick={() => handleAvailability(1, "Sunday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(1, "Sunday") ? "bg-[deepskyblue]":"")}>{time(1, "Sunday")}</button>
             </div>
           </div>
           <div className={"border-2 border-t-0 rounded-b-lg flex flex-col items-center p-4 duration-0 " + (activeDay == "Monday" ? "visible" : "hidden pointer-events-none")}>
@@ -469,10 +447,8 @@ export default function Weekly(){
               </button>
             </div>
             <div className={"w-full flex flex-col items-center " + (currSelectedHour.Monday == -1 ? "hidden" : "")}>
-              <button onClick={() => handleAvailability(0, "Monday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Monday") ? "bg-[deepskyblue]":"")}>{time(0, "Monday")}</button>
-              <button onClick={() => handleAvailability(1, "Monday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Monday") ? "bg-[deepskyblue]":"")}>{time(1, "Monday")}</button>
-              <button onClick={() => handleAvailability(2, "Monday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Monday") ? "bg-[deepskyblue]":"")}>{time(2, "Monday")}</button>
-              <button onClick={() => handleAvailability(3, "Monday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Monday") ? "bg-[deepskyblue]":"")}>{time(3, "Monday")}</button>
+              <button onClick={() => handleAvailability(0, "Monday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(0, "Monday") ? "bg-[deepskyblue]":"")}>{time(0, "Monday")}</button>
+              <button onClick={() => handleAvailability(1, "Monday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(1, "Monday") ? "bg-[deepskyblue]":"")}>{time(1, "Monday")}</button>
             </div>
           </div>
           <div className={"border-2 border-t-0 rounded-b-lg flex flex-col items-center p-4 duration-0 " + (activeDay == "Tuesday" ? "visible" : "hidden pointer-events-none")}>
@@ -497,10 +473,8 @@ export default function Weekly(){
               </button>
             </div>
             <div className={"w-full flex flex-col items-center " + (currSelectedHour.Tuesday == -1 ? "hidden" : "")}>
-              <button onClick={() => handleAvailability(0, "Tuesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Tuesday") ? "bg-[deepskyblue]":"")}>{time(0, "Tuesday")}</button>
-              <button onClick={() => handleAvailability(1, "Tuesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Tuesday") ? "bg-[deepskyblue]":"")}>{time(1, "Tuesday")}</button>
-              <button onClick={() => handleAvailability(2, "Tuesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Tuesday") ? "bg-[deepskyblue]":"")}>{time(2, "Tuesday")}</button>
-              <button onClick={() => handleAvailability(3, "Tuesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Tuesday") ? "bg-[deepskyblue]":"")}>{time(3, "Tuesday")}</button>
+              <button onClick={() => handleAvailability(0, "Tuesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(0, "Tuesday") ? "bg-[deepskyblue]":"")}>{time(0, "Tuesday")}</button>
+              <button onClick={() => handleAvailability(1, "Tuesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(1, "Tuesday") ? "bg-[deepskyblue]":"")}>{time(1, "Tuesday")}</button>
             </div>
           </div>
           <div className={"border-2 border-t-0 rounded-b-lg flex flex-col items-center p-4 duration-0 " + (activeDay == "Wednesday" ? "visible" : "hidden pointer-events-none")}>
@@ -525,10 +499,8 @@ export default function Weekly(){
               </button>
             </div>
             <div className={"w-full flex flex-col items-center " + (currSelectedHour.Wednesday == -1 ? "hidden" : "")}>
-              <button onClick={() => handleAvailability(0, "Wednesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Wednesday") ? "bg-[deepskyblue]":"")}>{time(0, "Wednesday")}</button>
-              <button onClick={() => handleAvailability(1, "Wednesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Wednesday") ? "bg-[deepskyblue]":"")}>{time(1, "Wednesday")}</button>
-              <button onClick={() => handleAvailability(2, "Wednesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Wednesday") ? "bg-[deepskyblue]":"")}>{time(2, "Wednesday")}</button>
-              <button onClick={() => handleAvailability(3, "Wednesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Wednesday") ? "bg-[deepskyblue]":"")}>{time(3, "Wednesday")}</button>
+              <button onClick={() => handleAvailability(0, "Wednesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(0, "Wednesday") ? "bg-[deepskyblue]":"")}>{time(0, "Wednesday")}</button>
+              <button onClick={() => handleAvailability(1, "Wednesday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(1, "Wednesday") ? "bg-[deepskyblue]":"")}>{time(1, "Wednesday")}</button>
             </div>
           </div>
           <div className={"border-2 border-t-0 rounded-b-lg flex flex-col items-center p-4 duration-0 " + (activeDay == "Thursday" ? "visible" : "hidden pointer-events-none")}>
@@ -553,10 +525,8 @@ export default function Weekly(){
               </button>
             </div>
             <div className={"w-full flex flex-col items-center " + (currSelectedHour.Thursday == -1 ? "hidden" : "")}>
-              <button onClick={() => handleAvailability(0, "Thursday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Thursday") ? "bg-[deepskyblue]":"")}>{time(0, "Thursday")}</button>
-              <button onClick={() => handleAvailability(1, "Thursday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Thursday") ? "bg-[deepskyblue]":"")}>{time(1, "Thursday")}</button>
-              <button onClick={() => handleAvailability(2, "Thursday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Thursday") ? "bg-[deepskyblue]":"")}>{time(2, "Thursday")}</button>
-              <button onClick={() => handleAvailability(3, "Thursday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Thursday") ? "bg-[deepskyblue]":"")}>{time(3, "Thursday")}</button>
+              <button onClick={() => handleAvailability(0, "Thursday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(0, "Thursday") ? "bg-[deepskyblue]":"")}>{time(0, "Thursday")}</button>
+              <button onClick={() => handleAvailability(1, "Thursday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(1, "Thursday") ? "bg-[deepskyblue]":"")}>{time(1, "Thursday")}</button>
             </div>
           </div>
           <div className={"border-2 border-t-0 rounded-b-lg flex flex-col items-center p-4 duration-0 " + (activeDay == "Friday" ? "visible" : "hidden pointer-events-none")}>
@@ -581,10 +551,8 @@ export default function Weekly(){
               </button>
             </div>
             <div className={"w-full flex flex-col items-center " + (currSelectedHour.Friday == -1 ? "hidden" : "")}>
-              <button onClick={() => handleAvailability(0, "Friday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Friday") ? "bg-[deepskyblue]":"")}>{time(0, "Friday")}</button>
-              <button onClick={() => handleAvailability(1, "Friday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Friday") ? "bg-[deepskyblue]":"")}>{time(1, "Friday")}</button>
-              <button onClick={() => handleAvailability(2, "Friday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Friday") ? "bg-[deepskyblue]":"")}>{time(2, "Friday")}</button>
-              <button onClick={() => handleAvailability(3, "Friday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Friday") ? "bg-[deepskyblue]":"")}>{time(3, "Friday")}</button>
+              <button onClick={() => handleAvailability(0, "Friday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(0, "Friday") ? "bg-[deepskyblue]":"")}>{time(0, "Friday")}</button>
+              <button onClick={() => handleAvailability(1, "Friday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(1, "Friday") ? "bg-[deepskyblue]":"")}>{time(1, "Friday")}</button>
             </div>
           </div>
           <div className={"border-2 border-t-0 rounded-b-lg flex flex-col items-center p-4 duration-0 " + (activeDay == "Saturday" ? "visible" : "hidden pointer-events-none")}>
@@ -609,10 +577,8 @@ export default function Weekly(){
               </button>
             </div>
             <div className={"w-full flex flex-col items-center " + (currSelectedHour.Saturday == -1 ? "hidden" : "")}>
-              <button onClick={() => handleAvailability(0, "Saturday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(0, "Saturday") ? "bg-[deepskyblue]":"")}>{time(0, "Saturday")}</button>
-              <button onClick={() => handleAvailability(1, "Saturday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(1, "Saturday") ? "bg-[deepskyblue]":"")}>{time(1, "Saturday")}</button>
-              <button onClick={() => handleAvailability(2, "Saturday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(2, "Saturday") ? "bg-[deepskyblue]":"")}>{time(2, "Saturday")}</button>
-              <button onClick={() => handleAvailability(3, "Saturday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabiltyIncluded(3, "Saturday") ? "bg-[deepskyblue]":"")}>{time(3, "Saturday")}</button>
+              <button onClick={() => handleAvailability(0, "Saturday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(0, "Saturday") ? "bg-[deepskyblue]":"")}>{time(0, "Saturday")}</button>
+              <button onClick={() => handleAvailability(1, "Saturday")} className={"mt-4 w-full p-2 rounded-lg border-2 " + (availabilityIncluded(1, "Saturday") ? "bg-[deepskyblue]":"")}>{time(1, "Saturday")}</button>
             </div>
           </div>
         </div>
