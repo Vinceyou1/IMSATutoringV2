@@ -1,7 +1,7 @@
 'use client'
 import './page.css'
 import { TutorData } from '@/types/tutordata'
-import tutors from '../../../public/tutor_data.json'
+import tutors from '../../../public/new_tutor_data.json'
 import { useCallback, useContext, useEffect, useState } from 'react'
 import Loading from '@/components/Loading';
 import Calendar from 'react-calendar'
@@ -20,23 +20,27 @@ export default function TutorPage({params}){
   const [courses, updateCourses] = useState([<></>]);
 
   const dataNameToText = {
-    math_courses: "Math Courses",
-    physics_courses: "Physics Courses",
-    bio_courses: "Biology Courses",
-    chem_course: "Chemistry Courses",
-    cs_courses: "CS Courses",
-    language_courses: "Language Courses",
-    other_courses: "Other Science Courses"
+    mathcore: "Math Courses(Core)",
+    moreMath: "Math Courses(Non-Core)",
+    physics: "Physics Courses",
+    biology: "Biology Courses",
+    chemistry: "Chemistry Courses",
+    cs: "CS Courses",
+    language: "Language Courses",
+    otherScience: "Other Science Courses"
   };
   // Sorts the class list by their length 
   const sortTutorSubjects = useCallback(() => {
     if(!tutor) return;
     const temp = JSON.parse(JSON.stringify(tutor));
-    delete temp['last_name'];
-    delete temp['first_name'];
+    delete temp['lastName'];
+    delete temp['firstName'];
     delete temp['id'];
-    delete temp['year'];
-    delete temp['email']
+    delete temp['graduationYear'];
+    delete temp['emailAddress'];
+    delete temp['wing'];
+    delete temp['hall'];
+    delete temp['aboutMe'];
 
     const sorted = Object.keys(temp).map((key) => [key, temp[key]]);
     sorted.sort((a, b) => {
@@ -65,7 +69,7 @@ export default function TutorPage({params}){
   useEffect(() => {
     let exists = false;
     tutors.forEach((tutor: TutorData) => {
-      if(tutor.id == params.id) {
+      if(String(tutor.id) == params.id) {
         updateTutor(tutor);
         exists = true;
       }
@@ -95,7 +99,7 @@ export default function TutorPage({params}){
   useEffect(() => {
     const getData = async () => {
       if(!tutor || !tutor.id) return;
-      const tutorRef = doc(db, 'tutors', tutor.id);
+      const tutorRef = doc(db, 'tutors', String(tutor.id));
       onSnapshot(tutorRef, (doc) => {
         let d = doc.data();
         if(doc.get('weekly')){
@@ -219,7 +223,7 @@ export default function TutorPage({params}){
       alert("This tutor doesn't exist?");
       return;
     }
-    const tutorRef = doc(db, 'tutors', tutor.id);
+    const tutorRef = doc(db, 'tutors', String(tutor.id));
     updateError(false);
     updateBooking(true);
     let booked = [slot[1]];
@@ -262,13 +266,13 @@ export default function TutorPage({params}){
     const info_element = (document.getElementById("info") as HTMLTextAreaElement);
     if(info_element) info = info_element.value;
     await addDoc(collection(db, "mail"), {
-      to: tutor.email,
+      to: tutor.emailAddress,
       cc: user[0].email,
       template: {
         name: "Booked",
         data: {
           name: user[0].displayName,
-          tutor: tutor.first_name,
+          tutor: tutor.firstName,
           time: slot[1],
           day: slot[0],
           info: info
@@ -329,16 +333,14 @@ export default function TutorPage({params}){
         </div>
       </Popup>
       <div className='mr-8'>
-        <h2> {tutor.first_name + " " + tutor.last_name} </h2>
+        <h2> {tutor.firstName + " " + tutor.lastName} </h2>
         <div className = "mainTextArea h-fit">
           <div className = {"publicProfile items-stretch " + (isMobile ? "flex-col !mt-4" : "flex-row")}>
             <div id="sign-up-form">
-              {/* <div className="aboutmeDiv mb-4">
-                <h3 id = "label">About Me:</h3>
-                <p className = "aboutMe">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit accusantium rem ad molestiae, itaque architecto! Doloremque possimus ex, odio assumenda ratione laborum maiores, facere perferendis voluptatum mollitia hic molestias libero.
-                </p>
-              </div> */}
+              <div className='mb-4'>
+                <h3 id="label">About Me:</h3>
+                <p className='mt-2'>{tutor.aboutMe}</p>
+              </div>
               <div>
                 <h3 id = "label">Classes I Tutor:</h3>
                 <div className = "tutorCourses mt-2">
@@ -348,11 +350,11 @@ export default function TutorPage({params}){
               <div id = "twotable">
                 <div>                    
                   <h3 id = "label">Hall:</h3>
-                  <p className = "hallNumber">filler 1</p>
+                  <p className = "hallNumber">{tutor.hall}</p>
                 </div>
                 <div>                    
                   <h3 id = "label">Wing:</h3>
-                  <p className = "hallNumber">filler 2</p>
+                  <p className = "hallNumber">{tutor.wing}</p>
                 </div>                  
                 </div>
             </div>

@@ -2,7 +2,7 @@
 import { MobileContext } from "@/contexts/MobileContext"
 import { useContext, useEffect, useState } from 'react'
 import classes from '../../public/classes.json'
-import tutors from '../../public/tutor_data.json'
+import tutors from '../../public/new_tutor_data.json'
 import Loading from "@/components/Loading"
 import classTextToClassName from '../../data/classTextToClassName'
 import TutorBox from "@/components/TutorBox"
@@ -36,7 +36,7 @@ export default function Tutors(){
 
   useEffect(() => {
     let tempTutors: TutorData[] = [];
-    if(classFilter === "any") {
+    if(classFilter === "any" && subject != "Language") {
       tempTutors = [...tutors];
     } else {
       let classNameFull = ((selectedLanguageClass == "") ? classFilter : selectedLanguageClass);
@@ -66,31 +66,21 @@ export default function Tutors(){
         classNameFull = c[0] + " " + num;
       }
       tutors.forEach((tutor: TutorData) => {
-        let canTutorClass = false;
-        if(tutor.bio_courses && tutor.bio_courses.includes(classNameFull)){
-          canTutorClass = true;
+        if(
+          (tutor.biology?.includes(classFilter)) ||
+          (tutor.chemistry?.includes(classFilter)) ||
+          (tutor.physics?.includes(classFilter)) ||
+          (tutor.mathcore?.includes(classFilter)) ||
+          (tutor.moreMath?.includes(classFilter)) ||
+          (tutor.cs?.includes(classFilter)) ||
+          (tutor.otherScience?.includes(classFilter)) ||
+          (subject == "Language" && tutor.language?.includes(selectedLanguageClass))
+        ) tempTutors.push(tutor);
         }
-        else if(tutor.chem_course && tutor.chem_course.includes(classNameFull)){
-          canTutorClass = true;
-        }
-        else if(tutor.cs_courses && tutor.cs_courses.includes(classNameFull)){
-          canTutorClass = true;
-        }
-        else if(tutor.math_courses && tutor.math_courses.includes(classNameFull)){
-          canTutorClass = true;
-        }
-        else if(tutor.physics_courses && tutor.physics_courses.includes(classNameFull)){
-          canTutorClass = true;
-        }
-        else if(tutor.language_courses && tutor.language_courses.includes(classNameFull)){
-          canTutorClass = true;
-        }
-        else if(tutor.other_courses && tutor.other_courses.includes(classNameFull)){
-          canTutorClass = true;
-        }
-        if(canTutorClass) tempTutors.push(tutor);
-      });
+      );
     }
+    console.log(selectedLanguageClass);
+    console.log(classFilter);
     // Shuffle the tutor pool, for fairness
     for (let i = tempTutors.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -107,14 +97,14 @@ export default function Tutors(){
       return;
     }
     updateLanguageClassList(
-      <select onChange={(event) => {updateSelectedLanguageClass(event.target.value)}} className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + ((isMobile) ? 'ml-2': '')}>
+      <select onChange={(event) => {updateSelectedLanguageClass(event.target.value)}} className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + ((isMobile) ? 'ml-2': 'mr-4')}>
         {classes.Language[classFilter].map((className) => {
           return <option value={className} key={className}>{className}</option>
         })}
       </select>
     )
     updateSelectedLanguageClass(classes.Language[classFilter][0]);
-  }, [classFilter, subject, isMobile])
+  }, [classFilter])
 
   if(loading){
     return (
@@ -168,6 +158,7 @@ export default function Tutors(){
           })}
         </select>
       )
+      updateSelectedLanguageClass(classes.Language.Spanish[0]);
       return;
     }
     updateLanguageClassList(
