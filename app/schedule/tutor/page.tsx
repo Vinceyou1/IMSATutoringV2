@@ -22,26 +22,9 @@ export default function MySchedule(){
       return;
     }
 
-    const name = user[0].displayName.split(" ");
-    let first_name = "";
-    let last_name = "";
-    // Weird middle name handling, sometimes counted as part of either first or last name in data
-    let first_name_alt = "";
-    let last_name_alt = "";
-    if(name.length == 2){
-      first_name = name[0];
-      last_name = name[1];
-    } else {
-      // Might have to deal with 4 word names at some point, else just get a map of emails to names
-      first_name = name[0];
-      last_name = name[1] + " " + name[2];
-      first_name_alt = name[0] + " " + name[1];
-      last_name_alt = name[2];
-    }
+    const email = user[0].email;
     tutors.forEach((tutor: TutorData) => {
-      if((tutor.first_name == first_name && tutor.last_name == last_name) ||
-         (tutor.first_name == first_name_alt && tutor.last_name == last_name_alt)
-      ){
+      if(tutor.emailAddress == email){
         updateTutor(tutor);
         updateTutorExists(true);
       }

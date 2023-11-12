@@ -1,7 +1,7 @@
 'use client'
 import './page.css'
 import { TutorData } from '@/types/tutordata'
-import tutors from '../../../public/new_tutor_data.json'
+import tutors from '../../../public/tutor_data.json'
 import { useCallback, useContext, useEffect, useState } from 'react'
 import Loading from '@/components/Loading';
 import Calendar from 'react-calendar'

@@ -2,7 +2,7 @@
 import { MobileContext } from "@/contexts/MobileContext"
 import { useContext, useEffect, useState } from 'react'
 import classes from '../../public/classes.json'
-import tutors from '../../public/new_tutor_data.json'
+import tutors from '../../public/tutor_data.json'
 import Loading from "@/components/Loading"
 import classTextToClassName from '../../data/classTextToClassName'
 import TutorBox from "@/components/TutorBox"
