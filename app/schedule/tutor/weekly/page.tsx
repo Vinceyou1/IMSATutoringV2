@@ -94,7 +94,7 @@ export default function Weekly(){
     if(activeDay == "") return;
     const str = time(slot, day);
     const temp = JSON.parse(JSON.stringify(availabilty));
-    if(availabilityIncluded(slot, day)){
+    if(availabilityIncluded(slot, activeDay)){
       temp[activeDay].splice(availabilty[activeDay].indexOf(str), 1);
     } else {
       temp[activeDay].push(str);
@@ -109,7 +109,7 @@ export default function Weekly(){
       alert("Error! Are you signed in?");
       return;
     }
-    const tutorRef = doc(db, 'tutors', tutor.id);
+    const tutorRef = doc(db, 'tutors', String(tutor.id));
     updateSaving(true);
     await setDoc(tutorRef, { weekly: availabilty }, { merge: true }).catch(() => {
       alert("There's been an error. Please try again.");
