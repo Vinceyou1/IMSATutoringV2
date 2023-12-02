@@ -4,7 +4,6 @@ import { useContext, useEffect, useState } from 'react'
 import classes from '../../public/classes.json'
 import tutors from '../../public/tutor_data.json'
 import Loading from "@/components/Loading"
-import classTextToClassName from '../../data/classTextToClassName'
 import TutorBox from "@/components/TutorBox"
 import Grid2 from "@mui/material/Unstable_Grid2"
 import { TutorData } from "@/types/tutordata"
@@ -36,51 +35,36 @@ export default function Tutors(){
 
   useEffect(() => {
     let tempTutors: TutorData[] = [];
-    if(classFilter === "any" && subject != "Language") {
-      tempTutors = [...tutors];
-    } else {
-      let classNameFull = ((selectedLanguageClass == "") ? classFilter : selectedLanguageClass);
-      if(classTextToClassName.has(classNameFull)){
-        classNameFull = classTextToClassName.get(classNameFull);
-      }
-
-      if(selectedLanguageClass != "") {
-        const c = classNameFull.split(" ");
-        let num = "1";
-        switch(c[1]){
-          case "I":
-            num = "1";
-            break;
-          case "II":
-            num = "2";
-            break;
-          case "III":
-            num = "3";
-            break;
-          case "IV":
-            num = "4";
-            break;
-          case "V":
-            num = "5";
-        }
-        classNameFull = c[0] + " " + num;
-      }
+    if(hallFilter != "Any Hall"){
       tutors.forEach((tutor: TutorData) => {
-        if(
-          (tutor.biology?.includes(classFilter)) ||
-          (tutor.chemistry?.includes(classFilter)) ||
-          (tutor.physics?.includes(classFilter)) ||
-          (tutor.mathcore?.includes(classFilter)) ||
-          (tutor.moreMath?.includes(classFilter)) ||
-          (tutor.cs?.includes(classFilter)) ||
-          (tutor.otherScience?.includes(classFilter)) ||
-          (subject == "Language" && tutor.language?.includes(selectedLanguageClass))
-        ) tempTutors.push(tutor);
-        }
-      );
+        if(String(tutor.hall) == hallFilter) tempTutors.push(tutor);
+      })
+    } else {
+      tempTutors = [...tutors];
     }
-    console.log(selectedLanguageClass);
-    console.log(classFilter);
+
+    if(classFilter === "any" && subject != "Language") {
+      // do nothing
+    } else {
+      for(let i = 0; i < tempTutors.length;){
+        let tutor = tempTutors[i];
+        if(
+          !(tutor.biology?.includes(classFilter)) &&
+          !(tutor.chemistry?.includes(classFilter)) &&
+          !(tutor.physics?.includes(classFilter)) &&
+          !(tutor.mathcore?.includes(classFilter)) &&
+          !(tutor.moreMath?.includes(classFilter)) &&
+          !(tutor.cs?.includes(classFilter)) &&
+          !(tutor.otherScience?.includes(classFilter)) &&
+          !(subject == "Language" && tutor.language?.includes(selectedLanguageClass))
+        ){
+          tempTutors.splice(i, 1);
+        } else {
+          ++i;
+        }
+      }
+    }
+
     // Shuffle the tutor pool, for fairness
     for (let i = tempTutors.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -89,7 +73,6 @@ export default function Tutors(){
       tempTutors[j] = temp;
     }
     updateFilteredTutors(tempTutors);
-    // TODO: implement hall filter when I get hall data
   }, [classFilter, hallFilter, selectedLanguageClass])
 
   useEffect(() => {
@@ -123,7 +106,6 @@ export default function Tutors(){
     </>
   )
 
-  // Hall Filter won't work for now, cuz I don't actually have hall data
   const halls = (
     <>
       <option value="Any Hall">Any Hall</option>
