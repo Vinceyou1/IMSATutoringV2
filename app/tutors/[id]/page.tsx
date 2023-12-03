@@ -150,7 +150,6 @@ export default function TutorPage({params}){
     if(parts[0] == "12") val -= 1200;
     if(parts[1].slice(2, 4) == "PM") val += 1200;
     val += parseInt(parts[1].slice(0, 2));
-    console.log(time + " " + val.toString()) 
     return val;
   }
 

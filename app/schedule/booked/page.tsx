@@ -112,7 +112,6 @@ export default function Booked(){
     const tutorRef = doc(db, 'tutors', tutor_id.toString());
     await getDoc(tutorRef).then(async (doc) => {
       let d = doc.data();
-      console.log(d);
       if(d){
         if(d.hasOwnProperty(day) && d[day].booked.includes(time)){
           d[day].booked.splice(d[day].booked.indexOf(time), 1);
