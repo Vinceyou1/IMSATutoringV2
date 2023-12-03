@@ -55,22 +55,29 @@ export default function Daily(){
   const [changes, updateChanges] = useState({});
 
   function time(slot: number){
-    const h = currSelectedHour + (currSelectedHour == 0 ? 12 : 0);
-    let m = "00";
+    const h1 = currSelectedHour + (currSelectedHour == 0 ? 12 : 0);
+    let m1 = "";
+    let m2 = ""
     switch(slot){
       case 0:
-        m = "00";
+        m1 = "00";
+        m2 = "30";
         break;
       case 1:
-        m = "30";
+        m1 = "30";
+        m2 = "00";
         break;
     }
-    return h.toString() + ":" + m + " " + (AM ? "AM" : "PM");
+    const half1 = (AM ? "AM" : "PM");
+    let h2 = (slot == 0 ? h1 : (h1 + 1) % 12);
+    if(h2 == 0) h2 = 12;
+    const half2 = (h1 ==  11 && h2 == 12 ? (half1 == "PM" ? "AM" : "PM") : half1);
+    return h1.toString() + ":" + m1 + half1 + " - " + h2.toString() + ":" + m2 + half2;
   }
 
   const getData = useCallback(async () => {
     if(!tutor || !tutor.id) return;
-    const tutorRef = doc(db, 'tutors', tutor.id);
+    const tutorRef = doc(db, 'tutors', String(tutor.id));
     await getDoc(tutorRef).then((res) => {
       const d = res.data();
       if(res.get('weekly')){
@@ -160,7 +167,7 @@ export default function Daily(){
       alert("Error! Are you signed in?");
       return;
     }
-    const tutorRef = doc(db, 'tutors', tutor.id);
+    const tutorRef = doc(db, 'tutors', String(tutor.id));
     updateSaving(true);
     await setDoc(tutorRef, {...changes, weekly: weeklyAvailabilty}, { merge: false }).catch(() => {
       alert("There's been an error. Please try again.");

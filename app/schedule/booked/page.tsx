@@ -90,19 +90,19 @@ export default function Booked(){
   }
 
   function idToTutor(id: string){
-    let tutor_name = "";
-    const name = tutors.forEach((tutor) => {if(tutor.id == id) tutor_name = tutor.first_name + " " + tutor.last_name});
-    return tutor_name
+    let name = "";
+    tutors.forEach((tutor : TutorData) => {if(String(tutor.id) == id) name = tutor.firstName + " " + tutor.lastName});
+    return name
   }
 
   async function removeBooking(key: string, tutor_id: number){
     const s = key.split(" ");
     const day = s.at(0);
-    const time = s.at(1) + " " + s.at(2);
+    const time = s.at(1) + " " + s.at(2) + " " + s.at(3);
     updateLoadingArray(loadingArray.concat(day + " " + time));
     let tutor : TutorData = null;
     tutors.forEach((t: TutorData) => {
-      if(t.id == tutor_id.toString()){
+      if(t.id.toString() == tutor_id.toString()){
         tutor = t;
       }
     })
@@ -127,13 +127,13 @@ export default function Booked(){
     await setDoc(studentRef, d);
 
     await addDoc(collection(db, "mail"), {
-      to: tutor.email,
+      to: tutor.emailAddress,
       cc: user[0].email,
       template: {
         name: "Cancel",
         data: {
           name: user[0].displayName,
-          tutor: tutor.first_name,
+          tutor: tutor.firstName,
           time: time,
           day: day,
         },
@@ -147,8 +147,7 @@ export default function Booked(){
 
 
 
-  const bookings = studentActive ?
-    loading ? <Loading /> : 
+  const bookings = loading ? <Loading /> : 
     Object.keys(studentData).length === 0 ? <div className="w-full h-full flex items-center justify-center text-xl text-center"><p>You have not booked any appointments yet.</p></div> :
     <Grid2 container spacing={2}>
       {
@@ -164,15 +163,10 @@ export default function Booked(){
         ))
       }
     </Grid2>
-  :
-  tutor ? <>Welcome {tutor.first_name}</> :  <div className="w-full h-full flex items-center justify-center border-2 text-xl text-center"><p>You are not registered as a tutor.</p></div>
 
   return (
     <div className="p-8 bg-center flex flex-col h-full bg-[url(/scattered-forcefields7.svg)] bg-cover bg-no-repeat">
-      <div className="flex flex-row items-end">
-        <button onClick={() => updateStudentActive(true)} className={"border-2 border-b-0 border-[rgb(203,_213,_224)] p-2 rounded-t-xl mr-2 " + (studentActive ? "text-xl font-bold " : "text-sm")}>Student</button>
-        <button onClick={() => updateStudentActive(false)} className={"border-2 border-b-0 border-[rgb(203,_213,_224)] p-2 rounded-t-xl " + (!studentActive ? "text-xl font-bold " : "text-sm")}>Tutor</button>
-      </div>
+      <h1 className="font-bold pb-2 text-2xl">Bookings</h1>
       <div className="border-2 flex-grow p-4 border-[rgb(203,_213,_224)]">
         {bookings}
       </div>

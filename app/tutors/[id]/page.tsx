@@ -64,7 +64,7 @@ export default function TutorPage({params}){
       } else return (<></>)
     });
     if(ans) updateCourses(ans);
-  }, [tutor, params.id, dataNameToText]);
+  }, [tutor, dataNameToText]);
 
   useEffect(() => {
     let exists = false;
@@ -76,7 +76,7 @@ export default function TutorPage({params}){
     });
     updateTutorExists(exists);
     sortTutorSubjects();
-  }, [tutor, sortTutorSubjects])
+  }, [tutor])
 
 
   const [day, updateDay] = useState<Date>(new Date());
@@ -144,11 +144,13 @@ export default function TutorPage({params}){
   const [slot, updateSlot] = useState(["" , ""]);
 
   function value(time: string){
-    time = time.replace(":", "");
+    time = time.replace(":", " ");
     const parts = time.split(' ');
-    let val = parseInt(parts[0]);
-    if(parts[0].slice(0, 2) == "12") val -= 1200;
-    if(parts[1] == "PM") val += 1200;
+    let val = parseInt(parts[0]) * 100;
+    if(parts[0] == "12") val -= 1200;
+    if(parts[1].slice(2, 4) == "PM") val += 1200;
+    val += parseInt(parts[1].slice(0, 2));
+    console.log(time + " " + val.toString()) 
     return val;
   }
 
