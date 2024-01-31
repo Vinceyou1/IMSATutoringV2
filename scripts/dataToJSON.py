@@ -15,6 +15,8 @@ def transform(data):
         student["otherScience"] = None if student["otherScience"] == "None" else student["otherScience"].split(", ")
         student["aboutMe"] = student.pop("aboutMeThisDoesntHaveToBeLongMaybeJustAQuick23Sentences")
         del student["timestamp"]
+        if "anyOtherCoursesNotListedAbove" in student:
+            del student["anyOtherCoursesNotListedAbove"]
         f.write(json.dumps(student))
         f.write("," if i != len(data) - 1 else "")
         f.write("\n")
