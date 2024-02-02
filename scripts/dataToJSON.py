@@ -44,15 +44,15 @@ d = [
         "graduationYear": 2025
     },
     {
-        "timestamp": "2023-10-04T04:14:27.677Z",
+        "timestamp": "2024-02-01T18:03:46.804Z",
         "emailAddress": "zcai@imsa.edu",
         "firstName": "Zhuoer",
         "lastName": "Cai",
         "hall": 1501,
         "wing": "D",
-        "aboutMeThisDoesntHaveToBeLongMaybeJustAQuick23Sentences": "Hi I'm Zhuoer. I can tutor MI II and MI III, I'm in MI IV, BC I, and intro to proofs this semester",
-        "mathcore": "MI II, MI III",
-        "moreMath": "None",
+        "aboutMeThisDoesntHaveToBeLongMaybeJustAQuick23Sentences": "Hi I'm Zhuoer. I'm in discrete, BC 2, and number theory this semester",
+        "mathcore": "MI II, MI III, MI IV, BC I",
+        "moreMath": "None, Intro to Proofs",
         "cs": "None",
         "biology": "None",
         "chemistry": "None",
@@ -485,7 +485,7 @@ d = [
         "graduationYear": 2025
     },
     {
-        "timestamp": "2024-01-14T06:42:26.775Z",
+        "timestamp": "2024-02-01T07:04:01.332Z",
         "emailAddress": "schatterjee@imsa.edu",
         "firstName": "Shatakshi",
         "lastName": "Chatterjee",
@@ -1193,6 +1193,44 @@ d = [
         "otherScience": "MSI",
         "anyOtherCoursesNotListedAbove": "Moving and Learning",
         "id": 125103,
+        "graduationYear": 2025
+    },
+    {
+        "timestamp": "2024-01-31T22:39:01.725Z",
+        "emailAddress": "kkranthi@imsa.edu",
+        "firstName": "Khushi",
+        "lastName": "Kranthi",
+        "hall": 1507,
+        "wing": "A",
+        "aboutMeThisDoesntHaveToBeLongMaybeJustAQuick23Sentences": "I am a Junior in 1507 who teaches various subjects, feel free to come to me at any time, even when I am not technically tutoring. I would love to help!",
+        "mathcore": "Geometry, MI I/II, MI II, MI III, MI IV",
+        "moreMath": "None",
+        "cs": "CSI",
+        "biology": "None",
+        "chemistry": "SI Chemistry",
+        "physics": "SI Physics, Physics: Sound and Light",
+        "language": "Mandarin I, Mandarin II",
+        "otherScience": "MSI, Engineering",
+        "id": 125272,
+        "graduationYear": 2025
+    },
+    {
+        "timestamp": "2024-02-01T22:56:07.956Z",
+        "emailAddress": "ylakhani@imsa.edu",
+        "firstName": "Yaalini",
+        "lastName": "Lakhani",
+        "hall": 1507,
+        "wing": "C",
+        "aboutMeThisDoesntHaveToBeLongMaybeJustAQuick23Sentences": "I am a current junior at IMSA. I love to listen to music and read. ",
+        "mathcore": "Geometry, MI I/II, MI II, MI III, MI IV",
+        "moreMath": "None",
+        "cs": "CSI, OOP",
+        "biology": "None",
+        "chemistry": "SI Chemistry",
+        "physics": "SI Physics, Modern Physics",
+        "language": "Spanish II",
+        "otherScience": "MSI",
+        "id": 125309,
         "graduationYear": 2025
     }
 ]
