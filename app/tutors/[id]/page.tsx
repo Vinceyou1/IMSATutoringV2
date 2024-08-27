@@ -12,42 +12,39 @@ import { WeeklyAvailability } from '@/types/weeklyAvailability'
 import { UserDataContext } from '@/contexts/UserContext'
 import Popup from 'reactjs-popup'
 
-export default function TutorPage({params}){
+export default function TutorPage(){
+  const id = parseInt(window.location.href.split('/').at(-1)!);
   const isMobile = useContext(MobileContext);
   const user = useContext(UserDataContext);
   const [tutor, updateTutor] = useState<TutorData>();
   const [tutorExists, updateTutorExists] = useState(true);
   const [courses, updateCourses] = useState([<></>]);
 
-  const dataNameToText = {
-    mathcore: "Math Courses(Core)",
-    moreMath: "Math Courses(Non-Core)",
-    physics: "Physics Courses",
-    biology: "Biology Courses",
-    chemistry: "Chemistry Courses",
-    cs: "CS Courses",
-    language: "Language Courses",
-    otherScience: "Other Science Courses"
-  };
   // Sorts the class list by their length 
   const sortTutorSubjects = useCallback(() => {
     if(!tutor) return;
-    const temp = JSON.parse(JSON.stringify(tutor));
-    delete temp['lastName'];
-    delete temp['firstName'];
-    delete temp['id'];
-    delete temp['graduationYear'];
-    delete temp['emailAddress'];
-    delete temp['wing'];
-    delete temp['hall'];
-    delete temp['aboutMe'];
-
-    const sorted = Object.keys(temp).map((key) => [key, temp[key]]);
-    sorted.sort((a, b) => {
-      if(!a[1]) return 1;
-      if(!b[1]) return -1;
-      return b[1].length - a[1].length;
-    });
+    
+    const dataNameToText = {
+      mathcore: "Math Courses(Core)",
+      moreMath: "Math Courses(Non-Core)",
+      physics: "Physics Courses",
+      biology: "Biology Courses",
+      chemistry: "Chemistry Courses",
+      cs: "CS Courses",
+      language: "Language Courses",
+      otherScience: "Other Science Courses",
+    };
+    
+    // really shitty implementation
+    const { mathcore, moreMath, physics, biology, chemistry, cs, language, otherScience} = tutor;
+    const temp = {
+      mathcore, moreMath, physics, biology, chemistry, cs, language, otherScience
+    };
+    type ClassName = keyof typeof temp;
+    let sorted: [ClassName, string[] | null][] = [];
+    for(const [key, val] of Object.entries(temp)){
+      sorted.push([key as ClassName, val])
+    }
 
     const ans = sorted.map((element) => {
       if(element[1]){
@@ -64,12 +61,12 @@ export default function TutorPage({params}){
       } else return (<></>)
     });
     if(ans) updateCourses(ans);
-  }, [tutor, dataNameToText]);
+  }, [tutor]);
 
   useEffect(() => {
     let exists = false;
     tutors.forEach((tutor: TutorData) => {
-      if(String(tutor.id) == params.id) {
+      if(tutor.id == id) {
         updateTutor(tutor);
         exists = true;
       }
@@ -94,14 +91,13 @@ export default function TutorPage({params}){
   const db = useContext(FirebaseFirestoreContext);
   const [changes, updateChanges] = useState({});
 
-  
-
   useEffect(() => {
     const getData = async () => {
-      if(!tutor || !tutor.id) return;
+      if(!tutor || !tutor.id || !db) return;
       const tutorRef = doc(db, 'tutors', String(tutor.id));
       onSnapshot(tutorRef, (doc) => {
         let d = doc.data();
+        if(!d) return;
         if(doc.get('weekly')){
           updateWeeklyAvailability(doc.get('weekly'));
           delete d['weekly'];
@@ -172,7 +168,7 @@ export default function TutorPage({params}){
       )
       return;
     }
-    let slots = [];
+    let slots: string[] = [];
     weeklyAvailabilty[w].forEach((value) => {
       if(!(changes.hasOwnProperty(d) && (changes[d].changes.includes(value) || changes[d].booked.includes(value)))) slots.push(value);
     });
@@ -224,6 +220,7 @@ export default function TutorPage({params}){
       alert("This tutor doesn't exist?");
       return;
     }
+    if(!db) return;
     const tutorRef = doc(db, 'tutors', String(tutor.id));
     updateError(false);
     updateBooking(true);
@@ -318,7 +315,7 @@ export default function TutorPage({params}){
     }
   </div>
 
-  if(!tutor) return <Loading />
+  if(!tutor || !db) return <Loading />
   return (
     <div className='flex flex-col justify-between w-full'>
       <Popup

@@ -8,7 +8,7 @@ export default function MySchedule(){
   const user = useContext(UserDataContext);
   const isMobile = useContext(MobileContext);
 
-  if(user[1]){
+  if(!user[1]){
     return (
       <Loading />
     )

@@ -11,61 +11,26 @@ import { FirebaseFirestoreContext } from "@/contexts/FirebaseContext";
 import Image from 'next/image';
 import './page.css';
 
+// TODO: add what appointments a tutor has
 export default function Booked(){
   const user = useContext(UserDataContext);
   const isMobile = useContext(MobileContext);
-  const [studentActive, updateStudentActive] = useState(true);
-
-  const [tutor, updateTutor] = useState<TutorData>();
-
   const [loading, updateLoading] = useState(true);
-  const [studentData, updateStudentData] = useState({});
-  const [tutorData, updateTutorData] = useState({});
+  const [studentData, updateStudentData] = useState<Record<string, number>>({});
   const db = useContext(FirebaseFirestoreContext);
 
   useEffect(() => {
-    if(!user[0] || !user[0].displayName){
-      updateTutor(null);
-      return;
-    }
-
-    const email = user[0].email;
-    tutors.forEach((tutor: TutorData) => {
-      if(tutor.emailAddress == email){
-        updateTutor(tutor);
-      }
-    });
-
-    const getData = async () => {
-      if(!tutor || !tutor.id) return;
-      const tutorRef = doc(db, 'tutors', String(tutor.id));
-      onSnapshot(tutorRef, (doc) => {
-        let d = doc.data();
-        if(doc.get('weekly')){
-          delete d['weekly'];
-        }
-        if(d){
-          updateTutorData(d);
-        }
-      });
-    }
-    getData();
-  }, [user, db, tutor])
-
-
-  useEffect(() => {
     updateLoading(true);
-    if(!user[0] || !user[0].uid) {
-      return;
-    }
 
     const getStudentData = async () => {
+      if(!user[0] || !user[0].uid || !db) {
+        return;
+      }
       const studentRef = doc(db, 'bookings', user[0].uid);
       onSnapshot(studentRef, (doc) => {
-        if(doc.data()){
-          updateStudentData(
-            doc.data()
-          );
+        const data = doc.data();
+        if(data){
+          updateStudentData(data);
         }
       })
     }
@@ -75,7 +40,7 @@ export default function Booked(){
 
   const [loadingArray, updateLoadingArray] = useState<string[]>([]);
 
-  if(user[1]){
+  if(user[1] || !db){
     return (
       <Loading />
     )
@@ -89,30 +54,31 @@ export default function Booked(){
     )
   }
 
-  function idToTutor(id: string){
+  function idToTutor(id: number){
     let name = "";
-    tutors.forEach((tutor : TutorData) => {if(String(tutor.id) == id) name = tutor.firstName + " " + tutor.lastName});
+    tutors.forEach((tutor : TutorData) => {if(tutor.id == id) name = tutor.firstName + " " + tutor.lastName});
     return name
   }
 
   async function removeBooking(key: string, tutor_id: number){
+    if(!user[0] || !db) return;
     const s = key.split(" ");
     const day = s.at(0);
     const time = s.at(1) + " " + s.at(2) + " " + s.at(3);
     updateLoadingArray(loadingArray.concat(day + " " + time));
-    let tutor : TutorData = null;
+    let tutor = null;
     tutors.forEach((t: TutorData) => {
       if(t.id.toString() == tutor_id.toString()){
         tutor = t;
       }
     })
-
     if(!tutor) return;
+    tutor = tutor as TutorData;
 
     const tutorRef = doc(db, 'tutors', tutor_id.toString());
     await getDoc(tutorRef).then(async (doc) => {
       let d = doc.data();
-      if(d){
+      if(d && day){
         if(d.hasOwnProperty(day) && d[day].booked.includes(time)){
           d[day].booked.splice(d[day].booked.indexOf(time), 1);
           await setDoc(tutorRef, d);
@@ -143,8 +109,6 @@ export default function Booked(){
     temp.splice(temp.indexOf(day + " " + time), 1);
     updateLoadingArray(temp);
   }
-
-
 
   const bookings = loading ? <Loading /> : 
     Object.keys(studentData).length === 0 ? <div className="w-full h-full flex items-center justify-center text-xl text-center"><p>You have not booked any appointments yet.</p></div> :

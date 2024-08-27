@@ -73,21 +73,22 @@ export default function Tutors(){
       tempTutors[j] = temp;
     }
     updateFilteredTutors(tempTutors);
-  }, [classFilter, hallFilter, selectedLanguageClass])
+  }, [classFilter, hallFilter, selectedLanguageClass, subject])
 
   useEffect(() => {
-    if(subject != "Language"){
+    if(subject != "Language" || !Object.keys(classes.Language).includes(classFilter)){
       return;
     }
+    const key = classFilter as keyof typeof classes.Language;
     updateLanguageClassList(
       <select onChange={(event) => {updateSelectedLanguageClass(event.target.value)}} className={'border-secondary dark:border-secondary-dark bg-primary dark:bg-primary-dark border-2 rounded-sm ' + ((isMobile) ? 'ml-2': 'mr-4')}>
-        {classes.Language[classFilter].map((className) => {
+        {classes.Language[key].map((className) => {
           return <option value={className} key={className}>{className}</option>
         })}
       </select>
     )
-    updateSelectedLanguageClass(classes.Language[classFilter][0]);
-  }, [classFilter])
+    updateSelectedLanguageClass(classes.Language[key][0]);
+  }, [classFilter, isMobile, subject])
 
   if(loading){
     return (
@@ -147,18 +148,22 @@ export default function Tutors(){
       <select className="hidden"></select>
     )
     updateSelectedLanguageClass("");
+    if(!Object.keys(classes).includes(value)){
+      return;
+    }
+    const key = value as keyof Omit<typeof classes, 'Language'>;
     updateClassList(
       <>
         {
-          classes[value].map((className) => {
-            return <option value={className} key={className}>{className}</option>
+          classes[key].map((name) => {
+            return <option value={name} key={name}>{name}</option>
           })
         }
       </>
     )
-    const classSelect = document.getElementById("class") as HTMLSelectElement;
-    classSelect.value = classes[value][0]
-    updateClassFilter(classes[value][0]);
+    let classSelect = document.getElementById("class") as HTMLSelectElement;
+    classSelect.value = classes[key][0]
+    updateClassFilter(classes[key][0]);
   }
   return(
     <div className="h-full w-full bg-primary dark:bg-primary-dark p-4 flex-grow flex flex-col ">

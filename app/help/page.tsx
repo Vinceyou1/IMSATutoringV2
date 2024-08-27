@@ -1,5 +1,6 @@
 'use client'
 
+import Loading from "@/components/Loading";
 import { FirebaseFirestoreContext } from "@/contexts/FirebaseContext";
 import { addDoc, collection } from "firebase/firestore";
 import { useContext, useState } from "react";
@@ -7,6 +8,7 @@ import { useContext, useState } from "react";
 export default function Help(){
   const [error_visible, seterror_visible] = useState(false);
   const db = useContext(FirebaseFirestoreContext);
+  if(!db) return <Loading />
   async function submitContact(){
     const name = (document.getElementById("name") as HTMLInputElement).value;
     const issue = (document.getElementById("issue") as HTMLTextAreaElement).value;
@@ -17,6 +19,10 @@ export default function Help(){
     seterror_visible(false);
     const submitButton = (document.getElementById("submit") as HTMLButtonElement);
     submitButton.innerHTML = "SUBMITTING...";
+    if(!db) {
+      submitButton.innerHTML = "ERROR"
+      return;
+    }
     await addDoc(collection(db, "mail"), {
       to: ["vyou@imsa.edu"],
       template: {

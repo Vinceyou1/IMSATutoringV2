@@ -76,10 +76,11 @@ export default function Daily(){
   }
 
   const getData = useCallback(async () => {
-    if(!tutor || !tutor.id) return;
+    if(!tutor || !tutor.id || !db) return;
     const tutorRef = doc(db, 'tutors', String(tutor.id));
     await getDoc(tutorRef).then((res) => {
       const d = res.data();
+      if(!d) return;
       if(res.get('weekly')){
         updateWeeklyAvailability(res.get('weekly'));
         delete d['weekly'];
@@ -176,7 +177,7 @@ export default function Daily(){
     });
   }
 
-  if(user[1]){
+  if(user[1] || !db){
     return (
       <Loading />
     )

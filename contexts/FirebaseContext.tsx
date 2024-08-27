@@ -8,9 +8,9 @@ import {
 import * as React from 'react';
 import { createContext } from 'react';
 
-export const FirebaseAppContext = createContext<FirebaseApp>(null);
-export const FirebaseFirestoreContext = createContext<Firestore>(null);
-export const FirebaseAuthContext = createContext<Auth>(null);
+export const FirebaseAppContext = createContext<FirebaseApp | null>(null);
+export const FirebaseFirestoreContext = createContext<Firestore | null>(null);
+export const FirebaseAuthContext = createContext<Auth | null>(null);
 const firebaseConfig = {
   apiKey: "AIzaSyCOLiUSqahdU-yhNJ4ccFYHq0iIAvc9MXQ",
   authDomain: "imsa-tutoring.firebaseapp.com",
@@ -22,10 +22,10 @@ const firebaseConfig = {
   measurementId: "G-646WMNG34C"
 };
 
-export const FirebaseProvider = ({ children }) => {
-  const [firebaseApp, setFirebaseApp] = React.useState<FirebaseApp>(null);
-  const [firestore, setFirestore] = React.useState<Firestore>(null);
-  const [auth, setAuth] = React.useState<Auth>(null);
+export const FirebaseProvider = ({ children } : { children: React.ReactNode}) => {
+  const [firebaseApp, setFirebaseApp] = React.useState<FirebaseApp | null>(null);
+  const [firestore, setFirestore] = React.useState<Firestore | null>(null);
+  const [auth, setAuth] = React.useState<Auth | null>(null);
 
   React.useEffect(() => {
     if (!firebaseApp && typeof window !== 'undefined') {
@@ -35,7 +35,7 @@ export const FirebaseProvider = ({ children }) => {
       setFirestore(getFirestore(firebaseApp));
       setAuth(getAuth(firebaseApp));
     }
-  }, []);
+  }, [firebaseApp]);
 
   return (
     <FirebaseAppContext.Provider value={firebaseApp}>

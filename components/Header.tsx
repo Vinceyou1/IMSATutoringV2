@@ -8,11 +8,15 @@ import Image from 'next/image'
 
 export default function Header(){
   const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({
+    prompt: 'select_account'
+  });
   const auth = useContext(FirebaseAuthContext);
   const user = useContext(UserDataContext);
   const isMobile = useContext(MobileContext);
   const [sidebarActive, setSideBarActive] = useState(false);
   const signIn = async () => {
+    if(!auth) return;
     try{  
       await signInWithPopup(auth, provider);
     } catch {}
@@ -39,7 +43,7 @@ export default function Header(){
   </div> : <></>
   if(!user[1]){
     user[0] ? signInOut = (<button className={signInOutCommon + ' hover:bg-[#ff6666]'} 
-        onClick={() => auth.signOut()}>Sign Out</button>) : 
+        onClick={() => {if(auth) auth.signOut()}}>Sign Out</button>) : 
       signInOut = (<button className={signInOutCommon + ' hover:bg-secondary hover:dark:bg-[white]' }
         onClick={() => signIn()}>Sign in</button>);
     // Menu icon by Icons8

@@ -61,7 +61,7 @@ export default function Weekly(){
 
   useEffect(() => {
     const getData = async () =>{
-      if(!tutor || !tutor.id) return;
+      if(!tutor || !tutor.id || !db) return;
       const tutorRef = doc(db, 'tutors', String(tutor.id));
       await getDoc(tutorRef).then((res) => {
         if(res.get('weekly')){
@@ -112,7 +112,7 @@ export default function Weekly(){
   const [saving, updateSaving] = useState(false);
 
   async function saveAvailability(){
-    if(!tutor || !tutor.id){
+    if(!tutor || !tutor.id || !db){
       alert("Error! Are you signed in?");
       return;
     }
@@ -125,7 +125,7 @@ export default function Weekly(){
     });
   }
 
-  if(user[1]){
+  if(user[1] || !db){
     return (
       <Loading />
     )

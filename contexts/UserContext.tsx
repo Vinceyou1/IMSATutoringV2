@@ -1,14 +1,14 @@
 'use client'
 import { User, onAuthStateChanged } from "firebase/auth";
-import React from "react";
+import React, { PropsWithChildren, ReactNode } from "react";
 import { createContext } from "react";
 import { FirebaseAuthContext } from "./FirebaseContext";
 import Popup from "reactjs-popup";
 import './popup.css'
 
-export const UserDataContext = createContext<[User, boolean]>(null);
-export function UserDataProvider({children}){
-  const [user, setUser] = React.useState<User>(null);
+export const UserDataContext = createContext<[User | null, boolean]>([null, true]);
+export function UserDataProvider({children}: {children: ReactNode}){
+  const [user, setUser] = React.useState<User | null>(null);
   const [loading, setLoading] = React.useState(true);
   const auth = React.useContext(FirebaseAuthContext);
   const [badEmail, updateBadEmail] = React.useState(false);
