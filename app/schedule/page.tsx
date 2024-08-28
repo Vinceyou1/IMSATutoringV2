@@ -23,7 +23,7 @@ export default function MySchedule(){
   }
 
   return(
-    <div className="h-full w-full flex flex-col justify-center pt-4 bg-[right_35%_top_20%] bg-[url(/scattered-forcefields5.svg)] bg-cover bg-no-repeat ">
+    <div className="w-full flex flex-col justify-center pt-4 bg-[right_35%_top_20%] bg-[url(/scattered-forcefields5.svg)] bg-cover bg-no-repeat ">
       <h1 className="text-center text-2xl">Welcome {user[0].displayName?.split(" ").at(0)}!</h1>
       <div className={"mt-20 flex justify-center items-center " + (isMobile ? "flex-col" : "flex-row")}>
         <a href="/schedule/booked" className={"w-[min(20rem,100%)] text-center p-4 rounded-xl border-2 " + (isMobile ? "mb-4": "mr-10") }>

@@ -168,7 +168,7 @@ export default function Booked() {
   );
 
   return (
-    <div className="p-8 bg-center flex flex-col h-full bg-[url(/scattered-forcefields7.svg)] bg-cover bg-no-repeat">
+    <div className="p-8 bg-center flex flex-col w-full bg-[url(/scattered-forcefields7.svg)] bg-cover bg-no-repeat">
       <h1 className="font-bold pb-2 text-2xl">Bookings</h1>
       <div className="border-2 flex-grow p-4 border-[rgb(203,_213,_224)]">
         {bookings}

@@ -1,74 +1,74 @@
 {
-    "Math(Core)": [
-        "Geometry",
-        "MI I/II",
-        "MI II",
-        "MI III",
-        "MI IV",
-        "BC I",
-        "BC II",
-        "BC III"
-    ],
-    "More Math":[
-        "Multivariable Calculus",
-        "Introduction to Proofs",
-        "Modern Geometries",
-        "Statistics",
-        "Number Theory",
-        "Problem Solving",
-        "Discrete Mathematics",
-        "Theory of Analysis",
-        "Differential Equations",
-        "Linear Algebra",
-        "Abstract Algebra"
-    ],
-    "CS":[
-        "CSI",
-        "OOP",
-        "Advanced Programming",
-        "Microcontroller Applications",
-        "Web Technologies",
-        "Advanced Web Technologies",
-        "CS Seminar: Android Apps",
-        "CS Seminar: Linux",
-        "CS Seminar: Machine Learning"
-    ],
-    "Physics":[
-        "SI Physics",
-        "Physics: Sound and Light",
-        "Modern Physics",
-        "Physics C: Mechanics",
-        "Physics C: E&M",
-        "Planetary Science"
-    ],
-    "Chemistry":[
-        "SI Chemistry",
-        "Advanced Chemistry",
-        "Organic Chemistry",
-        "Biochemistry",
-        "Environmental Chemistry",
-        "Medicinal Chemistry"
-    ],
-    "Biology":[
-        "Advanced Biological Systems",
-        "Evolution, Biodiversity, and Ecology",
-        "Cancer Biology",
-        "Microbes and Disease",
-        "Pathophysiology",
-        "Biology of Behavior"
-    ],
-    "Language": {
-        "Spanish":["Spanish II", "Spanish III", "Spanish IV", "Spanish V"],
-        "French":["French I", "French II", "French III", "French IV", "French V"],
-        "German":["German I", "German II", "German III"],
-        "Mandarin":["Mandarin I", "Mandarin II", "Mandarin III"]
-    },
-    "Other Science":[
-        "MSI",
-        "Microcontroller Applications",
-        "Geology",
-        "Engineering",
-        "Biophysics",
-        "Computational Science"
-    ]
+  "Math(Core)": [
+    "Geometry",
+    "MI I/II",
+    "MI II",
+    "MI III",
+    "MI IV",
+    "BC I",
+    "BC II",
+    "BC III"
+  ],
+  "More Math": [
+    "Multivariable Calculus",
+    "Introduction to Proofs",
+    "Modern Geometries",
+    "Statistics",
+    "Number Theory",
+    "Problem Solving",
+    "Discrete Mathematics",
+    "Theory of Analysis",
+    "Differential Equations",
+    "Linear Algebra",
+    "Abstract Algebra"
+  ],
+  "CS": [
+    "CSI",
+    "OOP",
+    "Advanced Programming",
+    "Microcontroller Applications",
+    "Web Technologies",
+    "Advanced Web Technologies",
+    "CS Seminar: Android Apps",
+    "CS Seminar: Linux",
+    "CS Seminar: Machine Learning"
+  ],
+  "Physics": [
+    "SI Physics",
+    "Physics: Sound and Light",
+    "Modern Physics",
+    "Physics C: Mechanics",
+    "Physics C: E&M",
+    "Planetary Science"
+  ],
+  "Chemistry": [
+    "SI Chemistry",
+    "Advanced Chemistry",
+    "Organic Chemistry",
+    "Biochemistry",
+    "Environmental Chemistry",
+    "Medicinal Chemistry"
+  ],
+  "Biology": [
+    "Advanced Biological Systems",
+    "Evolution, Biodiversity, and Ecology",
+    "Cancer Biology",
+    "Microbes and Disease",
+    "Pathophysiology",
+    "Biology of Behavior"
+  ],
+  "Language": {
+    "Spanish": ["Spanish II", "Spanish III", "Spanish IV", "Spanish V"],
+    "French": ["French I", "French II", "French III", "French IV", "French V"],
+    "German": ["German I", "German II", "German III"],
+    "Mandarin": ["Mandarin I", "Mandarin II", "Mandarin III"]
+  },
+  "Other Science": [
+    "MSI",
+    "Microcontroller Applications",
+    "Geology",
+    "Engineering",
+    "Biophysics",
+    "Computational Science"
+  ]
 }

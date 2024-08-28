@@ -26,7 +26,7 @@ export default function Home() {
 
   const br = isMobile ? <></> : <br />;
   return (
-    <>
+    <div className="w-full">
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       <div className="w-full bg-[url(/scattered-forcefields.svg)] bg-cover h-fit pb-20 border-b-2">
@@ -107,6 +107,6 @@ export default function Home() {
           {isMobile ? <></> : <div></div>}
         </div>
       </div>
-    </>
+    </div>
   );
 }

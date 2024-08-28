@@ -109,7 +109,7 @@ export default function Weekly() {
 
   if (!user[0]) {
     return (
-      <div className="flex items-center text-lg justify-center h-full">
+      <div className="flex items-center text-lg justify-center w-full">
         Please Sign In With Your IMSA email
       </div>
     );
@@ -117,7 +117,7 @@ export default function Weekly() {
 
   if (!tutorExists) {
     return (
-      <div className="flex items-center justify-center text-center text-lg h-full">
+      <div className="flex items-center justify-center text-center text-lg w-full">
         Hmm, you don&apos;t seem to be registered as a peer tutor. <br /> If you
         are, please fill out the help form.
       </div>
@@ -126,7 +126,7 @@ export default function Weekly() {
 
   // general idea: lots of collapsables, so one dropdown for each day, then a dropdown for each hour, then buttons for each 15-minute block and location
   return (
-    <div className="m-4 bg-[url(/scattered-forcefields5.svg)]bg-cover bg-no-repeat">
+    <div className="m-4 bg-[url(/scattered-forcefields5.svg)]bg-cover bg-no-repeat w-full">
       <div className="flex-col w-fit ml-auto mr-auto">
         <div className="w-full border-2 rounded-t-lg">
           <select

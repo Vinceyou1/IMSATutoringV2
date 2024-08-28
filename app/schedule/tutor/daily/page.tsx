@@ -174,7 +174,7 @@ export default function Daily() {
 
   if (!user[0]) {
     return (
-      <div className="flex items-center text-lg justify-center h-full">
+      <div className="w-full flex items-center text-lg justify-center h-full">
         Please Sign In With Your IMSA email
       </div>
     );
@@ -182,7 +182,7 @@ export default function Daily() {
 
   if (!tutorExists) {
     return (
-      <div className="flex items-center justify-center text-center text-lg h-full">
+      <div className="w-full flex items-center justify-center text-center text-lg h-full">
         Hmm, you don&apos;t seem to be registered as a peer tutor. <br /> If you
         are, please fill out the help form.
       </div>
@@ -191,7 +191,7 @@ export default function Daily() {
 
   // TODO: Figure out what happens if you cancel an appointment while someone booked already
   return (
-    <div className="flex flex-col h-full w-full">
+    <div className="w-full flex flex-col">
       <div className="flex flex-col flex-grow justify-between">
         <div
           className={
