@@ -315,7 +315,7 @@ export default function TutorPage() {
     const info_element = document.getElementById("info") as HTMLTextAreaElement;
     if (info_element) info = info_element.value;
     await addDoc(collection(db, "mail"), {
-      to: tutor.emailAddress,
+      to: tutor.email,
       cc: user[0].email,
       template: {
         name: "Booked",

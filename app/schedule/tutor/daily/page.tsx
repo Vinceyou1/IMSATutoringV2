@@ -37,7 +37,7 @@ export default function Daily() {
 
     const email = user[0].email;
     tutors.forEach((tutor: TutorData) => {
-      if (tutor.emailAddress == email) {
+      if (tutor.email == email) {
         updateTutor(tutor);
         updateTutorExists(true);
       }

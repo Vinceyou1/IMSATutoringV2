@@ -6,7 +6,7 @@ export type TutorData = {
     "hall": number,
     "wing": string,
     "graduationYear": number,
-    "emailAddress": string,
+    "email": string,
     "mathcore": string[] | null,
     "moreMath": string[] | null,
     "physics": string[] | null,

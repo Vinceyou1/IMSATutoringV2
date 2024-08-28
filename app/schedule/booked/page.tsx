@@ -114,7 +114,7 @@ export default function Booked() {
     await setDoc(studentRef, d);
 
     await addDoc(collection(db, "mail"), {
-      to: tutor.emailAddress,
+      to: tutor.email,
       cc: user[0].email,
       template: {
         name: "Cancel",
