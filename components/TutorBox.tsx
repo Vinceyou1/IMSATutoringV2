@@ -1,4 +1,4 @@
-import { TutorData } from "@/types/tutordata";
+import { TutorData } from "@/lib/types";
 
 
 export default function TutorBox({data}: {data: TutorData}){

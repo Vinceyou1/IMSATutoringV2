@@ -1,7 +1,7 @@
 'use client'
 import Loading from "@/components/Loading";
 import { UserDataContext } from "@/contexts/UserContext";
-import { TutorData } from "@/types/tutordata";
+import { TutorData } from "@/lib/types";
 import { useContext, useEffect, useState } from "react"
 import tutors from '../../../public/tutor_data.json'
 import { MobileContext } from "@/contexts/MobileContext";

@@ -6,7 +6,7 @@ import tutors from '../../public/tutor_data.json'
 import Loading from "@/components/Loading"
 import TutorBox from "@/components/TutorBox"
 import Grid2 from "@mui/material/Unstable_Grid2"
-import { TutorData } from "@/types/tutordata"
+import { TutorData } from "@/lib/types"
 
 
 export default function Tutors(){

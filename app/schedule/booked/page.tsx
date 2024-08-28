@@ -1,18 +1,26 @@
-'use client'
+"use client";
 import Loading from "@/components/Loading";
 import { UserDataContext } from "@/contexts/UserContext";
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react";
 import { MobileContext } from "@/contexts/MobileContext";
-import tutors from '../../../public/tutor_data.json'
+import tutors from "../../../public/tutor_data.json";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import { TutorData } from "@/types/tutordata";
-import { addDoc, collection, doc, getDoc, onSnapshot, setDoc } from "firebase/firestore";
+import { TutorData } from "@/lib/types";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  onSnapshot,
+  setDoc,
+} from "firebase/firestore";
 import { FirebaseFirestoreContext } from "@/contexts/FirebaseContext";
-import Image from 'next/image';
-import './page.css';
+import Image from "next/image";
+import "./page.css";
+import { formatBlock } from "@/lib/appointments";
 
 // TODO: add what appointments a tutor has
-export default function Booked(){
+export default function Booked() {
   const user = useContext(UserDataContext);
   const isMobile = useContext(MobileContext);
   const [loading, updateLoading] = useState(true);
@@ -23,72 +31,86 @@ export default function Booked(){
     updateLoading(true);
 
     const getStudentData = async () => {
-      if(!user[0] || !user[0].uid || !db) {
+      if (!user[0] || !user[0].uid || !db) {
         return;
       }
-      const studentRef = doc(db, 'bookings', user[0].uid);
+      const studentRef = doc(db, "bookings", user[0].uid);
       onSnapshot(studentRef, (doc) => {
         const data = doc.data();
-        if(data){
+        if (data) {
           updateStudentData(data);
         }
-      })
-    }
+      });
+    };
     getStudentData();
     updateLoading(false);
-  }, [user, db])
+  }, [user, db]);
 
   const [loadingArray, updateLoadingArray] = useState<string[]>([]);
 
-  if(user[1] || !db){
-    return (
-      <Loading />
-    )
+  if (user[1] || !db) {
+    return <Loading />;
   }
 
-  if(!user[0]){
-    return(
+  if (!user[0]) {
+    return (
       <div className="bg-center flex flex-col items-center justify-center h-full bg-[url(/scattered-forcefields7.svg)] bg-cover bg-no-repeat">
         Please Sign In With Your IMSA email
       </div>
-    )
+    );
   }
 
-  function idToTutor(id: number){
+  function idToTutor(id: number) {
     let name = "";
-    tutors.forEach((tutor : TutorData) => {if(tutor.id == id) name = tutor.firstName + " " + tutor.lastName});
-    return name
+    tutors.forEach((tutor: TutorData) => {
+      if (tutor.id == id) name = tutor.firstName + " " + tutor.lastName;
+    });
+    return name;
   }
 
-  async function removeBooking(key: string, tutor_id: number){
-    if(!user[0] || !db) return;
-    const s = key.split(" ");
-    const day = s.at(0);
-    const time = s.at(1) + " " + s.at(2) + " " + s.at(3);
-    updateLoadingArray(loadingArray.concat(day + " " + time));
-    let tutor = null;
+  function keyToDayTime(key: string): [string, number]{
+    const s = key.split("-");
+    const day = s.at(0)!;
+    const time = parseInt(s.at(1)!);
+    return [day, time];
+  }
+
+  async function removeBooking(key: string, tutor_id: number) {
+    if (!user[0] || !db) return;
+    const ans =  keyToDayTime(key);
+    const day = ans[0];
+    const time = ans[1];
+    updateLoadingArray(loadingArray.concat(key));
+    let tutor: TutorData | null = null;
     tutors.forEach((t: TutorData) => {
-      if(t.id.toString() == tutor_id.toString()){
+      if (t.id.toString() == tutor_id.toString()) {
         tutor = t;
       }
-    })
-    if(!tutor) return;
+    });
+    if (!tutor) {
+      alert(
+        "Your tutor wasn't found (please let me know this is a very big problem)."
+      );
+      return;
+    }
+
+    // really shouldn't have to do this, TODO
     tutor = tutor as TutorData;
 
-    const tutorRef = doc(db, 'tutors', tutor_id.toString());
+    const tutorRef = doc(db, "tutors", tutor_id.toString());
     await getDoc(tutorRef).then(async (doc) => {
-      let d = doc.data();
-      if(d && day){
-        if(d.hasOwnProperty(day) && d[day].booked.includes(time)){
-          d[day].booked.splice(d[day].booked.indexOf(time), 1);
-          await setDoc(tutorRef, d);
+      let changes = doc.get("changes");
+      if (changes && day) {
+        if (changes.hasOwnProperty(day) && changes[day].booked.includes(time)) {
+          changes[day].booked.splice(changes[day].booked.indexOf(time), 1);
+          await setDoc(tutorRef, { changes }, { merge: true });
         }
       }
-    })
+    });
 
-    const studentRef = doc(db, 'bookings', user[0].uid);
-    const d = JSON.parse(JSON.stringify(studentData));
-    delete d[day + " " + time];
+    const studentRef = doc(db, "bookings", user[0].uid);
+    const d = {...studentData};
+    delete d[key];
     await setDoc(studentRef, d);
 
     await addDoc(collection(db, "mail"), {
@@ -99,33 +121,51 @@ export default function Booked(){
         data: {
           name: user[0].displayName,
           tutor: tutor.firstName,
-          time: time,
+          time: formatBlock(time),
           day: day,
         },
       },
-    })
+    });
 
     let temp = [...loadingArray];
     temp.splice(temp.indexOf(day + " " + time), 1);
     updateLoadingArray(temp);
   }
 
-  const bookings = loading ? <Loading /> : 
-    Object.keys(studentData).length === 0 ? <div className="w-full h-full flex items-center justify-center text-xl text-center"><p>You have not booked any appointments yet.</p></div> :
+  const bookings = loading ? (
+    <Loading />
+  ) : Object.keys(studentData).length === 0 ? (
+    <div className="w-full h-full flex items-center justify-center text-xl text-center">
+      <p>You have not booked any appointments yet.</p>
+    </div>
+  ) : (
     <Grid2 container spacing={2}>
-      {
-        Object.keys(studentData).map((key) => (
-          <Grid2 key={key} xs={12 / (isMobile ? 1 : 4)}>
-            <div className="rounded-lg p-2 border-2 border-[rgb(203,_213,_224)] flex flex-row justify-between items-center">
-              <p className="pl-2 mr-2">{key} - {idToTutor(studentData[key])}</p>
-              <button className="w-12 h-12" onClick={() => {
-                removeBooking(key, studentData[key])
-              }}>{loadingArray.includes(key) ? <div className="reverse-spinner" style={{width: "48px"}}></div> : <Image id={key} width={48} height={48} src='/bin.png' alt='' />}</button>
-            </div>
-          </Grid2>
-        ))
-      }
+      {Object.keys(studentData).map((key) => (
+        <Grid2 key={key} xs={12 / (isMobile ? 1 : 4)}>
+          <div className="rounded-lg p-2 border-2 border-[rgb(203,_213,_224)] flex flex-row justify-between items-center">
+            <p className="pl-2 mr-2">
+              {keyToDayTime(key)[0] + " " + formatBlock(keyToDayTime(key)[1])} - {idToTutor(studentData[key])}
+            </p>
+            <button
+              className="w-12 h-12"
+              onClick={() => {
+                removeBooking(key, studentData[key]);
+              }}
+            >
+              {loadingArray.includes(key) ? (
+                <div
+                  className="reverse-spinner"
+                  style={{ width: "48px" }}
+                ></div>
+              ) : (
+                <Image id={key} width={48} height={48} src="/bin.png" alt="" />
+              )}
+            </button>
+          </div>
+        </Grid2>
+      ))}
     </Grid2>
+  );
 
   return (
     <div className="p-8 bg-center flex flex-col h-full bg-[url(/scattered-forcefields7.svg)] bg-cover bg-no-repeat">
@@ -134,5 +174,5 @@ export default function Booked(){
         {bookings}
       </div>
     </div>
-  )
+  );
 }

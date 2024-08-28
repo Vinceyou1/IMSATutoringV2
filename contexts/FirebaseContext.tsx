@@ -11,6 +11,8 @@ import { createContext } from 'react';
 export const FirebaseAppContext = createContext<FirebaseApp | null>(null);
 export const FirebaseFirestoreContext = createContext<Firestore | null>(null);
 export const FirebaseAuthContext = createContext<Auth | null>(null);
+
+// This is a huge vulnerability lmao
 const firebaseConfig = {
   apiKey: "AIzaSyCOLiUSqahdU-yhNJ4ccFYHq0iIAvc9MXQ",
   authDomain: "imsa-tutoring.firebaseapp.com",

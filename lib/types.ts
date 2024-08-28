@@ -16,4 +16,24 @@ export type TutorData = {
     "language": string[] | null,
     "otherScience": string[] | null,
 }
+export enum Weekday {
+    Sunday = "Sunday",
+    Monday = "Monday",
+    Tuesday = "Tuesday",
+    Wednesday = "Wednesday",
+    Thursday = "Thursday",
+    Friday = "Friday",
+    Saturday = "Saturday"
+}
 
+export type WeeklyAvailability = Record<Weekday, number[]>;
+
+export type DayChange = {
+    dailyChanges: number[],
+    booked: number[]
+}
+
+export type Changes = Record<string, {
+    dailyChanges: number[],
+    booked: number[]
+}>

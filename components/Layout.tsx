@@ -9,6 +9,7 @@ export default function Layout({ children }) {
           <main className="flex-grow">
             {children}
           </main>
+          {/* Footer is still very fucked, content pokes through the bottom on longer tutor pages */}
           <Footer />
         </div>
       </>
