@@ -92,6 +92,11 @@ export default function Weekly() {
       alert("Error! Are you signed in?");
       return;
     }
+    let numBlocks = 0;
+    Object.entries(availabilty).map(([_, val]) => (numBlocks += val.length));
+    if (numBlocks < 6)
+      alert("You should be signed up for at least 6 blocks per week.");
+
     const tutorRef = doc(db, "tutors", String(tutor.id));
     updateSaving(true);
     await setDoc(tutorRef, { weekly: availabilty }, { merge: true })
