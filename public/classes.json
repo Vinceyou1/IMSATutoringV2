@@ -5,6 +5,8 @@
     "MI II",
     "MI III",
     "MI IV",
+    "AB I",
+    "AB II",
     "BC I",
     "BC II",
     "BC III"
@@ -66,9 +68,9 @@
   "Other Science": [
     "MSI",
     "Microcontroller Applications",
-    "Geology",
     "Engineering",
     "Biophysics",
-    "Computational Science"
+    "Computational Science",
+    "Electronics"
   ]
 }
