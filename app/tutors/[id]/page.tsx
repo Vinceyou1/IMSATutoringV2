@@ -245,6 +245,7 @@ export default function TutorPage() {
   const [error, updateError] = useState(false);
 
   const [popupOpen, updatePopupOpen] = useState(false);
+  const slotSelected = time != -1;
 
   async function book() {
     if (!user[0]) {
@@ -254,6 +255,9 @@ export default function TutorPage() {
     if (!tutor || !tutor.id) {
       alert("This tutor doesn't exist?");
       return;
+    }
+    if(!slotSelected){
+      alert("Please select an appointment.")
     }
     if (!db) return;
     const tutorRef = doc(db, "tutors", String(tutor.id));
@@ -341,8 +345,6 @@ export default function TutorPage() {
   if (!tutorExists) {
     window.location.replace("/tutors");
   }
-
-  const slotSelected = time != -1;
 
   // TODO: Prevent students from booking appoinments during slots they already booked w/ other tutors
   // Prevent students from booking
