@@ -258,6 +258,7 @@ export default function TutorPage() {
     }
     if(!slotSelected){
       alert("Please select an appointment.")
+      return;
     }
     if (!db) return;
     const tutorRef = doc(db, "tutors", String(tutor.id));
