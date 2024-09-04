@@ -1,5 +1,35 @@
 import json
 
+def parsetime(s):
+    if s is None:
+        return None
+    stringparts = s.split(',')
+    times = []
+    for time in stringparts:
+        parts = time.split(":")
+        time = 1200 + int(parts[0]) * 100
+        time += int(parts[1][0:2])
+        times.append(time)
+    return times
+
+def addTimes(data):
+    f = open("../public/times.json", "w")
+    f.write("[\n")
+    for i in range(len(data)):
+        student = data[i]
+        d = {}
+        d["id"] = student["imsaId"]
+        for day in ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"]:
+            try:
+                d[day] = parsetime(student[day.lower()])
+            except:
+                continue
+        f.write(json.dumps(d))
+        f.write("," if i != len(data) - 1 else "")
+        f.write("\n")
+    f.write("]")
+
+
 # TODO: also process selected times from the google form
 def transform(data):
     f = open("../public/tutor_data.json", "w")
