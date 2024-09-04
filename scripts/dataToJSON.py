@@ -23,7 +23,6 @@ def transform(data):
         d["lastName"] = student["lastName"]
         d["hall"] = student["hall"]
         d["wing"] = student["wing"]
-        print(d["wing"])
         d["graduationYear"] = student["graduationYear"]
         f.write(json.dumps(d))
         f.write("," if i != len(data) - 1 else "")
