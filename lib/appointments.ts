@@ -1,9 +1,7 @@
 // Should probably use date at some point, but I don't want to deal with timezones for now
+import { DayChange, Weekday } from "./types";
 
-import { Changes, DayChange, Weekday } from "./types";
-
-// time as hour:minute, 4:30PM would be 16:30
-export function formatBlock(time: number) {
+function formatTime(time: number) {
   const minutes = time % 100;
   time -= minutes;
   time /= 100;
@@ -11,7 +9,15 @@ export function formatBlock(time: number) {
   const pm = hours >= 12;
   hours %= 12;
   if (hours == 0) hours += 12;
-  return `${hours}:${minutes.toString().padStart(2, "0")} ${pm ? "PM" : "AM"}`;
+  return `${hours}:${minutes.toString().padStart(2, "0")}${pm ? "PM" : "AM"}`;
+}
+
+// time as hour:minute, 4:30PM would be 16:30
+export function formatBlock(time: number) {
+  let nextTime = time;
+  nextTime += time % 100 == 0 ? 30 : 70;
+  nextTime %= 2400;
+  return formatTime(time) + " - " + formatTime(nextTime);
 }
 
 // day is 0-indexed, Sunday is 0
