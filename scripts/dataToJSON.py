@@ -29,24 +29,32 @@ def addTimes(data):
         f.write("\n")
     f.write("]")
 
+aboutMeString = "newTutorsFunFactAboutYouHobbiesArtistsThatYouLikePastJobsTravelThatYouveDonewantToDoWeWantToShareABitAboutYouThatIsBeyondYourSuccessInTheClassroomThisWillBeSharedInTheResidenceHallAndDuringPeerTutorSpotlightWhichWillBePromotedInTheMainBuildingReturningTutorsWriteNaSinceThisWasCompletedInTheFallUnlessYouWantToChangeYouFunFact"
 
 # TODO: also process selected times from the google form
 def transform(data):
-    f = open("../public/tutor_data.json", "w")
+    f = open("../public/tutor_data2.json", "w")
     f.write("[\n")
+    old_data = json.load(open('../public/tutor_data.json', 'r'))
     for i in range(len(data)):
         student = data[i]
         d = {}
         d["mathcore"] = None if student["coreMath"] == "None" else student["coreMath"].split(", ")
         d["moreMath"] = None if student["otherMath"] == "None" else student["otherMath"].split(", ")
-        d["cs"] = None if student["cs"] == "None" else student["cs"].split(", ")
+        d["cs"] = None if student["computerScience"] == "None" else student["computerScience"].split(", ")
         d["biology"] = None if student["biology"] == "None" else student["biology"].split(", ")
         d["chemistry"] = None if student["chemistry"] == "None" else student["chemistry"].split(", ")
         d["physics"] = None if student["physics"] == "None" else student["physics"].split(", ")
         d["language"] = None if student["language"] == "None" else student["language"].split(", ")
         d["otherScience"] = None if student["otherScience"] == "None" else student["otherScience"].split(", ")
         # TODO: fix issue that apostrophes are converted to \u00e2\u20ac\u2122
-        d["aboutMe"] = student["funFactAboutYouHobbiesArtistsThatYouLikePastJobsTravelThatYouveDonewantToDoWeWantToShareABitAboutYouThatIsBeyondYourSuccessInTheClassroomThisWillBeSharedInTheResidenceHallAndDuringPeerTutorSpotlightWhichWillBePromotedInTheMainBuilding"]
+        if str(student[aboutMeString]).lower() == "n/a":
+            for old_student in old_data:
+                print(old_student["id"])
+                if old_student["id"] == student["imsaId"]:
+                    d["aboutMe"] = old_student["aboutMe"]
+        else:
+            d["aboutMe"] = student[aboutMeString]
         d["email"] = student["imsaEmail"]
         d["id"] = student["imsaId"]
         d["firstName"] = student["firstName"]

@@ -5,21 +5,20 @@
     "MI II",
     "MI III",
     "MI IV",
-    "AB I",
-    "AB II",
-    "BC I",
-    "BC II",
-    "BC III"
+    "AB CALC I",
+    "AB CALC II",
+    "BC CALC I",
+    "BC CALC II",
+    "BC CALC III",
+    "BC CALC I/II",
+    "BC CALC II/III"
   ],
   "More Math": [
     "MVC",
-    "Intro to Proofs",
-    "Modern Geometries",
+    "Introduction to Proofs",
     "Statistics",
     "Number Theory",
-    "Problem Solving",
     "Discrete Mathematics",
-    "Theory of Analysis",
     "Differential Equations",
     "Linear Algebra",
     "Abstract Algebra"
@@ -27,13 +26,13 @@
   "CS": [
     "CSI",
     "OOP",
-    "Advanced Programming",
+    "Adv Programming",
     "Microcontroller Applications",
-    "Web Technologies",
-    "Advanced Web Technologies",
-    "CS Seminar: Android Apps",
-    "CS Seminar: Linux",
-    "CS Seminar: Machine Learning"
+    "Web Tech",
+    "Adv Web Tech",
+    "Android App Development",
+    "Linux and Cybersecurity",
+    "Machine Learning"
   ],
   "Physics": [
     "SI Physics",
@@ -41,23 +40,25 @@
     "Modern Physics",
     "Physics C: Mechanics",
     "Physics C: E&M",
+    "Intro to Engineering",
     "Planetary Science"
   ],
   "Chemistry": [
     "SI Chemistry",
-    "Advanced Chemistry",
-    "Organic Chemistry",
+    "Advanced Chemistry: Chem Reactions",
+    "Advanced Chemistry: Structure and Properties",
+    "Org Chem I",
+    "Org Chem II",
     "Biochemistry",
-    "Environmental Chemistry",
-    "Medicinal Chemistry"
+    "Environmental Chem"
   ],
   "Biology": [
-    "Advanced Biological Systems",
-    "Evolution, Biodiversity, and Ecology",
-    "Cancer Biology",
-    "Microbes and Disease",
-    "Pathophysiology",
-    "Biology of Behavior"
+    "Bio: Evolution & Environment",
+    "Bio: Molecular & Cellular",
+    "Biodiversity and Ecology",
+    "Cancer Bio",
+    "Evolution",
+    "Bio of Behavior"
   ],
   "Language": {
     "Spanish": ["Spanish II", "Spanish III", "Spanish IV", "Spanish V"],
@@ -67,10 +68,6 @@
   },
   "Other Science": [
     "MSI",
-    "Microcontroller Applications",
-    "Engineering",
-    "Biophysics",
-    "Computational Science",
     "Electronics"
   ]
 }
